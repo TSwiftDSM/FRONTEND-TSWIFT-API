@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body,
+html {
+  min-height: 100vh;
+  height: 100%;
+  font-family: "Roboto";
+  font-style: normal;
+}
+
+.Login {
+  background: rgba(255, 255, 255, 0.29);
+  width: 350px;
+  border-radius: 49px;
+  padding: 30px;
+  color: #ffffff;
+  .titulo {
+    font-size: 30px;
+  }
+}
+
+.Auth {
+  background: radial-gradient(50% 119.66% at 50% 50%, #21a676 0%, #3c7380 100%);
+  background-blend-mode: darken;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  color: white;
+  .footer {
+    border-top: none;
+  }
+  .content {
+    height: 94vh;
+  }
+}
+
+.header {
+  background: linear-gradient(
+    90deg,
+    #3c735f 0.84%,
+    #3c735f 0.85%,
+    #21a676 100%
+  );
+  height: 25vh;
+  color: #fff;
+  padding: 16px;
+}
+
+.content {
+  min-height: 70vh;
+}
+
+.footer {
+  border-top: 1px solid #343434;
+}
+
+.btn-secondary {
+  color: white;
+  
+}
