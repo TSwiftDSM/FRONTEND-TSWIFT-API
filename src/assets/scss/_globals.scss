@@ -59,5 +59,15 @@ html {
 
 .btn-secondary {
   color: white;
-  
+}
+
+.input-group-text {
+  background-color: white;
+}
+.input-group > :not(:first-child) {
+  border-left: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
 }

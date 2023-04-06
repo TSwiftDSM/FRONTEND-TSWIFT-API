@@ -1,4 +1,6 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
   return (
@@ -10,11 +12,21 @@ const Login = () => {
         <Form className="d-grid gap-2 my-3">
           <Form.Group controlId="usuario">
             <Form.Label>Usuário</Form.Label>
-            <Form.Control placeholder="Usuário" />
+            <InputGroup>
+              <InputGroup.Text>
+                <FontAwesomeIcon icon="fa-regular fa-user" />
+              </InputGroup.Text>
+              <Form.Control placeholder="Usuário" />
+            </InputGroup>
           </Form.Group>
           <Form.Group controlId="senha">
             <Form.Label>Senha</Form.Label>
-            <Form.Control placeholder="Senha" type="password" />
+            <InputGroup>
+              <InputGroup.Text>
+                <FontAwesomeIcon icon="fa-solid fa-lock" />
+              </InputGroup.Text>
+              <Form.Control placeholder="Senha" type="password" />
+            </InputGroup>
           </Form.Group>
           <Button variant="secondary" className="mt-3">
             ENTRAR
