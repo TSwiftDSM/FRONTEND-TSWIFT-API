@@ -3,14 +3,15 @@ import Footer from "../components/Footer";
 import Login from "../components/Login";
 import logo from "../assets/img/logo-tswift.png";
 
+const Logo = styled.img`
+  height: 70px;
+  width: 100px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
+
 function Auth() {
-  const Logo = styled.img`
-    height: 70px;
-    width: 100px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  `;
   return (
     <div className="Auth">
       <Logo src={logo} alt="Logo" />
