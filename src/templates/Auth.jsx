@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Footer from "../components/Footer";
 import Login from "../components/Login";
 import logo from "../assets/img/logo-tswift.png";
 
@@ -18,7 +17,9 @@ function Auth() {
       <div className="container-fluid d-flex align-items-center justify-content-center content">
         <Login />
       </div>
-      <Footer />
+      <footer className="text-center mx-5 py-3">
+        © 2023 Todos os direitos reservados
+      </footer>
     </div>
   );
 }
