@@ -1,7 +1,7 @@
 import App from "./templates/App";
 import Auth from "./templates/Auth";
 
-import Hello from "./pages/Hello";
+import Home from "./pages/Home";
 
 const routes = [
   {
@@ -10,7 +10,7 @@ const routes = [
     children: [
       {
         path: "/",
-        element: <Hello />,
+        element: <Home />,
       },
     ],
   },
