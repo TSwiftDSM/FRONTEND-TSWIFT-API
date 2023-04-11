@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
   return (
-    <div className="Login">
+    <div className="login">
       <div className="text-center">
         <span className="titulo">LOGIN</span>
       </div>

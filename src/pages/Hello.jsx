@@ -1,5 +1,5 @@
 const Hello = () => {
-  return <div>Hola amigos</div>;
+  return <div className="card">Hola amigos</div>;
 };
 
 export default Hello;
