@@ -28,7 +28,7 @@ const Login = () => {
               <Form.Control placeholder="Senha" type="password" />
             </InputGroup>
           </Form.Group>
-          <Button variant="secondary" className="mt-3">
+          <Button variant="secondary" className="mt-3" type="submit">
             ENTRAR
           </Button>
         </Form>

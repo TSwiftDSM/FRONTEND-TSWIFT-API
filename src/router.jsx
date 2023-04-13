@@ -1,8 +1,10 @@
 import App from "./templates/App";
 import Auth from "./templates/Auth";
 
-import Hello from "./pages/Hello";
-import Qualitativa from "./pages/Qualitativa";
+import Home from "./pages/Home";
+
+import Entrada from "./pages/etapas/Entrada";
+import Qualitativa from "./pages/etapas/Qualitativa";
 
 const routes = [
   {
@@ -11,7 +13,11 @@ const routes = [
     children: [
       {
         path: "/",
-        element: <Hello />,
+        element: <Home />,
+      },
+      {
+        path: "/:id/entrada",
+        element: <Entrada />,
       },
       {
         path: "/qualitativa" /* criando a rota qualitativa  */,
