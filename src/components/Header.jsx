@@ -4,11 +4,6 @@ import logo from "../assets/img/logo-tswift.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
-  const Logo = styled.img`
-    height: 70px;
-    width: 100px;
-  `;
-
   return (
     <header>
       <div className="container position-relative d-flex justify-content-between align-items-start">
@@ -20,7 +15,7 @@ const Header = () => {
             HOME
           </Link>
           <button className="btn text-white">
-            <span className="pr-3">SAIR </span>
+            <span className="pe-2">SAIR </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
           </button>
         </div>
@@ -30,3 +25,8 @@ const Header = () => {
 };
 
 export default Header;
+
+const Logo = styled.img`
+  height: 70px;
+  width: 100px;
+`;

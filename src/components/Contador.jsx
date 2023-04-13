@@ -5,20 +5,6 @@ import styled from "styled-components";
 const Contador = (props) => {
   const { etapa } = props;
 
-  const Circulo = styled.div`
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
-  const Linha = styled.div`
-    width: 40px;
-    border-bottom: 1px solid black;
-    height: 20px;
-  `;
 
   const contador = (atual) => {
     if (etapa > atual) {
@@ -44,3 +30,18 @@ const Contador = (props) => {
 };
 
 export default Contador;
+
+const Circulo = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const Linha = styled.div`
+  width: 40px;
+  border-bottom: 1px solid black;
+  height: 20px;
+`;
