@@ -5,6 +5,15 @@ import {
   faLock,
   faArrowRightFromBracket,
   faMagnifyingGlass,
+  faAngleLeft,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUser, faLock, faArrowRightFromBracket, faMagnifyingGlass);
+library.add(
+  faUser,
+  faLock,
+  faArrowRightFromBracket,
+  faMagnifyingGlass,
+  faAngleLeft,
+  faCheck
+);

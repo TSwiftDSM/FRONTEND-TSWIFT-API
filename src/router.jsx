@@ -3,6 +3,8 @@ import Auth from "./templates/Auth";
 
 import Home from "./pages/Home";
 
+import Entrada from "./pages/etapas/Entrada";
+
 const routes = [
   {
     path: "/",
@@ -11,6 +13,10 @@ const routes = [
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/:id/entrada",
+        element: <Entrada />,
       },
     ],
   },

@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 body,
 html {
   min-height: 100vh;
@@ -44,13 +48,13 @@ header {
     #3c735f 0.85%,
     #21a676 100%
   );
-  height: 35vh;
+  height: 30vh;
   color: white;
   padding: 16px;
 }
 
 .content {
-  min-height: 70vh;
+  min-height: 75vh;
   transform: translateY(-130px);
 }
 
