@@ -12,9 +12,11 @@ const Logo = styled.img`
 
 function Auth() {
   return (
-    <div className="Auth">
-      <Logo src={logo} alt="Logo" />
-      <div className="container-fluid d-flex align-items-center justify-content-center content">
+    <div className="auth">
+      <header className="container position-relative">
+        <Logo src={logo} alt="Logo" />
+      </header>
+      <div className="container d-flex align-items-center justify-content-center content">
         <Login />
       </div>
       <footer className="text-center mx-5 py-3">
