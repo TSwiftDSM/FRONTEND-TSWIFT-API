@@ -1,12 +1,15 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+
 import {
   faLock,
   faArrowRightFromBracket,
   faMagnifyingGlass,
   faAngleLeft,
   faCheck,
+  faTriangleExclamation,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -15,5 +18,7 @@ library.add(
   faArrowRightFromBracket,
   faMagnifyingGlass,
   faAngleLeft,
-  faCheck
+  faCheck,
+  faTriangleExclamation,
+  faCaretDown
 );
