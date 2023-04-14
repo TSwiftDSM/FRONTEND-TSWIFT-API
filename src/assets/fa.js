@@ -10,6 +10,11 @@ import {
   faCheck,
   faTriangleExclamation,
   faCaretDown,
+  faBagShopping,
+  faBriefcase,
+  faClipboardList,
+  faClipboardCheck,
+  faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -20,5 +25,10 @@ library.add(
   faAngleLeft,
   faCheck,
   faTriangleExclamation,
-  faCaretDown
+  faCaretDown,
+  faBagShopping,
+  faBriefcase,
+  faClipboardList,
+  faClipboardCheck,
+  faUserFriends
 );
