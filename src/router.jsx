@@ -2,7 +2,7 @@ import App from "./templates/App";
 import Auth from "./templates/Auth";
 
 import Hello from "./pages/Hello";
-import Qualitativa from "./pages/Qualitativa";
+import Quantitativa from "./pages/quantitativa"
 
 const routes = [
   {
@@ -14,8 +14,8 @@ const routes = [
         element: <Hello />,
       },
       {
-        path: "/qualitativa" /* criando a rota qualitativa  */,
-        element: <Qualitativa /> /* chamando a pagina qualitativa */,
+        path: "/quantitativa" /* criando a rota qualitativa  */,
+        element: <Quantitativa /> /* chamando a pagina qualitativa */,
       },
     ],
   },

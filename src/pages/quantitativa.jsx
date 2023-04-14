@@ -1,5 +1,5 @@
-const Qualitativa = () => {
+const quantitativa = () => {
   return <div>Qualitativa page mother fuckers </div>;
 };
 
-export default Qualitativa;
+export default quantitativa;
