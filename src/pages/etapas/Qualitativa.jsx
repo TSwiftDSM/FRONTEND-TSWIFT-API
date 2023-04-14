@@ -1,29 +1,35 @@
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Contador from "../../components/Contador";
 import CollapseComponent from "../../components/qualitativa/CollapseComponent";
 
-import { useState } from "react";
-
 const Qualitativa = () => {
-  const [conjuntos, setConjuntos] = useState(listaConjuntos);
+  const idEntrega = parseInt(useParams().id);
 
-  function atualizarConjunto(id, regras) {
-    let atualizado = conjuntos.map((c) => {
-      if (c.produto.id === id) {
-        return { ...c, regras: regras };
-      }
-      return c;
-    });
-    setConjuntos(atualizado);
+  let form = listaConjuntos
+    .map((c) =>
+      c.TesteQualidade.map((t) => {
+        return {
+          idEntrega: idEntrega,
+          status: false,
+          idProduto: c.Produto,
+          idQualidade: t.id,
+        };
+      })
+    )
+    .flat(1);
+
+  function atualizarConjunto(c) {
+    let index = form.findIndex(
+      (i) => i["idProduto"] == c.idProduto && i.idQualidade == c.idQualidade
+    );
+    form[index] = { ...c, idEntrega: idEntrega };
   }
 
   function submit() {
-    for (let c in conjuntos) {
-      console.log(conjuntos[c]);
-    }
+    console.log(form[0]);
   }
 
   return (
@@ -55,7 +61,7 @@ const Qualitativa = () => {
         </div>
 
         <div className="mb-4">
-          {conjuntos.map((conjunto, i) => {
+          {listaConjuntos.map((conjunto, i) => {
             return (
               <div key={i} className="mb-4">
                 <CollapseComponent
@@ -84,49 +90,25 @@ export default Qualitativa;
 
 let listaConjuntos = [
   {
-    produto: {
-      id: 4234,
-      nome: "Arroz Vermelho",
-    },
-    regras: [
-      {
-        id: 1,
-        texto: "A embalagem foi violada?",
-        status: false,
-      },
-      {
-        id: 2,
-        texto: "O produto está mal condicionado?",
-        status: false,
-      },
-      {
-        id: 3,
-        texto: "O produto possui alguma avaria?",
-        status: false,
-      },
+    Produto: 1,
+    nome: "PRODUTO 1",
+    TesteQualidade: [{ id: 1, nomeTeste: "TESTE 1" }],
+  },
+  {
+    Produto: 2,
+    nome: "PRODUTO 2",
+    TesteQualidade: [
+      { id: 1, nomeTeste: "TESTE 1" },
+      { id: 2, nomeTeste: "TESTE 2" },
     ],
   },
   {
-    produto: {
-      id: 5672,
-      nome: "Arroz Branco",
-    },
-    regras: [
-      {
-        id: 1,
-        texto: "A embalagem foi violada?",
-        status: false,
-      },
-      {
-        id: 2,
-        texto: "O produto está mal condicionado?",
-        status: false,
-      },
-      {
-        id: 3,
-        texto: "O produto possui alguma avaria?",
-        status: false,
-      },
+    Produto: 4,
+    nome: "PRODUTO 4",
+    TesteQualidade: [
+      { id: 1, nomeTeste: "TESTE 1" },
+      { id: 3, nomeTeste: "TESTE 3" },
+      { id: 4, nomeTeste: "TESTE 4" },
     ],
   },
 ];

@@ -9,13 +9,12 @@ import styled from "styled-components";
 const CollapseComponent = (props) => {
   const { conjunto, atualizar } = props;
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   let iconClass = open ? "rodar" : "";
 
   function atualizarConjunto(regras) {
-    let produto = conjunto.produto.id;
-    atualizar(produto, regras);
+    atualizar({ ...regras, idProduto: conjunto.Produto });
   }
 
   return (
@@ -24,7 +23,7 @@ const CollapseComponent = (props) => {
         onClick={() => setOpen(!open)}
         className="w-100 d-flex align-items-center justify-content-between"
       >
-        <span>{conjunto.produto.nome}</span>
+        <span>{conjunto.nome}</span>
         <FontAwesomeIcon
           className={iconClass}
           icon="fa-solid fa-caret-down"
@@ -35,7 +34,7 @@ const CollapseComponent = (props) => {
       <Collapse in={open}>
         <div className="mt-4">
           <Tabela
-            regras={conjunto.regras}
+            regras={conjunto.TesteQualidade}
             atualizarRegras={atualizarConjunto}
           />
         </div>

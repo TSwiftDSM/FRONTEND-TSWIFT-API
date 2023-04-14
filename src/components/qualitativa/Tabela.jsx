@@ -6,14 +6,7 @@ const Tabela = (props) => {
   const { regras, atualizarRegras } = props;
 
   function atualizarRegra(regra) {
-    let atualizado = regras.map((r) => {
-      if (r.id === regra.id) {
-        return { ...r, status: regra.status };
-      }
-      return r;
-    });
-
-    atualizarRegras(atualizado);
+    atualizarRegras(regra);
   }
 
   return (
