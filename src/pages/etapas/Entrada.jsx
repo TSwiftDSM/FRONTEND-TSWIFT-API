@@ -9,7 +9,7 @@ const Entrada = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">Receber Produto</h3>
+        <h3 className="text-white">Receber Produto - Conferência de Dados</h3>
       </div>
 
       <div className="card mx-auto col-lg-6 p-5">
