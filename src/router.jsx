@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
 import Quantitativa from "./pages/etapas/Quantitativa";
+import RecusaQuantitativa from './pages/etapas/RecusaQuantitativa'
 
 const routes = [
   {
@@ -28,6 +29,10 @@ const routes = [
       {
         path: "/:id/quantitativa" /* criando a rota qualitativa  */,
         element: <Quantitativa /> /* chamando a pagina qualitativa */,
+      },
+      {
+        path: "/:id/recusaquantitativa" ,
+        element: <RecusaQuantitativa /> ,
       },
     ],
   },
