@@ -1,39 +1,33 @@
-import CardEntrega from "../components/CardEntrega";
-import Busca from "../components/Busca";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Hello = () => {
-  return (
-    <div>
-      <div className="row justify-content-between mb-4">
-        <div className="col-lg-4">
-          <h3 className="text-white">Entregas agendadas</h3>
-        </div>
-        <div className="col-lg-4">
-          <Busca />
+const Home = () => {
+  function CardMenu(icone, texto) {
+    return (
+      <div className="col-lg-3 mb-5 px-4">
+        <div className="card amarelo text-center">
+          <div className="py-3">
+            <FontAwesomeIcon icon={icone} style={{ fontSize: "48px" }} />
+          </div>
+          <span className="py-3">{texto}</span>
         </div>
       </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="mb-5">
+        <h3 className="text-white">Home</h3>
+      </div>
       <div className="row">
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="vermelho" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="verde" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="azul" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
+        {CardMenu("fa-bag-shopping", "PRODUTOS")}
+        {CardMenu("fa-briefcase", "PRODUTOS")}
+        {CardMenu("fa-clipboard-list", "PRODUTOS")}
+        {CardMenu("fa-user-friends", "PRODUTOS")}
+        {CardMenu("fa-clipboard-check", "PRODUTOS")}
       </div>
     </div>
   );
 };
 
-export default Hello;
+export default Home;

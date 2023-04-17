@@ -12,7 +12,7 @@ const Entrada = () => {
         <h3 className="text-white">Receber Produto</h3>
       </div>
 
-      <div className="card mx-auto col-lg-5 p-5">
+      <div className="card mx-auto col-lg-6 p-5">
         <div className="mx-auto mb-3">
           <Contador etapa={1} />
         </div>

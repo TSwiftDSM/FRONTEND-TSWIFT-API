@@ -85,12 +85,19 @@ footer {
   transition: all 0.3s;
 
   &.vermelho {
-    box-shadow: 2px 3px 4px #f52c22;
+    box-shadow: 2px 3px 4px $danger;
   }
   &.verde {
-    box-shadow: 2px 3px 4px #21a676;
+    box-shadow: 2px 3px 4px $primary;
   }
   &.azul {
-    box-shadow: 2px 3px 4px #169bba;
+    box-shadow: 2px 3px 4px $warning;
   }
+  &.amarelo {
+    box-shadow: 2px 3px 4px $secondary;
+  }
+}
+
+.rodar {
+  transform: rotate(-180deg);
 }
