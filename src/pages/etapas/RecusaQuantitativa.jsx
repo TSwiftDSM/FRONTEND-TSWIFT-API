@@ -1,22 +1,39 @@
 import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RecusaQuantitativa = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">
+        <h2 className="text-white">
           Recebimento de Produto - Conferência Quantitativa
-        </h3>
+        </h2>
       </div>
-      <div className="card amarelo border-secondary text-center mb-5">
-        <div style={{ fontSize: "36px" }} className="text-secondary">
-          <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" />
-        </div>
-        <span>
-          Respostas marcadas com SIM confirmam a existência de inconsistências
-          na qualidade dos produtos.
+      <div className="card mx-auto col-lg-6 p-5 text-center">
+        <h3 className="mb-4">ENTREGA RECUSADA</h3>
+        <span className="mb-4">
+          O valor total informado ultrapassou o limite de +/- 5% de diferença
+          entre o pedido e a Nota Fiscal.
         </span>
+        <div className="d-flex justify-content-between">
+          <div className="col-lg-5 mb-4">
+            <Button
+              className="w-100 py-2 text-white"
+              variant="primary"
+              type="button"
+            >
+              VOLTAR
+            </Button>
+          </div>
+          <div className="col-lg-5 mb-4">
+            <Button
+              className="w-100 py-2 text-white"
+              variant="danger"
+              type="submit"
+            >
+              CONTINUAR
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
