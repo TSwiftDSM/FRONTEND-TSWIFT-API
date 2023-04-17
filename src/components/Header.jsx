@@ -12,10 +12,10 @@ const Header = () => {
         </div>
         <div className="mb-5">
           <Link className="btn text-white" to={"/"}>
-            HOME
+            Home
           </Link>
           <button className="btn text-white">
-            <span className="pe-2">SAIR </span>
+            <span className="pe-2">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
           </button>
         </div>
