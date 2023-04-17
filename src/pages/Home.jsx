@@ -21,10 +21,10 @@ const Home = () => {
       </div>
       <div className="row">
         {CardMenu("fa-bag-shopping", "PRODUTOS")}
-        {CardMenu("fa-briefcase", "PRODUTOS")}
-        {CardMenu("fa-clipboard-list", "PRODUTOS")}
-        {CardMenu("fa-user-friends", "PRODUTOS")}
-        {CardMenu("fa-clipboard-check", "PRODUTOS")}
+        {CardMenu("fa-briefcase", "FORNECEDORES")}
+        {CardMenu("fa-clipboard-list", "PEDIDOS")}
+        {CardMenu("fa-user-friends", "COLABORADORES")}
+        {CardMenu("fa-clipboard-check", "RECEBIMENTO")}
       </div>
     </div>
   );

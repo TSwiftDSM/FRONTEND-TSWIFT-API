@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Contador = (props) => {
   const { etapa } = props;
 
-
   const contador = (atual) => {
     if (etapa > atual) {
       return (
