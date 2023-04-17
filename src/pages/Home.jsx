@@ -4,11 +4,11 @@ const Home = () => {
   function CardMenu(icone, texto) {
     return (
       <div className="col-lg-3 mb-5 px-4">
-        <div className="card amarelo text-center">
+        <div className="card text-center">
           <div className="py-3">
-            <FontAwesomeIcon icon={icone} style={{ fontSize: "48px" }} />
+            <FontAwesomeIcon icon={icone} style={{ fontSize: "48px", color: "rgb(135, 135, 135)" }} />
           </div>
-          <span className="py-3">{texto}</span>
+          <span className="py-3 text-black-50">{texto}</span>
         </div>
       </div>
     );
