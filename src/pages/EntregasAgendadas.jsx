@@ -1,7 +1,28 @@
 import CardEntrega from "../components/CardEntrega";
 import Busca from "../components/Busca";
+import { useEffect, useState } from "react";
+
+import axios from "axios";
 
 const EntregasAgendadas = () => {
+  const [pedidos, setPedidos] = useState([]);
+
+  function listarPedidos() {
+    return pedidos.map((p, i) => {
+      return (
+        <div className="col-lg-4 col-md-6 mb-3" key={i}>
+          <CardEntrega pedido={p} />
+        </div>
+      );
+    });
+  }
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/entregas").then(({ data }) => {
+      setPedidos(data);
+    });
+  });
+
   return (
     <div>
       <div className="row justify-content-between mb-5">
@@ -12,26 +33,7 @@ const EntregasAgendadas = () => {
           <Busca />
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="vermelho" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="verde" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega variante="azul" />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
-        <div className="col-lg-4 mb-3">
-          <CardEntrega />
-        </div>
-      </div>
+      <div className="row">{listarPedidos()}</div>
     </div>
   );
 };

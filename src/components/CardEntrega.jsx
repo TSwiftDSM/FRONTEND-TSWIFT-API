@@ -1,5 +1,5 @@
 const CardEntrega = (props) => {
-  const { variante } = props;
+  const { variante, pedido } = props;
 
   return (
     <div className={"card entrega " + variante}>
@@ -7,7 +7,9 @@ const CardEntrega = (props) => {
         <h5>Nº 12345</h5>
         <div className="text-danger">Atrasado</div>
       </div>
-      <div className="mt-2">2345 - Fornecedor 1</div>
+      <div className="mt-2">
+        {pedido.numeroPedido} - {pedido.Fornecedor.nomeFantasia}
+      </div>
       <div className="mt-4">Data prevista: dd/mm/YYYY</div>
     </div>
   );
