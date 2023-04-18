@@ -7,9 +7,8 @@ import Home from "./pages/Home";
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
 import Quantitativa from "./pages/etapas/Quantitativa";
-import RecusaQuantitativa from './pages/etapas/RecusaQuantitativa'
-import ConferenciaRealizada from './pages/etapas/ConferenciaRealizada';
-
+import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
+import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 
 const routes = [
   {
@@ -33,12 +32,12 @@ const routes = [
         element: <Quantitativa /> /* chamando a pagina qualitativa */,
       },
       {
-        path: "/:id/recusaquantitativa" ,
-        element: <RecusaQuantitativa /> ,
+        path: "/:id/recusa-quantitativa",
+        element: <RecusaQuantitativa />,
       },
       {
-        path: "/:id/ConferenciaRealizada" ,
-        element: <ConferenciaRealizada /> ,
+        path: "/:id/conferencia-realizada",
+        element: <ConferenciaRealizada />,
       },
     ],
   },
