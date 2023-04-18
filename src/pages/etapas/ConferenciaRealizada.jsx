@@ -14,13 +14,15 @@ const ConferenciaRealizada = () => {
         <span className="mb-5 text-center">
           Conferência realizada com sucesso.
         </span>
+        <div className="d-flex  justify-content-center">
         <Button
-          className="w-100 py-2 text-white"
+          className="py-2 text-white"
           variant="primary"
           type="submit"
         >
           CONCLUIR
         </Button>
+        </div>
       </div>
     </div>
   );
