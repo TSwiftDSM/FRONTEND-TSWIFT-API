@@ -5,6 +5,7 @@ import EntregasAgendadas from "./pages/EntregasAgendadas";
 
 import Home from "./pages/admin/Home";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
+import Relatorio from "./pages/admin/Relatorio";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -43,6 +44,10 @@ const routes = [
       {
         path: "/admin/pedidos",
         element: <PedidosAdmin />,
+      },
+      {
+        path: "/admin/pedidos/:id",
+        element: <Relatorio />,
       },
     ],
   },
