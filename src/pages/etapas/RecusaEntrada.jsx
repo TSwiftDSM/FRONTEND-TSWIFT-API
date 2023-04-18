@@ -4,15 +4,15 @@ const RecusaEntrada = () => {
   return (
     <div>
       <div className="mb-4">
-        <h2 className="text-white">Recebimento de Produto - Entrada</h2>
+        <h2 className="text-white">Receber Produto - Conferência de dados</h2>
       </div>
       <div className="card mx-auto col-lg-6 p-5 text-left">
-        <h3 className="mb-4">RECUSAR ENTREGA</h3>
-        <h7 className="mb-4">Incosistências Encontradas:</h7>
+        <h3 className="d-flex mb-3 justify-content-center">RECUSAR ENTREGA</h3>
+        <h7>Inconsistências Encontradas:</h7>
 
         <Form>
           <Form.Group controlId="numero" className="mb-4">
-            <Form.Label>Selecione a incosistência</Form.Label>
+            <Form.Label>Selecione a inconsistência</Form.Label>
             <Form.Control disabled />
           </Form.Group>
         </Form>
