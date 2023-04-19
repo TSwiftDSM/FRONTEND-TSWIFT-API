@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/img/logo-tswift.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   return (
@@ -14,10 +14,10 @@ const Header = () => {
           <Link className="btn text-white" to={"/"}>
             Home
           </Link>
-          <button className="btn text-white">
+          {/* <button className="btn text-white">
             <span className="pe-2">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
-          </button>
+          </button> */}
         </div>
       </div>
     </header>
