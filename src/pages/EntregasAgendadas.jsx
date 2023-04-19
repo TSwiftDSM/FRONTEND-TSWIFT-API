@@ -21,7 +21,7 @@ const EntregasAgendadas = () => {
     axios.get("http://localhost:3000/entregas").then(({ data }) => {
       setPedidos(data);
     });
-  });
+  }, []);
 
   return (
     <div>
