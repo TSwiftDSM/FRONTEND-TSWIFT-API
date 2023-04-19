@@ -5,6 +5,10 @@
 
 a {
   text-decoration: none;
+  color: black;
+  &:hover {
+    color: $warning;
+  }
 }
 
 body,
@@ -95,6 +99,12 @@ footer {
   }
   &.amarelo {
     box-shadow: 2px 3px 4px $secondary;
+  }
+
+  &.entrega {
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 }
 

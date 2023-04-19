@@ -1,5 +1,7 @@
 import CardEntrega from "../components/CardEntrega";
 import Busca from "../components/Busca";
+import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 
 import axios from "axios";
@@ -10,9 +12,13 @@ const EntregasAgendadas = () => {
   function listarPedidos() {
     return pedidos.map((p, i) => {
       return (
-        <div className="col-lg-4 col-md-6 mb-3" key={i}>
+        <Link
+          className="col-lg-4 col-md-6 mb-3"
+          key={i}
+          to={"/admin/pedidos/" + p.id}
+        >
           <CardEntrega pedido={p} />
-        </div>
+        </Link>
       );
     });
   }

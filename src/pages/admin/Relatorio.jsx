@@ -130,26 +130,30 @@ const Relatorio = () => {
                 </div> */}
               </CollapseComponent>
             </div>
-            <div className="my-4">
-              <CollapseComponent nome="ETAPA 2: CONFERÊNCIA QUANTITATIVA">
-                {DetalhesQuantitativa(pedido.EntregaProduto)}
-              </CollapseComponent>
-            </div>
-            <div className="my-4">
-              <CollapseComponent nome="ETAPA 3: CONFERÊNCIA QUALITATIVA">
-                {pedido.EntregaProduto &&
-                  pedido.EntregaProduto.map((e, i) => {
-                    return (
-                      <div key={i}>
-                        <h6 className="mb-4">PRODUTO {e.produtoId}</h6>
-                        {DetalhesQualitativa(
-                          get(e, "Produto.QualidadeProduto", [])
-                        )}
-                      </div>
-                    );
-                  })}
-              </CollapseComponent>
-            </div>
+            {!!pedido.EntregaProduto.length && (
+              <div>
+                <div className="my-4">
+                  <CollapseComponent nome="ETAPA 2: CONFERÊNCIA QUANTITATIVA">
+                    {DetalhesQuantitativa(pedido.EntregaProduto)}
+                  </CollapseComponent>
+                </div>
+                <div className="my-4">
+                  <CollapseComponent nome="ETAPA 3: CONFERÊNCIA QUALITATIVA">
+                    {pedido.EntregaProduto &&
+                      pedido.EntregaProduto.map((e, i) => {
+                        return (
+                          <div key={i}>
+                            <h6 className="mb-4">PRODUTO {e.produtoId}</h6>
+                            {DetalhesQualitativa(
+                              get(e, "Produto.QualidadeProduto", [])
+                            )}
+                          </div>
+                        );
+                      })}
+                  </CollapseComponent>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
