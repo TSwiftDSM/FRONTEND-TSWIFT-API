@@ -14,6 +14,9 @@ import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
 import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 import RecusaEntrada from "./pages/etapas/RecusaEntrada";
 import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
+import RecusaEntrega from "./pages/etapas/RecusaEntrega";
+
+
 
 const routes = [
   {
@@ -51,6 +54,10 @@ const routes = [
       {
         path: "/:id/recusa-qualitativa",
         element: <RecusaQualitativa />,
+      },
+      {
+        path: "/:id/recusa-entrega",
+        element: <RecusaEntrega />,
       },
     ],
   },
