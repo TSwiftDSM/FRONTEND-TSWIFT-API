@@ -130,7 +130,7 @@ const Relatorio = () => {
                 </div> */}
               </CollapseComponent>
             </div>
-            {!!pedido.EntregaProduto.length && (
+            {pedido.EntregaProduto && !!pedido.EntregaProduto.length && (
               <div>
                 <div className="my-4">
                   <CollapseComponent nome="ETAPA 2: CONFERÊNCIA QUANTITATIVA">
