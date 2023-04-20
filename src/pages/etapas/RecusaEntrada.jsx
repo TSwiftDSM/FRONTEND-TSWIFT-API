@@ -9,6 +9,7 @@ const RecusaEntrada = () => {
       <div className="card mx-auto col-lg-6 p-5 text-left">
         <h3 className="d-flex mb-3 justify-content-center">RECUSAR ENTREGA</h3>
         <h7>Inconsistências Encontradas:</h7>
+        
 
         <Form>
           <Form.Group controlId="numero" className="mb-4">
