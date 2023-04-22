@@ -1,5 +1,5 @@
 import CardEntrega from "../components/CardEntrega";
-import Busca from "../components/Busca";
+// import Busca from "../components/Busca";
 import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
@@ -35,9 +35,7 @@ const EntregasAgendadas = () => {
         <div className="col-lg-4">
           <h3 className="text-white">Entregas agendadas</h3>
         </div>
-        <div className="col-lg-4">
-          <Busca />
-        </div>
+        <div className="col-lg-4">{/* <Busca /> */}</div>
       </div>
       <div className="row">{listarPedidos()}</div>
     </div>

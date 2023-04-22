@@ -1,5 +1,5 @@
 import App from "./templates/App";
-import Auth from "./templates/Auth";
+// import Auth from "./templates/Auth";
 
 import EntregasAgendadas from "./pages/EntregasAgendadas";
 
@@ -16,8 +16,6 @@ import RecusaEntrada from "./pages/etapas/RecusaEntrada";
 import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
 import RecusaEntrega from "./pages/etapas/RecusaEntrega";
 
-
-
 const routes = [
   {
     path: "/",
@@ -32,8 +30,8 @@ const routes = [
         element: <Entrada />,
       },
       {
-        path: "/:id/qualitativa",
-        element: <Qualitativa />,
+        path: "/:id/recusa-entrada",
+        element: <RecusaEntrada />,
       },
       {
         path: "/:id/quantitativa" /* criando a rota qualitativa  */,
@@ -44,16 +42,16 @@ const routes = [
         element: <RecusaQuantitativa />,
       },
       {
-        path: "/:id/conferencia-realizada",
-        element: <ConferenciaRealizada />,
-      },
-      {
-        path: "/:id/recusa-entrada",
-        element: <RecusaEntrada />,
+        path: "/:id/qualitativa",
+        element: <Qualitativa />,
       },
       {
         path: "/:id/recusa-qualitativa",
         element: <RecusaQualitativa />,
+      },
+      {
+        path: "/:id/conferencia-realizada",
+        element: <ConferenciaRealizada />,
       },
       {
         path: "/:id/recusa-entrega",
@@ -61,10 +59,10 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/login",
-    element: <Auth />,
-  },
+  // {
+  //   path: "/login",
+  //   element: <Auth />,
+  // },
   {
     path: "/admin",
     element: <App />,

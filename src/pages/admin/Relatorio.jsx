@@ -3,6 +3,7 @@ import CollapseComponent from "../../components/CollapseComponent";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
+import { formatarData } from "../../helpers";
 import axios from "axios";
 import get from "lodash/get";
 
@@ -87,17 +88,17 @@ const Relatorio = () => {
               <strong className="me-1">Nº do Pedido:</strong>
               {pedido.numeroPedido}
             </div>
-            <div className="small">
+            {/* <div className="small">
               <strong className="me-1">Status:</strong>
               <span>Recusado</span>
-            </div>
+            </div> */}
             {/* <div className="mt-4 small">
               <strong className="me-1">Data Prevista:</strong>
               dd/mm/aaaa
             </div> */}
             <div className="small">
               <strong className="me-1">Data de Entrega:</strong>
-              dd/mm/aaaa
+              {formatarData(pedido.dataEntrega)}
             </div>
 
             <div className="my-4">
@@ -154,6 +155,9 @@ const Relatorio = () => {
                 </div>
               </div>
             )}
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-danger">FORÇAR RECEBIMENTO</button>
+            </div>
           </div>
         )}
       </div>

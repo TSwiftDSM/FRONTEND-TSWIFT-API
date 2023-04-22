@@ -1,4 +1,4 @@
-import { formatarData } from "../helpers";
+// import { formatarData } from "../helpers";
 
 const CardEntrega = (props) => {
   const { pedido } = props;
@@ -18,9 +18,9 @@ const CardEntrega = (props) => {
         )} */}
       </div>
       <div className="mt-2">{pedido.Fornecedor.nomeFantasia}</div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         Data prevista: {formatarData(pedido.dataEntrega) || "Indefinida"}
-      </div>
+      </div> */}
     </div>
   );
 };
