@@ -1,36 +1,61 @@
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Contador from "../../components/Contador";
-import CollapseComponent from "../../components/qualitativa/CollapseComponent";
+import CollapseComponent from "../../components/CollapseComponent";
+import { Produto } from "../../components/quantitativa/Produto";
+import { get } from "lodash";
 
 const Quantitativa = () => {
-  const idEntrega = parseInt(useParams().id);
+  const id = parseInt(useParams().id);
+  const navigate = useNavigate();
 
-  let form = listaConjuntos
-    .map((c) =>
-      c.TesteQualidade.map((t) => {
-        return {
-          idEntrega: idEntrega,
-          status: false,
-          idProduto: c.Produto,
-          idQualidade: t.id,
-        };
-      })
-    )
-    .flat(1);
+  const [produtos, setProdutos] = useState([]);
+  const [form, setForm] = useState([]);
 
-  function atualizarConjunto(c) {
-    let index = form.findIndex(
-      (i) => i["idProduto"] == c.idProduto && i.idQualidade == c.idQualidade
-    );
-    form[index] = { ...c, idEntrega: idEntrega };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/conferencia/quantitativa/${id}`)
+      .then(({ data }) => {
+        setProdutos(data);
+        setForm(
+          data.map((p) => {
+            return {
+              id_entrega_produto: p.id,
+              peso_previsto: p.pesoPrevisto,
+              especificacao: "",
+              quantidade: 0,
+            };
+          })
+        );
+      });
+  }, [id]);
+
+  function update(p, i) {
+    let data = form;
+    data[i] = p;
+    setForm(data);
   }
 
   function submit() {
-    console.log(form[0]);
+    let data = {
+      id_usuario: 1,
+      update_objects: form,
+    };
+    axios
+      .post(`http://localhost:3000/conferencia/quantitativa/${id}`, data)
+      .then(({ data }) => {
+        const rota =
+          data === "Etapa Concluida"
+            ? `/${id}/qualitativa`
+            : `/${id}/recusa-quantitativa`;
+        navigate(rota);
+      });
   }
+
   return (
     <div>
       <div className="mb-4">
@@ -47,55 +72,25 @@ const Quantitativa = () => {
           Voltar
         </Link>
 
-        <div className="mb-4">
-          {listaConjuntos.map((conjunto, i) => {
-            return (
-              <div key={i} className="mb-4">
-                <CollapseComponent
-                  conjunto={conjunto}
-                  atualizar={atualizarConjunto}
-                />
-                <Form.Group
-                  controlId="numero"
-                  className="mb-3"
-                  placeholder="Selecione"
-                >
-                  <Form.Label>Especificação do Produto</Form.Label>
-                  <Form.Control disabled />
-                </Form.Group>
-                <Form.Group
-                  controlId="numero"
-                  className="mb-3"
-                  placeholder="Selecione"
-                >
-                  <Form.Label>Quantidade</Form.Label>
-                  <Form.Control disabled />
-                </Form.Group>
-                <Form.Group
-                  controlId="numero"
-                  className="mb-3"
-                  placeholder="Selecione"
-                >
-                  <Form.Label>Unidade</Form.Label>
-                  <Form.Control disabled />
-                </Form.Group>
-                <Form.Group
-                  controlId="numero"
-                  className="mb-3"
-                  placeholder="Selecione"
-                >
-                  <Form.Label>Valor Total</Form.Label>
-                  <Form.Control disabled />
-                </Form.Group>
-              </div>
-            );
-          })}
-        </div>
+        {produtos.map((p, i) => {
+          return (
+            <div key={i} className="my-4">
+              <CollapseComponent
+                nome={`${get(p, "Produto.id")} - ${get(
+                  p,
+                  "Produto.nomeProduto"
+                )}`}
+              >
+                <Produto produto={form[i]} index={i} update={update} />
+              </CollapseComponent>
+            </div>
+          );
+        })}
 
-        <div className="mb-4">
+        <div className="mt-4">
           <div className="d-flex justify-content-center">
             <Button
-              className="text-white py-3 px-5"
+              className="text-white py-2 px-4"
               type="submit"
               onClick={submit}
             >
@@ -109,21 +104,3 @@ const Quantitativa = () => {
 };
 
 export default Quantitativa;
-
-let listaConjuntos = [
-  {
-    Produto: 1,
-    nome: "3232 - Arroz Vermelho",
-    TesteQualidade: [
-      { id: 1, nomeTeste: "TESTE 1" },
-    ] /* preciso arrumar para listar regras quantitativas */,
-  },
-  {
-    Produto: 2,
-    nome: "3233 - Arroz Branco",
-    TesteQualidade: [
-      { id: 1, nomeTeste: "TESTE 1" },
-      { id: 2, nomeTeste: "TESTE 2" },
-    ],
-  },
-];

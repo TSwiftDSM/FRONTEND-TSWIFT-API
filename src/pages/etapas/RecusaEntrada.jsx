@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const RecusaEntrada = () => {
+  const { id } = useParams();
+
   const formFields = Object.freeze({
     inconsistencia: "numeroPedido",
     motivo: "",
@@ -27,7 +32,7 @@ const RecusaEntrada = () => {
   ];
 
   function submit() {
-    console.log(form);
+    axios.post(`http://localhost:3000/recusar/entradaMateriais/${id}`, form);
   }
 
   return (

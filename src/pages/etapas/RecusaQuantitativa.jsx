@@ -1,6 +1,9 @@
 import { Button } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
 
 const RecusaQuantitativa = () => {
+  const { id } = useParams();
+
   return (
     <div>
       <div className="mb-4">
@@ -16,22 +19,26 @@ const RecusaQuantitativa = () => {
         </span>
         <div className="d-flex justify-content-between">
           <div className="col-lg-5 mb-4">
-            <Button
-              className="w-100 py-2 text-white"
-              variant="primary"
-              type="button"
-            >
-              VOLTAR
-            </Button>
+            <Link to={`/${id}/quantitativa`}>
+              <Button
+                className="w-100 py-2 text-white"
+                variant="primary"
+                type="button"
+              >
+                VOLTAR
+              </Button>
+            </Link>
           </div>
           <div className="col-lg-5 mb-4">
-            <Button
-              className="w-100 py-2 text-white"
-              variant="danger"
-              type="submit"
-            >
-              CONTINUAR
-            </Button>
+            <Link to={`/${id}/qualitativa`}>
+              <Button
+                className="w-100 py-2 text-white"
+                variant="danger"
+                type="submit"
+              >
+                CONTINUAR
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
