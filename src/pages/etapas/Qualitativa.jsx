@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 import Contador from "../../components/Contador";
 import CollapseComponent from "../../components/qualitativa/CollapseComponent";
@@ -29,7 +30,14 @@ const Qualitativa = () => {
   }
 
   function submit() {
-    console.log(form[0]);
+    axios
+      .post(
+        `http://localhost:3000/conferencia/qualitativa/api/PersistenciaQualitativa`,
+        { qualidadeProdutos: form }
+      )
+      .then(({ data }) => {
+        console.log(data);
+      });
   }
 
   return (
@@ -76,7 +84,7 @@ const Qualitativa = () => {
         </div>
         <div className="d-flex justify-content-center">
           <Button
-            className="text-white py-3 px-5"
+            className="text-white py-2 px-4"
             type="submit"
             onClick={submit}
           >
