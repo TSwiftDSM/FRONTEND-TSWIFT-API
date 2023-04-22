@@ -11,9 +11,7 @@ const RecusaQualitativa = () => {
       <div className="card mx-auto col-lg-6 p-5">
         <h3 className="d-flex mb-4 justify-content-center">RECUSAR ENTREGA</h3>
 
-        <h7>Inconsistências Encontradas:</h7>
-        <h7>ETAPA 3:</h7>
-        <h7>Produto:</h7>
+        <div>Inconsistências Encontradas:</div>
 
         <div>
           <Form.Group controlId="info" className="mb-3">

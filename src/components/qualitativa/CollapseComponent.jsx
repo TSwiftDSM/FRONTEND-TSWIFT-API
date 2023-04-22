@@ -14,7 +14,7 @@ const CollapseComponent = (props) => {
   let iconClass = open ? "rodar" : "";
 
   function atualizarConjunto(regras) {
-    atualizar({ ...regras, idProduto: conjunto.Produto });
+    atualizar({ ...regras, idProduto: conjunto.id });
   }
 
   return (
@@ -23,7 +23,7 @@ const CollapseComponent = (props) => {
         onClick={() => setOpen(!open)}
         className="w-100 d-flex align-items-center justify-content-between"
       >
-        <span>{conjunto.nome}</span>
+        <span>{conjunto.nomeProduto}</span>
         <FontAwesomeIcon
           className={iconClass}
           icon="fa-solid fa-caret-down"

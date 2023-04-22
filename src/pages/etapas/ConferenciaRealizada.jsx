@@ -1,7 +1,13 @@
 import { Button } from "react-bootstrap";
 import Contador from "../../components/Contador";
+import { useNavigate } from "react-router-dom";
 
 const ConferenciaRealizada = () => {
+  const navigate = useNavigate();
+
+  function home() {
+    navigate("/");
+  }
   return (
     <div>
       <div className="mb-4">
@@ -15,13 +21,9 @@ const ConferenciaRealizada = () => {
           Conferência realizada com sucesso.
         </span>
         <div className="d-flex  justify-content-center">
-        <Button
-          className="py-2 text-white"
-          variant="primary"
-          type="submit"
-        >
-          CONCLUIR
-        </Button>
+          <Button className="py-2 text-white" variant="primary" onClick={home}>
+            CONCLUIR
+          </Button>
         </div>
       </div>
     </div>

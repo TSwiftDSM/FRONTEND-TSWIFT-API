@@ -14,8 +14,8 @@ const Tabela = (props) => {
       <thead>
         <tr>
           <th>Regra de Recebimento</th>
-          <th className="text-center">SIM</th>
-          <th className="text-center">NÃO</th>
+          <th className="text-center">Aprovado</th>
+          <th className="text-center">Reprovado</th>
         </tr>
       </thead>
       <tbody>

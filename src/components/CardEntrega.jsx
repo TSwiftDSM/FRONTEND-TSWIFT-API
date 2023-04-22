@@ -1,5 +1,7 @@
 // import { formatarData } from "../helpers";
 
+import { get } from "lodash";
+
 const CardEntrega = (props) => {
   const { pedido } = props;
 
@@ -17,7 +19,7 @@ const CardEntrega = (props) => {
           <div className="text-danger">Atrasado</div>
         )} */}
       </div>
-      <div className="mt-2">{pedido.Fornecedor.nomeFantasia}</div>
+      <div className="mt-2">{get(pedido, "Fornecedor.nomeFantasia")}</div>
       {/* <div className="mt-4">
         Data prevista: {formatarData(pedido.dataEntrega) || "Indefinida"}
       </div> */}

@@ -1,21 +1,35 @@
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import Contador from "../../components/Contador";
 import CollapseComponent from "../../components/qualitativa/CollapseComponent";
+import { useEffect, useState } from "react";
 
 const Qualitativa = () => {
   const idEntrega = parseInt(useParams().id);
+  const navigate = useNavigate();
 
-  let form = listaConjuntos
+  const [testes, setTestes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/conferencia/qualitativa/api/qualitativa/${idEntrega}`
+      )
+      .then(({ data }) => {
+        setTestes(Object.values(data));
+      });
+  }, [idEntrega]);
+
+  let form = testes
     .map((c) =>
       c.TesteQualidade.map((t) => {
         return {
           idEntrega: idEntrega,
           status: false,
-          idProduto: c.Produto,
+          idProduto: c.id,
           idQualidade: t.id,
         };
       })
@@ -36,7 +50,11 @@ const Qualitativa = () => {
         { qualidadeProdutos: form }
       )
       .then(({ data }) => {
-        console.log(data);
+        const route =
+          data === "Entrega Aprovada"
+            ? `/${idEntrega}/conferencia-realizada`
+            : `/${idEntrega}/recusa-qualitativa`;
+        navigate(route);
       });
   }
 
@@ -71,7 +89,7 @@ const Qualitativa = () => {
         </div>
 
         <div className="mb-4">
-          {listaConjuntos.map((conjunto, i) => {
+          {testes.map((conjunto, i) => {
             return (
               <div key={i} className="mb-4">
                 <CollapseComponent
@@ -97,28 +115,3 @@ const Qualitativa = () => {
 };
 
 export default Qualitativa;
-
-let listaConjuntos = [
-  {
-    Produto: 1,
-    nome: "PRODUTO 1",
-    TesteQualidade: [{ id: 1, nomeTeste: "TESTE 1" }],
-  },
-  {
-    Produto: 2,
-    nome: "PRODUTO 2",
-    TesteQualidade: [
-      { id: 1, nomeTeste: "TESTE 1" },
-      { id: 2, nomeTeste: "TESTE 2" },
-    ],
-  },
-  {
-    Produto: 4,
-    nome: "PRODUTO 4",
-    TesteQualidade: [
-      { id: 1, nomeTeste: "TESTE 1" },
-      { id: 3, nomeTeste: "TESTE 3" },
-      { id: 4, nomeTeste: "TESTE 4" },
-    ],
-  },
-];
