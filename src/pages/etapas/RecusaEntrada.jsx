@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const RecusaEntrada = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const formFields = Object.freeze({
     inconsistencia: "numeroPedido",
@@ -32,7 +33,14 @@ const RecusaEntrada = () => {
   ];
 
   function submit() {
-    axios.post(`http://localhost:3000/recusar/entradaMateriais/${id}`, form);
+    axios
+      .post(`http://localhost:3000/recusar/entradaMateriais/${id}`, form)
+      .then(() => {
+        navigate(`/${id}/quantitativa`);
+      });
+  }
+  function voltar() {
+    navigate(`/${id}/entrada`);
   }
 
   return (
@@ -80,7 +88,7 @@ const RecusaEntrada = () => {
               className="w-100 py-2 text-white"
               variant="primary"
               type="button"
-              // onClick={voltar}
+              onClick={voltar}
             >
               VOLTAR
             </Button>
