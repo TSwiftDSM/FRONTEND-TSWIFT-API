@@ -17,6 +17,10 @@ const Relatorio = () => {
     });
   }, [id]);
 
+  function submit() {
+    axios.post(`http://localhost:3000/alterar/forcarAceitacao/${id}/1`);
+  }
+
   function DetalhesQuantitativa(produto = []) {
     const entregas = [...produto];
     return entregas.map((e, i) => {
@@ -156,7 +160,9 @@ const Relatorio = () => {
               </div>
             )}
             <div className="d-flex justify-content-center">
-              <button className="btn btn-danger">FORÇAR RECEBIMENTO</button>
+              <button className="btn btn-danger" onClick={submit}>
+                FORÇAR RECEBIMENTO
+              </button>
             </div>
           </div>
         )}
