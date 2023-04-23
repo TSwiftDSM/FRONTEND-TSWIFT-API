@@ -57,6 +57,10 @@ const routes = [
         path: "/:id/recusa-entrega",
         element: <RecusaEntrega />,
       },
+      {
+        path: "/:id/relatorio",
+        element: <Relatorio />,
+      },
     ],
   },
   // {
@@ -74,10 +78,6 @@ const routes = [
       {
         path: "/admin/pedidos",
         element: <PedidosAdmin />,
-      },
-      {
-        path: "/admin/pedidos/:id",
-        element: <Relatorio />,
       },
     ],
   },

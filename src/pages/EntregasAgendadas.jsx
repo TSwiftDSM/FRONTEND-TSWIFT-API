@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
+import { etapas } from "../constants";
+
 import axios from "axios";
 
 const EntregasAgendadas = () => {
@@ -11,11 +13,18 @@ const EntregasAgendadas = () => {
 
   function listarPedidos() {
     return pedidos.map((p, i) => {
+      const etapa = etapas[p.etapaEntrega] || 0;
+      const rota = Object.freeze({
+        0: "entrada",
+        1: "quantitativa",
+        2: "qualitativa",
+        3: "relatorio",
+      });
       return (
         <Link
           className="col-lg-4 col-md-6 mb-3"
           key={i}
-          to={"/admin/pedidos/" + p.id}
+          to={`${p.id}/${rota[etapa]}`}
         >
           <CardEntrega pedido={p} />
         </Link>
