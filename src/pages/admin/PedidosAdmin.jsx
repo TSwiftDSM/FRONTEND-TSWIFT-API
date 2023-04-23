@@ -1,6 +1,21 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+import { formatarData } from "../../helpers";
+import { useEffect, useState } from "react";
+import { get } from "lodash";
+import axios from "axios";
 
 const PedidosAdmin = () => {
+  const [pedidos, setPedidos] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/entregas").then(({ data }) => {
+      setPedidos(data);
+    });
+  }, []);
+
   return (
     <div>
       <div className="mb-4">
@@ -24,12 +39,12 @@ const PedidosAdmin = () => {
               <tr>
                 <th style={{ width: "6%" }}>Código</th>
                 <th style={{ width: "12%" }}>Fornecedor</th>
-                <th style={{ width: "12%" }}>Transportadora</th>
-                <th style={{ width: "18%" }}>Produto</th>
-                <th style={{ width: "12%" }}>Cond. Pag</th>
+                {/* <th style={{ width: "12%" }}>Transportadora</th> */}
+                {/* <th style={{ width: "18%" }}>Produto</th> */}
+                <th style={{ width: "12%" }}>Cond. Pag.</th>
                 <th style={{ width: "10%" }}>Tipo de Frete</th>
                 <th style={{ width: "12%" }}>Data prevista</th>
-                <th style={{ width: "10%" }}>Status</th>
+                {/* <th style={{ width: "10%" }}>Status</th> */}
                 <th style={{ width: "4%" }} />
               </tr>
             </thead>
@@ -37,10 +52,10 @@ const PedidosAdmin = () => {
               {pedidos.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th>{p.cod}</th>
-                    <th>{p.fornecedor}</th>
-                    <th>{p.transportadora}</th>
-                    <th>
+                    <th>{p.id}</th>
+                    <th>{get(p, "Fornecedor.nomeFantasia")}</th>
+                    {/* <th>{p.transportadora}</th> */}
+                    {/* <th>
                       {p.produtos.map((prod, i) => {
                         return (
                           <div key={i}>
@@ -50,12 +65,21 @@ const PedidosAdmin = () => {
                           </div>
                         );
                       })}
+                    </th> */}
+                    <th>{p.formaPagamento}</th>
+                    <th>{p.tipoFrete}</th>
+                    <th>{formatarData(p.dataEntrega)}</th>
+                    {/* <th>{p.status}</th> */}
+                    <th>
+                      <Link
+                        className="d-flex align-items-center justify-content-center"
+                        to={`/${p.id}/relatorio`}
+                      >
+                        <button className="btn btn-square btn-outline-dark text-center">
+                          <FontAwesomeIcon icon={"fa-solid fa-angle-right"} />
+                        </button>
+                      </Link>
                     </th>
-                    <th>{p.cond}</th>
-                    <th>{p.tipo}</th>
-                    <th>{p.data}</th>
-                    <th>{p.status}</th>
-                    <th></th>
                   </tr>
                 );
               })}
@@ -66,50 +90,5 @@ const PedidosAdmin = () => {
     </div>
   );
 };
-
-const pedidos = [
-  {
-    cod: 1234,
-    fornecedor: "Fornecedor 1",
-    transportadora: "Transportadora 1",
-    produtos: [
-      {
-        cod: 1,
-        nome: "Produto 1",
-        peso: "200kg",
-      },
-      {
-        cod: 2,
-        nome: "Produto 2",
-        peso: "100kg",
-      },
-      {
-        cod: 3,
-        nome: "Produto 3",
-        peso: "300kg",
-      },
-    ],
-    cond: "cond. pag.",
-    tipo: "Tipo de Frete",
-    data: "dd/mm/aaaa",
-    status: "Pendente",
-  },
-  {
-    cod: 6789,
-    fornecedor: "Fornecedor 2",
-    transportadora: "Transportadora 2",
-    produtos: [
-      {
-        cod: 1,
-        nome: "Produto 1",
-        peso: "200kg",
-      },
-    ],
-    cond: "cond. pag.",
-    tipo: "Tipo de Frete",
-    data: "dd/mm/aaaa",
-    status: "Pendente",
-  },
-];
 
 export default PedidosAdmin;
