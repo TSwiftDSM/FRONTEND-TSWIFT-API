@@ -28,11 +28,16 @@ export const Produto = (props) => {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Especificação do Produto</Form.Label>
-          <Form.Control onChange={atualizar} name="especificacao" required/>
+          <Form.Control onChange={atualizar} name="especificacao" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Quantidade</Form.Label>
-          <Form.Control onChange={atualizar} name="quantidade" type="number" required/>
+          <Form.Control
+            onChange={atualizar}
+            name="quantidade"
+            type="number"
+            value={form.quantidade}
+          />
         </Form.Group>
         {/* <Form.Group>
           <Form.Label>Unidade</Form.Label>

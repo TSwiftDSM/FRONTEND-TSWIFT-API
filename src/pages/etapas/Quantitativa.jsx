@@ -15,6 +15,7 @@ const Quantitativa = () => {
 
   const [produtos, setProdutos] = useState([]);
   const [form, setForm] = useState([]);
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     axios
@@ -38,6 +39,8 @@ const Quantitativa = () => {
     let data = form;
     data[i] = p;
     setForm(data);
+    let objeto = form.find((o) => !o.especificacao);
+    setDisable(!!objeto);
   }
 
   function submit() {
@@ -93,6 +96,7 @@ const Quantitativa = () => {
               className="text-white py-2 px-4"
               type="submit"
               onClick={submit}
+              disabled={disable}
             >
               CONTINUAR
             </Button>
