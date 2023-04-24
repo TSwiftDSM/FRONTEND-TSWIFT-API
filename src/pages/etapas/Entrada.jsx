@@ -3,10 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Contador from "../../components/Contador";
 
-import { formasDePagamento, tiposDeFrete } from "../../constants";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { get } from "lodash";
 import axios from "axios";
 
 const Entrada = () => {
@@ -21,7 +21,7 @@ const Entrada = () => {
     transportadora: "",
     tipoFrete: "CIF",
     condicaoPagamento: "6X",
-    laudo: false,
+    laudo: true,
   });
 
   const [form, setForm] = useState(formFields);
@@ -33,6 +33,27 @@ const Entrada = () => {
       [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
     });
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/cadastrar/material/api/EntradaMaterial/${id}`)
+      .then(({ data }) => {
+        let dados = {
+          numeroPedido: data.numeroPedido,
+          tipoFrete: data.tipoFrete,
+          condicaoPagamento: data.formaPagamento,
+          fornecedor: get(data, "Fornecedor.nomeFantasia"),
+          transportadora: get(
+            data,
+            "Transportadora.FornecedorTransportadora.nomeFantasia"
+          ),
+        };
+        setForm((form) => ({
+          ...form,
+          ...dados,
+        }));
+      });
+  }, [id]);
 
   const submit = () => {
     axios
@@ -46,7 +67,9 @@ const Entrada = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">Recebimento de Produto - Conferência de Dados</h3>
+        <h3 className="text-white">
+          Recebimento de Produto - Conferência de Dados
+        </h3>
       </div>
 
       <div className="card mx-auto col-lg-6 p-5">
@@ -64,35 +87,56 @@ const Entrada = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Nº do pedido</Form.Label>
-              <Form.Control name="numeroPedido" onChange={atualizar} />
+              <Form.Control
+                name="numeroPedido"
+                onChange={atualizar}
+                value={form.numeroPedido}
+                disabled
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Nº da nota fiscal</Form.Label>
-              <Form.Control name="notaFiscal" onChange={atualizar} required/>
+              <Form.Control
+                name="notaFiscal"
+                onChange={atualizar}
+                value={form.notaFiscal}
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Fornecedor</Form.Label>
-              <Form.Control name="fornecedor" onChange={atualizar} />
+              <Form.Control
+                name="fornecedor"
+                onChange={atualizar}
+                value={form.fornecedor}
+                disabled
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Transportadora</Form.Label>
-              <Form.Control name="transportadora" onChange={atualizar} />
+              <Form.Control
+                name="transportadora"
+                onChange={atualizar}
+                value={form.transportadora}
+                disabled
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Tipo de frete</Form.Label>
-              <Form.Select name="tipoFrete" onChange={atualizar}>
-                {tiposDeFrete.map((tipo) => (
-                  <option key={tipo.id}>{tipo.nome}</option>
-                ))}
-              </Form.Select>
+              <Form.Control
+                name="tipoFrete"
+                onChange={atualizar}
+                value={form.tipoFrete}
+                disabled
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Condição de pagamento</Form.Label>
-              <Form.Select name="condicaoPagamento" onChange={atualizar}>
-                {formasDePagamento.map((tipo) => (
-                  <option key={tipo.id}>{tipo.nome}</option>
-                ))}
-              </Form.Select>
+              <Form.Control
+                name="condicaoPagamento"
+                onChange={atualizar}
+                value={form.condicaoPagamento}
+                disabled
+              />
             </Form.Group>
             {/* <Form.Group controlId="info" className="mb-3">
               <Form.Label>Informações complementares</Form.Label>
@@ -102,6 +146,7 @@ const Entrada = () => {
               <Form.Check
                 name="laudo"
                 label="Foi apresentado o laudo?"
+                checked={form.laudo}
                 onChange={atualizar}
               />
             </Form.Group>
