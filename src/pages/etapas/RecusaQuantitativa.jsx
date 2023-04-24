@@ -7,9 +7,9 @@ const RecusaQuantitativa = () => {
   return (
     <div>
       <div className="mb-4">
-        <h2 className="text-white">
+        <h3 className="text-white">
           Recebimento de Produto - Conferência Quantitativa
-        </h2>
+        </h3>
       </div>
       <div className="card mx-auto col-lg-6 p-5 text-center">
         <h3 className="mb-4">ENTREGA RECUSADA</h3>

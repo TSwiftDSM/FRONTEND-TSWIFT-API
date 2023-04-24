@@ -62,7 +62,7 @@ const Qualitativa = () => {
     <div>
       <div className="mb-4">
         <h3 className="text-white">
-          Receber Produto - Conferência Qualitativa
+          Recebimento de Produto - Conferência Qualitativa
         </h3>
       </div>
 
@@ -78,7 +78,7 @@ const Qualitativa = () => {
           </Link>
         </div>
 
-        <div className="card amarelo border-secondary text-center mb-5">
+        {/* <div className="card amarelo border-secondary text-center mb-5">
           <div style={{ fontSize: "36px" }} className="text-secondary">
             <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" />
           </div>
@@ -86,7 +86,7 @@ const Qualitativa = () => {
             Respostas marcadas com SIM confirmam a existência de inconsistências
             na qualidade dos produtos.
           </span>
-        </div>
+        </div> */}
 
         <div className="mb-4">
           {testes.map((conjunto, i) => {

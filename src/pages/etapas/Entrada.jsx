@@ -46,7 +46,7 @@ const Entrada = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">Receber Produto - Conferência de Dados</h3>
+        <h3 className="text-white">Recebimento de Produto - Conferência de Dados</h3>
       </div>
 
       <div className="card mx-auto col-lg-6 p-5">
@@ -68,7 +68,7 @@ const Entrada = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Nº da nota fiscal</Form.Label>
-              <Form.Control name="notaFiscal" onChange={atualizar} />
+              <Form.Control name="notaFiscal" onChange={atualizar} required/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Fornecedor</Form.Label>

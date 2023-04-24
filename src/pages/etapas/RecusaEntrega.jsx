@@ -5,7 +5,7 @@ const RecusaEntrega = () => {
   return (
     <div>
       <div className="mb-4">
-        <h2 className="text-white">Receber Produto</h2>
+        <h3 className="text-white">Recebimento Produto</h3>
       </div>
       <div className="card mx-auto col-lg-6 p-5">
         <div className="border-secondary text-center mb-2">

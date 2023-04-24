@@ -4,9 +4,9 @@ const RecusaQualitativa = () => {
   return (
     <div>
       <div className="mb-4">
-        <h2 className="text-white">
-          Receber Produto - Conferência Qualitativa
-        </h2>
+        <h3 className="text-white">
+          Recebimento de Produto - Conferência Qualitativa
+        </h3>
       </div>
       <div className="card mx-auto col-lg-6 p-5">
         <h3 className="d-flex mb-4 justify-content-center">RECUSAR ENTREGA</h3>
