@@ -1,4 +1,5 @@
 import CollapseComponent from "../../components/CollapseComponent";
+import { Alert } from "react-bootstrap";
 
 import { useEffect } from "react";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import get from "lodash/get";
 
 const Relatorio = () => {
   const [pedido, setPedido] = useState({});
+  const [show, setShow] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,8 +19,12 @@ const Relatorio = () => {
     });
   }, [id]);
 
-  function submit() {
-    axios.post(`http://localhost:3000/alterar/forcarAceitacao/${id}/1`);
+  async function submit() {
+    await axios.post(`http://localhost:3000/alterar/forcarAceitacao/${id}/1`);
+    axios.get(`http://localhost:3000/entregas/${id}`).then(({ data }) => {
+      setPedido(data);
+      setShow(true);
+    });
   }
 
   function DetalhesQuantitativa(produto = []) {
@@ -46,8 +52,8 @@ const Relatorio = () => {
           {/* <div className="small">
             <strong className="me-1">Unidade:</strong>
             <span>Recusado</span>
-          </div>
-          <div className="small">
+          </div> */}
+          {/* <div className="small">
             <strong className="me-1">Valor Unitário:</strong>
             <span>Recusado</span>
           </div>
@@ -70,7 +76,11 @@ const Relatorio = () => {
               return (
                 <li key={i}>
                   Regra de recebimento {i + 1}:{" "}
-                  <strong>{t.aprovado ? "Sim" : "Não"}</strong>
+                  <strong
+                    className={t.aprovado ? "text-success" : "text-danger"}
+                  >
+                    {t.aprovado ? "Sim" : "Não"}
+                  </strong>
                 </li>
               );
             })}
@@ -88,14 +98,31 @@ const Relatorio = () => {
       <div className="card mx-auto col-lg-6 p-5">
         {pedido && (
           <div>
+            {show && (
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <h3 className="mb-0">Recebimento do pedido aprovado</h3>
+              </Alert>
+            )}
             <div className="small">
               <strong className="me-1">Nº do Pedido:</strong>
               {pedido.numeroPedido}
             </div>
-            {/* <div className="small">
+            <div className="small">
               <strong className="me-1">Status:</strong>
-              <span>Recusado</span>
-            </div> */}
+              <strong
+                className={
+                  get(pedido, "StatusEntrega.length")
+                    ? "text-danger"
+                    : "text-success"
+                }
+              >
+                {get(pedido, "StatusEntrega.length") ? "Recusado" : "Aprovado"}
+              </strong>
+            </div>
             {/* <div className="mt-4 small">
               <strong className="me-1">Data Prevista:</strong>
               dd/mm/aaaa
@@ -159,11 +186,13 @@ const Relatorio = () => {
                 </div>
               </div>
             )}
-            <div className="d-flex justify-content-center">
-              <button className="btn btn-danger" onClick={submit}>
-                FORÇAR RECEBIMENTO
-              </button>
-            </div>
+            {!!get(pedido, "StatusEntrega.length") && (
+              <div className="d-flex justify-content-center">
+                <button className="btn btn-danger" onClick={submit}>
+                  FORÇAR APROVAÇÃO
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
