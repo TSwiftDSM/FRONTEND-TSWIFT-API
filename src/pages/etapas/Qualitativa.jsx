@@ -49,13 +49,17 @@ const Qualitativa = () => {
         `http://localhost:3000/conferencia/qualitativa/api/PersistenciaQualitativa`,
         { qualidadeProdutos: form }
       )
-      .then(({ data }) => {
-        const route =
-          data === "Entrega Aprovada"
-            ? `/${idEntrega}/conferencia-realizada`
-            : `/${idEntrega}/recusa-qualitativa`;
-        navigate(route);
+      .then(() => {
+        navigate(`/${idEntrega}/relatorio`);
       });
+    // .then(({ data }) => {
+    //   const route =
+    //     data === "Entrega Aprovada"
+    //       ? `/${idEntrega}/conferencia-realizada`
+    //       : `/${idEntrega}/recusa-qualitativa`;
+    //   navigate(route);
+    // }
+    // );
   }
 
   return (
