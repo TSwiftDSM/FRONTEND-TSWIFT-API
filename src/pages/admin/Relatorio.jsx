@@ -66,29 +66,29 @@ const Relatorio = () => {
     });
   }
 
-  function DetalhesQualitativa(testes = []) {
-    if (testes.length) {
-      return (
-        <div className="mb-4">
-          <div>Regras de Recebimento:</div>
-          <ol>
-            {testes.map((t, i) => {
-              return (
-                <li key={i}>
-                  Regra de recebimento {i + 1}:{" "}
-                  <strong
-                    className={t.aprovado ? "text-success" : "text-danger"}
-                  >
-                    {t.aprovado ? "Sim" : "Não"}
-                  </strong>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      );
-    }
-  }
+  // function DetalhesQualitativa(testes = []) {
+  //   if (testes.length) {
+  //     return (
+  //       <div className="mb-4">
+  //         <div>Regras de Recebimento:</div>
+  //         <ol>
+  //           {testes.map((t, i) => {
+  //             return (
+  //               <li key={i}>
+  //                 Regra de recebimento {i + 1}:{" "}
+  //                 <strong
+  //                   className={t.aprovado ? "text-success" : "text-danger"}
+  //                 >
+  //                   {t.aprovado ? "Sim" : "Não"}
+  //                 </strong>
+  //               </li>
+  //             );
+  //           })}
+  //         </ol>
+  //       </div>
+  //     );
+  //   }
+  // }
 
   return (
     <div>
@@ -169,7 +169,7 @@ const Relatorio = () => {
                     {DetalhesQuantitativa(pedido.EntregaProduto)}
                   </CollapseComponent>
                 </div>
-                <div className="my-4">
+                {/* <div className="my-4">
                   <CollapseComponent nome="ETAPA 3: CONFERÊNCIA QUALITATIVA">
                     {pedido.EntregaProduto &&
                       pedido.EntregaProduto.map((e, i) => {
@@ -183,7 +183,7 @@ const Relatorio = () => {
                         );
                       })}
                   </CollapseComponent>
-                </div>
+                </div> */}
               </div>
             )}
             {!!get(pedido, "StatusEntrega.length") && (
