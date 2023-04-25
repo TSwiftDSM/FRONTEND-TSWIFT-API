@@ -25,14 +25,16 @@ const Entrada = () => {
   });
 
   const [form, setForm] = useState(formFields);
+  const [disabled, setDisabled] = useState(true);
 
-  const atualizar = (e) => {
+  function atualizar(e) {
     const t = e.target;
     setForm({
       ...form,
       [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
     });
-  };
+    if (t.name === "notaFiscal") setDisabled(!t.value.trim());
+  }
 
   useEffect(() => {
     axios
@@ -162,6 +164,7 @@ const Entrada = () => {
                 <Button
                   className="w-100 py-2 text-white"
                   variant="primary"
+                  disabled={disabled}
                   onClick={submit}
                 >
                   CONTINUAR
