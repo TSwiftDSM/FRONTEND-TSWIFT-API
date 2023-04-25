@@ -5,8 +5,9 @@ import { get } from "lodash";
 const CardEntrega = (props) => {
   const { pedido } = props;
 
-  const status = !!(
-    new Date() <= new Date(pedido.dataEntrega) || !pedido.dataEntrega
+  const status = !(
+    get(pedido, "StatusEntrega.length")
+    // new Date() <= new Date(pedido.dataEntrega) || !pedido.dataEntrega
   );
 
   return (
