@@ -1,29 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { FormGroup, FormField } from "../../components";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import axios from "axios";
 
 const NovoProduto = () => {
   const navigate = useNavigate();
 
-  const formFields = Object.freeze({
+  const form = Object.freeze({
     nomeProduto: "",
     unidade: "",
   });
 
-  const [form, setForm] = useState(formFields);
+  const ref = useRef(null);
 
-  const atualizar = (e) => {
-    const t = e.target;
-    setForm({
-      ...form,
-      [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
-    });
-  };
-
-  function submit() {
-    axios.post("http://localhost:3000/produto", form).then(() => {
+  async function submit() {
+    const data = await ref.current.getForm();
+    axios.post("http://localhost:3000/produto", data).then(() => {
       navigate("/admin/produtos");
     });
   }
@@ -41,18 +34,12 @@ const NovoProduto = () => {
           </Link>
         </div>
         <div>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control name="nomeProduto" onChange={atualizar} />
-            </Form.Group>
-            <Form.Group className="mb-5">
-              <Form.Label>Unidade de medida</Form.Label>
-              <Form.Control name="unidade" onChange={atualizar} />
-            </Form.Group>
-          </Form>
+          <FormGroup ref={ref} form={form}>
+            <FormField nome="nomeProduto" label="Nome do produto" />
+            <FormField nome="unidade" label="Unidade de medida" />
+          </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary px-5" onClick={submit}>
+            <button className="btn btn-primary py-2 px-5" onClick={submit}>
               CADASTRAR
             </button>
           </div>
