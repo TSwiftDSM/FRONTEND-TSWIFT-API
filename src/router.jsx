@@ -8,6 +8,8 @@ import Produtos from "./pages/admin/Produtos";
 import Relatorio from "./pages/admin/Relatorio";
 import NovoProduto from "./pages/admin/NovoProduto";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
+import Fornecedores from "./pages/admin/Fornecedores";
+import NovoFornecedor from "./pages/admin/NovoFornecedor";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -88,6 +90,14 @@ const routes = [
       {
         path: "/admin/novo-produto",
         element: <NovoProduto />,
+      },
+      {
+        path: "/admin/fornecedores",
+        element: <Fornecedores />,
+      },
+      {
+        path: "/admin/novo-fornecedor",
+        element: <NovoFornecedor />,
       },
     ],
   },

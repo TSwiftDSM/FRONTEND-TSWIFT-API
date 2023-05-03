@@ -31,7 +31,7 @@ const NovoProduto = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">Pedidos</h3>
+        <h3 className="text-white">Novo Produto</h3>
       </div>
       <div className="card p-5 col-lg-6 mx-auto">
         <div className="mb-4">

@@ -22,7 +22,7 @@ const Home = () => {
       </div>
       <div className="row">
         {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
-        {CardMenu("fa-briefcase", "FORNECEDORES")}
+        {CardMenu("fa-briefcase", "FORNECEDORES", "/admin/fornecedores")}
         {CardMenu("fa-clipboard-list", "PEDIDOS")}
         {CardMenu("fa-user-friends", "COLABORADORES")}
         {CardMenu("fa-clipboard-check", "RECEBIMENTO")}
