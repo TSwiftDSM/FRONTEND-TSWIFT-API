@@ -10,6 +10,7 @@ import NovoProduto from "./pages/admin/NovoProduto";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import Fornecedores from "./pages/admin/Fornecedores";
 import NovoFornecedor from "./pages/admin/NovoFornecedor";
+import NovoColaborador from "./pages/admin/NovoColaborador";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -98,6 +99,10 @@ const routes = [
       {
         path: "/admin/novo-fornecedor",
         element: <NovoFornecedor />,
+      },
+      {
+        path: "/admin/novo-colaborador",
+        element: <NovoColaborador />,
       },
     ],
   },
