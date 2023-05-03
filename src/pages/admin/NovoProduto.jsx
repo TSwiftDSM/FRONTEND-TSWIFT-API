@@ -34,7 +34,7 @@ const NovoProduto = () => {
           </Link>
         </div>
         <div>
-          <FormGroup ref={ref} form={form}>
+          <FormGroup ref={ref} formFields={form}>
             <FormField nome="nomeProduto" label="Nome do produto" />
             <FormField nome="unidade" label="Unidade de medida" />
           </FormGroup>

@@ -6,19 +6,20 @@ import EntregasAgendadas from "./pages/EntregasAgendadas";
 import Home from "./pages/admin/Home";
 import Produtos from "./pages/admin/Produtos";
 import Relatorio from "./pages/admin/Relatorio";
+import NovoPedido from "./pages/admin/NovoPedido";
 import NovoProduto from "./pages/admin/NovoProduto";
-import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import Fornecedores from "./pages/admin/Fornecedores";
+import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import NovoFornecedor from "./pages/admin/NovoFornecedor";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
 import Quantitativa from "./pages/etapas/Quantitativa";
-import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
-import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
+import RecusaEntrega from "./pages/etapas/RecusaEntrega";
 import RecusaEntrada from "./pages/etapas/RecusaEntrada";
 import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
-import RecusaEntrega from "./pages/etapas/RecusaEntrega";
+import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
+import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 
 const routes = [
   {
@@ -82,6 +83,10 @@ const routes = [
       {
         path: "/admin/pedidos",
         element: <PedidosAdmin />,
+      },
+      {
+        path: "/admin/novo-pedido",
+        element: <NovoPedido />,
       },
       {
         path: "/admin/produtos",

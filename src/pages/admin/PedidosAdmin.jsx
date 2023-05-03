@@ -22,10 +22,12 @@ const PedidosAdmin = () => {
         <h3 className="text-white">Pedidos</h3>
       </div>
       <div className="card col-lg-12 p-5">
-        <div className="mt-3 d-none justify-content-end">
-          <Button variant="primary" className="px-4 py-2">
-            + Novo
-          </Button>
+        <div className="mt-3 d-flex justify-content-end">
+          <Link to={"/admin/novo-pedido"}>
+            <Button variant="primary" className="px-4 py-2">
+              + Novo
+            </Button>
+          </Link>
         </div>
         <div className="my-3">
           <Table

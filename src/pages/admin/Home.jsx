@@ -23,7 +23,7 @@ const Home = () => {
       <div className="row">
         {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
         {CardMenu("fa-briefcase", "FORNECEDORES", "/admin/fornecedores")}
-        {CardMenu("fa-clipboard-list", "PEDIDOS")}
+        {CardMenu("fa-clipboard-list", "PEDIDOS", "/admin/pedidos")}
         {CardMenu("fa-user-friends", "COLABORADORES")}
         {CardMenu("fa-clipboard-check", "RECEBIMENTO")}
       </div>
