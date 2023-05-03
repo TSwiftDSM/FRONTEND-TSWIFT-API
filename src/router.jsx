@@ -4,8 +4,10 @@ import App from "./templates/App";
 import EntregasAgendadas from "./pages/EntregasAgendadas";
 
 import Home from "./pages/admin/Home";
-import PedidosAdmin from "./pages/admin/PedidosAdmin";
+import Produtos from "./pages/admin/Produtos";
 import Relatorio from "./pages/admin/Relatorio";
+import NovoProduto from "./pages/admin/NovoProduto";
+import PedidosAdmin from "./pages/admin/PedidosAdmin";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -78,6 +80,14 @@ const routes = [
       {
         path: "/admin/pedidos",
         element: <PedidosAdmin />,
+      },
+      {
+        path: "/admin/produtos",
+        element: <Produtos />,
+      },
+      {
+        path: "/admin/novo-produto",
+        element: <NovoProduto />,
       },
     ],
   },
