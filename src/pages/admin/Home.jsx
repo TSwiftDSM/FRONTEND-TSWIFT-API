@@ -1,18 +1,16 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Home = () => {
-  function CardMenu(icone, texto) {
+  function CardMenu(icone, texto, rota = "") {
     return (
       <div className="col-lg-3 mb-5 px-4">
-        <div className="card text-center">
+        <Link className="card text-center menu-admin" to={rota}>
           <div className="py-3">
-            <FontAwesomeIcon
-              icon={icone}
-              style={{ fontSize: "48px", color: "rgb(135, 135, 135)" }}
-            />
+            <FontAwesomeIcon icon={icone} style={{ fontSize: "48px" }} />
           </div>
-          <span className="py-3 text-black-50">{texto}</span>
-        </div>
+          <span className="py-3">{texto}</span>
+        </Link>
       </div>
     );
   }
@@ -23,7 +21,7 @@ const Home = () => {
         <h3 className="text-white">Home</h3>
       </div>
       <div className="row">
-        {CardMenu("fa-bag-shopping", "PRODUTOS")}
+        {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
         {CardMenu("fa-briefcase", "FORNECEDORES")}
         {CardMenu("fa-clipboard-list", "PEDIDOS")}
         {CardMenu("fa-user-friends", "COLABORADORES")}

@@ -106,6 +106,16 @@ footer {
       transform: scale(1.02);
     }
   }
+
+  &.menu-admin {
+    color: rgb(135, 135, 135);
+    transition: 0.3s color, 0.3s transform;
+    &:hover {
+      transform: scale(1.02);
+      color: $warning;
+      box-shadow: 2px 3px 4px $warning;
+    }
+  }
 }
 
 .rodar {

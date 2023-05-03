@@ -1,15 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const NovoProduto = () => {
-  // const formFields = Object.freeze({
-  //   nomeProduto: "",
-  //   unidade: "",
-  // });
+  const navigate = useNavigate();
 
-  // const [form, setForm] = useState(formFields);
+  const formFields = Object.freeze({
+    nomeProduto: "",
+    unidade: "",
+  });
+
+  const [form, setForm] = useState(formFields);
+
+  const atualizar = (e) => {
+    const t = e.target;
+    setForm({
+      ...form,
+      [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
+    });
+  };
+
+  function submit() {
+    axios.post("http://localhost:3000/produto", form).then(() => {
+      navigate("/admin/produtos");
+    });
+  }
 
   return (
     <div>
@@ -27,15 +44,17 @@ const NovoProduto = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Nome</Form.Label>
-              <Form.Control name="nomeProduto" />
+              <Form.Control name="nomeProduto" onChange={atualizar} />
             </Form.Group>
             <Form.Group className="mb-5">
               <Form.Label>Unidade de medida</Form.Label>
-              <Form.Control name="unidade" />
+              <Form.Control name="unidade" onChange={atualizar} />
             </Form.Group>
           </Form>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary px-5">CADASTRAR</button>
+            <button className="btn btn-primary px-5" onClick={submit}>
+              CADASTRAR
+            </button>
           </div>
         </div>
       </div>
