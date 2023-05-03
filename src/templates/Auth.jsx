@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Login from "../components/Login";
 import logo from "../assets/img/logo-tswift.png";
+import styled from "styled-components";
+import { Login } from "../components";
 
 function Auth() {
   return (

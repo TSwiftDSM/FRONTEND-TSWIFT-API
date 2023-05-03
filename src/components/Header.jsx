@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "../assets/img/logo-tswift.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = () => {
+export const Header = () => {
   return (
     <header>
       <div className="container position-relative d-flex justify-content-between align-items-start">
@@ -23,8 +23,6 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
 
 const Logo = styled.img`
   height: 70px;

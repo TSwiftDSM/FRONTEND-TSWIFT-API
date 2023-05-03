@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
-import FormGroup from "../../components/FormGroup";
-import FormField from "../../components/FormField";
+import { FormGroup, FormField } from "../../components";
 import { useRef } from "react";
 import axios from "axios";
 

@@ -1,11 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Contador from "../../components/Contador";
-
-import { useParams } from "react-router-dom";
+import { Contador } from "../../components";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { get } from "lodash";
 import axios from "axios";
 

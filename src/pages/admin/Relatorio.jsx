@@ -1,12 +1,10 @@
-import CollapseComponent from "../../components/CollapseComponent";
-import { Alert } from "react-bootstrap";
-
-import { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router";
+import { Colapsador } from "../../components";
 import { formatarData } from "../../helpers";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Alert } from "react-bootstrap";
 import get from "lodash/get";
+import axios from "axios";
 
 const Relatorio = () => {
   const [pedido, setPedido] = useState({});
@@ -133,7 +131,7 @@ const Relatorio = () => {
             </div>
 
             <div className="my-4">
-              <CollapseComponent nome="ETAPA 1: ENTRADA DE MATERIAIS">
+              <Colapsador nome="ETAPA 1: ENTRADA DE MATERIAIS">
                 <div className="small">
                   <strong className="me-1">Nota Fiscal Nº:</strong>
                   {pedido.nfe}
@@ -160,14 +158,14 @@ const Relatorio = () => {
                   <strong className="me-1">Foi apresentado laudo?</strong>
                   sim
                 </div> */}
-              </CollapseComponent>
+              </Colapsador>
             </div>
             {pedido.EntregaProduto && !!pedido.EntregaProduto.length && (
               <div>
                 <div className="my-4">
-                  <CollapseComponent nome="ETAPA 2: CONFERÊNCIA QUANTITATIVA">
+                  <Colapsador nome="ETAPA 2: CONFERÊNCIA QUANTITATIVA">
                     {DetalhesQuantitativa(pedido.EntregaProduto)}
-                  </CollapseComponent>
+                  </Colapsador>
                 </div>
                 {/* <div className="my-4">
                   <CollapseComponent nome="ETAPA 3: CONFERÊNCIA QUALITATIVA">

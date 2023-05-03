@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Busca = () => {
+export const Busca = () => {
   return (
     <div className="d-flex">
       <div className="flex-fill">
@@ -15,5 +15,3 @@ const Busca = () => {
     </div>
   );
 };
-
-export default Busca;

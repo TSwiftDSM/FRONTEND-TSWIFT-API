@@ -2,7 +2,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Login = () => {
+export const Login = () => {
   return (
     <div className="login">
       <div className="text-center">
@@ -36,5 +36,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

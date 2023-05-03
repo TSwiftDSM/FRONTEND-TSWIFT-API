@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-const FormField = (props) => {
+export const FormField = (props) => {
   const { mudarCampo, nome, label } = props;
 
   function mudar(e) {
@@ -14,5 +14,3 @@ const FormField = (props) => {
     </Form.Group>
   );
 };
-
-export default FormField;

@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
 } from "react";
 
-const FormGroup = forwardRef((props, ref) => {
+export const FormGroup = forwardRef((props, ref) => {
   const { children, formFields } = props;
 
   const [form, setForm] = useState(formFields);
@@ -38,7 +38,4 @@ const FormGroup = forwardRef((props, ref) => {
     </div>
   );
 });
-
 FormGroup.displayName = "FormGroup";
-
-export default FormGroup;

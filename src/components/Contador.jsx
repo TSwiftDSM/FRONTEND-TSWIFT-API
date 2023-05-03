@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styled from "styled-components";
 
-const Contador = (props) => {
+export const Contador = (props) => {
   const { etapa } = props;
 
   const contador = (atual) => {
@@ -27,8 +27,6 @@ const Contador = (props) => {
     </div>
   );
 };
-
-export default Contador;
 
 const Circulo = styled.div`
   height: 40px;

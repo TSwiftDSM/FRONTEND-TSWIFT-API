@@ -1,11 +1,10 @@
-import { Button } from "react-bootstrap";
+import CollapseComponent from "../../components/qualitativa/CollapseComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-
-import Contador from "../../components/Contador";
-import CollapseComponent from "../../components/qualitativa/CollapseComponent";
 import { useEffect, useState } from "react";
+import { Contador } from "../../components";
+import { Button } from "react-bootstrap";
+import axios from "axios";
 
 const Qualitativa = () => {
   const idEntrega = parseInt(useParams().id);

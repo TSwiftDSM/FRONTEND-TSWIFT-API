@@ -46,7 +46,9 @@ const RecusaEntrada = () => {
   return (
     <div>
       <div className="mb-4">
-        <h3 className="text-white">Recebimento de Produto - Conferência de Dados</h3>
+        <h3 className="text-white">
+          Recebimento de Produto - Conferência de Dados
+        </h3>
       </div>
       <div className="card mx-auto col-lg-6 p-5 text-left">
         <h3 className="d-flex mb-3 justify-content-center">RECUSAR ENTREGA</h3>

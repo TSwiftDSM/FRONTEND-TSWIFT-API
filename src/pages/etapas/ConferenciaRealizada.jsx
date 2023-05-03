@@ -1,6 +1,6 @@
-import { Button } from "react-bootstrap";
-import Contador from "../../components/Contador";
 import { useNavigate } from "react-router-dom";
+import { Contador } from "../../components";
+import { Button } from "react-bootstrap";
 
 const ConferenciaRealizada = () => {
   const navigate = useNavigate();

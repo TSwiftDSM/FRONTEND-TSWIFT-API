@@ -1,13 +1,11 @@
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import Contador from "../../components/Contador";
-import CollapseComponent from "../../components/CollapseComponent";
 import { Produto } from "../../components/quantitativa/Produto";
+import { Contador, Colapsador } from "../../components";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { get } from "lodash";
+import axios from "axios";
 
 const Quantitativa = () => {
   const id = parseInt(useParams().id);
@@ -78,14 +76,14 @@ const Quantitativa = () => {
         {produtos.map((p, i) => {
           return (
             <div key={i} className="my-4">
-              <CollapseComponent
+              <Colapsador
                 nome={`${get(p, "Produto.id")} - ${get(
                   p,
                   "Produto.nomeProduto"
                 )}`}
               >
                 <Produto produto={form[i]} index={i} update={update} />
-              </CollapseComponent>
+              </Colapsador>
             </div>
           );
         })}

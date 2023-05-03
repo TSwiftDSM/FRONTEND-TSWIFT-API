@@ -2,7 +2,7 @@
 
 import { get } from "lodash";
 
-const CardEntrega = (props) => {
+export const CardEntrega = (props) => {
   const { pedido } = props;
 
   const status = !(
@@ -27,5 +27,3 @@ const CardEntrega = (props) => {
     </div>
   );
 };
-
-export default CardEntrega;

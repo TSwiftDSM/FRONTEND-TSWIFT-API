@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import styled from "styled-components";
 
-const CollapseComponent = (props) => {
+export const Colapsador = (props) => {
   const { nome, children } = props;
 
   const [open, setOpen] = useState(false);
@@ -32,8 +32,6 @@ const CollapseComponent = (props) => {
     </div>
   );
 };
-
-export default CollapseComponent;
 
 const CollapseButton = styled.button`
   border: 0;
