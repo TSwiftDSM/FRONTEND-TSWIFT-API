@@ -1,48 +1,44 @@
 import { Form } from "react-bootstrap";
 
 export const FormField = (props) => {
-  const { mudarCampo, nome, label, tipo, options, placeholder, disabled } =
-    props;
+  const {
+    placeholder,
+    required,
+    mudarCampo,
+    className,
+    disabled,
+    options,
+    label,
+    nome,
+    tipo,
+  } = props;
 
   function mudar(e) {
     mudarCampo(e);
   }
 
+  const childProps = {
+    placeholder: placeholder,
+    className: className,
+    required: required,
+    disabled: disabled,
+    onChange: mudar,
+    type: tipo,
+    name: nome,
+  };
+
   function inputField() {
     switch (tipo) {
       case "textarea":
-        return (
-          <Form.Control
-            as="textarea"
-            name={nome}
-            placeholder={placeholder}
-            onChange={mudar}
-          />
-        );
-      case "number":
-        return (
-          <Form.Control
-            type="number"
-            name={nome}
-            placeholder={placeholder}
-            onChange={mudar}
-          />
-        );
-      case "date":
-        return (
-          <Form.Control
-            type="date"
-            name={nome}
-            placeholder={placeholder}
-            onChange={mudar}
-          />
-        );
+        return <Form.Control as="textarea" {...childProps} />;
       case "select":
         return (
           <Form.Select
             name={nome}
             onChange={mudar}
             disabled={disabled || !options}
+            required={required}
+            className={className}
           >
             {options &&
               !!options.length &&
@@ -56,13 +52,7 @@ export const FormField = (props) => {
           </Form.Select>
         );
       default:
-        return (
-          <Form.Control
-            name={nome}
-            placeholder={placeholder}
-            onChange={mudar}
-          />
-        );
+        return <Form.Control {...childProps} />;
     }
   }
 

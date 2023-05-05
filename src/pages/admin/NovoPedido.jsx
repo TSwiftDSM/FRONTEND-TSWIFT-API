@@ -33,6 +33,7 @@ const NovoPedido = () => {
   const nodesRef = useRef([]);
 
   useEffect(() => {
+    // pegar fornecedores do backend
     axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
       if (data && data.length) {
         setFornecedores(
@@ -45,6 +46,7 @@ const NovoPedido = () => {
         );
       }
     });
+    // pegar transportadoras do backend
     axios
       .get("http://localhost:3000/fornecedores/transportadora")
       .then(({ data }) => {
@@ -59,6 +61,7 @@ const NovoPedido = () => {
           );
         }
       });
+    // pegar produtos do backend
     axios.get("http://localhost:3000/produto").then(({ data }) => {
       if (data && data.length) {
         setProdutos(
@@ -74,6 +77,7 @@ const NovoPedido = () => {
   }, []);
 
   useEffect(() => {
+    // inicializar a página com uma caixa de produto
     if (produtos.length) {
       setNodes([
         <FormGroup
@@ -86,14 +90,21 @@ const NovoPedido = () => {
             tipo="select"
             options={produtos}
             nome="produtoId"
+            required
           />
-          <FormField label="Quantidade" tipo="number" nome="quantidade" />
+          <FormField
+            label="Quantidade"
+            tipo="number"
+            nome="quantidade"
+            required
+          />
         </FormGroup>,
       ]);
     }
   }, [produtos]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function addNode() {
+    // função para adicionar novas caixas de produto
     setNodes([
       ...nodes,
       <FormGroup
@@ -101,30 +112,38 @@ const NovoPedido = () => {
         formFields={formProduto}
         ref={(elem) => (nodesRef.current[nodes.length] = elem)}
       >
-        <FormField label="Produto" tipo="select" options={produtos} />
-        <FormField label="Quantidade" tipo="number" />
+        <FormField label="Produto" tipo="select" options={produtos} required />
+        <FormField label="Quantidade" tipo="number" required />
       </FormGroup>,
     ]);
   }
 
   async function submit() {
     try {
+      // pegar dados da entrega
       const entrega = await ref.current.getForm();
-      let { data } = await axios.post(
-        "http://localhost:3000/entregas",
-        entrega
+      // pegar dados de cada produto
+      const produtos = await Promise.all(
+        nodesRef.current.map((node) => node.getForm())
       );
-      nodesRef.current.forEach((node) => {
-        let nodeData = node.getForm();
+
+      // cadastrar entrega no backend e retornar o id
+      const {
+        data: { id },
+      } = await axios.post("http://localhost:3000/entregas", entrega);
+
+      // cadastrar o produto da entrega usando o id retornado
+      produtos.forEach((produto) => {
         axios.post("http://localhost:3000/entregaProduto", {
-          ...nodeData,
-          EntregaId: data.id,
+          ...produto,
+          EntregaId: id,
         });
       });
-    } catch (e) {
-      return {};
-    } finally {
+
+      // voltar para a página de pedidos
       navigate("/admin/pedidos");
+    } catch (e) {
+      console.log(e);
     }
   }
 
@@ -147,24 +166,28 @@ const NovoPedido = () => {
               label="Fornecedor"
               tipo="select"
               options={fornecedores}
+              required
             />
             <FormField
               nome="tipoFrete"
               label="Tipo de frete"
               tipo="select"
               options={tiposDeFrete}
+              required
             />
             <FormField
               nome="transportadoraId"
               label="Transportadora"
               tipo="select"
               options={transportadoras}
+              required
             />
             <FormField
               nome="formaPagamento"
               label="Condição de pagamento"
               tipo="select"
               options={formasDePagamento}
+              required
             />
           </FormGroup>
 

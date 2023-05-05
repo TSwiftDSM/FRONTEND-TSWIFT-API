@@ -134,3 +134,16 @@ footer {
     color: white;
   }
 }
+
+.form-select {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.form-control,
+.form-select {
+  &.vazio {
+    border-color: $danger;
+  }
+}
