@@ -1,11 +1,13 @@
 import { formasDePagamento, tiposDeFrete } from "../../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const NovoPedido = () => {
+  const navigate = useNavigate();
+
   const form = Object.freeze({
     fornecedorId: null,
     transportadoraId: null,
@@ -16,11 +18,19 @@ const NovoPedido = () => {
     produtoId: null,
     EntregaId: null,
     quantidade: "",
+
+    pesoPrevisto: 0,
+    pesoReal: 0,
+    especificacao: "Alguma especificação",
   });
 
+  const [nodes, setNodes] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [fornecedores, setFornecedores] = useState([]);
   const [transportadoras, setTransportadoras] = useState([]);
+
+  const ref = useRef(null);
+  const nodesRef = useRef([]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
@@ -63,10 +73,27 @@ const NovoPedido = () => {
     });
   }, []);
 
-  const ref = useRef(null);
-  const nodesRef = useRef([]);
-  const [nodes, setNodes] = useState([]);
-  const addNode = () => {
+  useEffect(() => {
+    if (produtos.length) {
+      setNodes([
+        <FormGroup
+          key={nodes.length}
+          formFields={formProduto}
+          ref={(elem) => (nodesRef.current[nodes.length] = elem)}
+        >
+          <FormField
+            label="Produto"
+            tipo="select"
+            options={produtos}
+            nome="produtoId"
+          />
+          <FormField label="Quantidade" tipo="number" nome="quantidade" />
+        </FormGroup>,
+      ]);
+    }
+  }, [produtos]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function addNode() {
     setNodes([
       ...nodes,
       <FormGroup
@@ -78,17 +105,27 @@ const NovoPedido = () => {
         <FormField label="Quantidade" tipo="number" />
       </FormGroup>,
     ]);
-  };
+  }
 
   async function submit() {
-    nodesRef.current.forEach((node) => {
-      console.log(node.getForm());
-    });
-    const data = await ref.current.getForm();
-    console.log(data);
-    // axios.post("http://localhost:3000/produto", data).then(() => {
-    //   navigate("/admin/produtos");
-    // });
+    try {
+      const entrega = await ref.current.getForm();
+      let { data } = await axios.post(
+        "http://localhost:3000/entregas",
+        entrega
+      );
+      nodesRef.current.forEach((node) => {
+        let nodeData = node.getForm();
+        axios.post("http://localhost:3000/entregaProduto", {
+          ...nodeData,
+          EntregaId: data.id,
+        });
+      });
+    } catch (e) {
+      return {};
+    } finally {
+      navigate("/admin/pedidos");
+    }
   }
 
   return (

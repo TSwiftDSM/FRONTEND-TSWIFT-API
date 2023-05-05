@@ -47,7 +47,11 @@ export const FormField = (props) => {
             {options &&
               !!options.length &&
               [{ id: "", nome: "Selecione" }, ...options].map((opt) => {
-                return <option key={opt.id}>{opt.nome}</option>;
+                return (
+                  <option key={opt.id} value={opt.id}>
+                    {opt.nome}
+                  </option>
+                );
               })}
           </Form.Select>
         );
