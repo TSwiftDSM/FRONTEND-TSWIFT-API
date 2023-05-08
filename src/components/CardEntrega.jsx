@@ -5,13 +5,14 @@ import { get } from "lodash";
 export const CardEntrega = (props) => {
   const { pedido } = props;
 
-  const status = !(
-    get(pedido, "StatusEntrega.length")
-    // new Date() <= new Date(pedido.dataEntrega) || !pedido.dataEntrega
-  );
+  const status = pedido.etapaEntrega
+    ? "azul"
+    : new Date() <= new Date(pedido.dataEntrega)
+    ? "verde"
+    : "vermelho";
 
   return (
-    <div className={"card entrega " + (status ? "verde" : "vermelho")}>
+    <div className={"card entrega " + status}>
       <div className="d-flex justify-content-between">
         <h5>Nº {pedido.numeroPedido}</h5>
         {/* {status ? (
