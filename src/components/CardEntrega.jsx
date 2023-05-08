@@ -10,8 +10,8 @@ export const CardEntrega = (props) => {
   const status = pedido.etapaEntrega
     ? "azul"
     : new Date() <= new Date(pedido.dataEntrega)
-    ? "verde"
-    : "vermelho";
+      ? "verde"
+      : "vermelho";
 
   return (
     <div className={"card entrega " + status}>
@@ -24,11 +24,11 @@ export const CardEntrega = (props) => {
         )} */}
       </div>
       <div className="mt-2">{get(pedido, "Fornecedor.nomeFantasia")}</div>
-      <div className="mt-2">{formatarData(pedido.dataEntrega) <=  formatarData(new Date()) ? 'Atrasado' : 'No Prazo'}</div>
+      {formatarData(pedido.dataEntrega) <= formatarData(new Date()) ? <div className="text-danger">Atrasado</div> : <div className="text-primary">Hoje</div>}
 
-      {/* <div className="mt-4">
+      {/* {<div className="mt-4">
         Data prevista: {formatarData(pedido.dataEntrega) || "Indefinida"}
-      </div> */}
+      </div>} */}
     </div>
   );
 };

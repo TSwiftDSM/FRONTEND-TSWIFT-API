@@ -1,6 +1,5 @@
 import CollapseComponent from "../../components/qualitativa/CollapseComponent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Contador } from "../../components";
 import { Button } from "react-bootstrap";
@@ -72,13 +71,6 @@ const Qualitativa = () => {
       <div className="card mx-auto col-lg-6 p-5">
         <div className="mx-auto mb-3">
           <Contador etapa={3} />
-        </div>
-
-        <div className="mb-4">
-          <Link to={"/"}>
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
-            Voltar
-          </Link>
         </div>
 
         {/* <div className="card amarelo border-secondary text-center mb-5">
