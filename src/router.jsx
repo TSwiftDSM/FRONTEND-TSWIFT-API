@@ -75,7 +75,7 @@ const routes = [
   // },
   {
     path: "/admin",
-    element: <App />,
+    element: <App admin={true} />,
     children: [
       {
         path: "",
