@@ -1,10 +1,12 @@
 import { Outlet } from "react-router";
-import { Header } from "../components";
+import { Header, HeaderAdmin } from "../components";
 
-function App() {
+function App(props) {
+  const { admin = false } = props;
   return (
     <div className="app">
-      <Header />
+      {admin ? <HeaderAdmin /> : <Header />}
+
       <div className="container content">
         <Outlet />
       </div>

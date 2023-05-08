@@ -6,3 +6,4 @@ export { FormGroup } from "./FormGroup";
 export { FormField } from "./FormField";
 export { Colapsador } from "./Colapsador";
 export { CardEntrega } from "./CardEntrega";
+export { HeaderAdmin } from "./HeaderAdmin";
