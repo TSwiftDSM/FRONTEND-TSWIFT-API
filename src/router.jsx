@@ -21,6 +21,7 @@ import RecusaEntrada from "./pages/etapas/RecusaEntrada";
 import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
 import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
 import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
+import CadastroRealizado from "./pages/admin/CadastroRealizado";
 
 const routes = [
   {
@@ -108,6 +109,10 @@ const routes = [
       {
         path: "/admin/novo-colaborador",
         element: <NovoColaborador />,
+      },
+      {
+        path: "/admin/cadastro-realizado",
+        element: <CadastroRealizado />,
       },
     ],
   },
