@@ -8,10 +8,10 @@ const NovoColaborador = () => {
   const navigate = useNavigate();
 
   const form = Object.freeze({
-    colaboradorNome: "",
-    colaboradorCpf: "",
-    colaboradorDataNascimento: "",
-    colaboradorFunção: "",
+    nome: "",
+    cpf: "",
+    dataNascimento: "",
+    colaboradorFunção: "" /* preciso do endpoint */,
   });
 
   const ref = useRef(null);
