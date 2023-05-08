@@ -71,6 +71,7 @@ const PedidosAdmin = () => {
                     <th>{p.formaPagamento}</th>
                     <th>{p.tipoFrete}</th>
                     <th>{formatarData(p.dataEntrega)}</th>
+
                     {/* <th>{p.status}</th> */}
                     <th>
                       <Link

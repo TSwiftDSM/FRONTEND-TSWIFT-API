@@ -1,6 +1,8 @@
 // import { formatarData } from "../helpers";
 
 import { get } from "lodash";
+import { formatarData } from "../helpers";
+
 
 export const CardEntrega = (props) => {
   const { pedido } = props;
@@ -22,6 +24,8 @@ export const CardEntrega = (props) => {
         )} */}
       </div>
       <div className="mt-2">{get(pedido, "Fornecedor.nomeFantasia")}</div>
+      <div className="mt-2">{formatarData(pedido.dataEntrega) <=  formatarData(new Date()) ? 'Atrasado' : 'No Prazo'}</div>
+
       {/* <div className="mt-4">
         Data prevista: {formatarData(pedido.dataEntrega) || "Indefinida"}
       </div> */}
