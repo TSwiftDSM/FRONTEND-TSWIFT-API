@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { Contador } from "../../components";
@@ -74,13 +73,6 @@ const Entrada = () => {
       <div className="card mx-auto col-lg-6 p-5">
         <div className="mx-auto mb-3">
           <Contador etapa={1} />
-        </div>
-
-        <div className="mb-4">
-          <Link to={"/"}>
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
-            Voltar
-          </Link>
         </div>
         <div>
           <Form>
