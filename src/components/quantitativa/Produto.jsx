@@ -23,6 +23,14 @@ export const Produto = (props) => {
     update(form, index);
   }, [form, index, update]);
 
+  const atualizarValorTotal = (quantidade, unidade) => {
+    const valorTotal = quantidade * unidade;
+    setForm({
+      ...form,
+      valorTotal
+    });
+  };
+
   return (
     <div>
       <Form>
@@ -37,6 +45,27 @@ export const Produto = (props) => {
             name="quantidade"
             type="number"
             value={form.quantidade}
+          />
+          <Form.Label>Peso Unitário</Form.Label>
+          <Form.Control
+            onChange={atualizar}
+            name="pesoUnitario"
+            type="number"
+            value={form.pesoUnitario}
+          />
+          <Form.Label>Valor Total</Form.Label>
+          <Form.Control
+             onChange={(e) => {
+              atualizar(e);
+              atualizarValorTotal(
+                form.quantidade,
+                form.unidade
+              );
+            }}
+            readOnly
+            name="valorTotal"
+            type="number"
+            value={ form.valorTotal = form.pesoUnitario * form.quantidade}
           />
         </Form.Group>
         {/* <Form.Group>

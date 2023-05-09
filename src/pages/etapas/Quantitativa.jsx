@@ -27,6 +27,8 @@ const Quantitativa = () => {
               peso_previsto: p.pesoPrevisto,
               especificacao: "",
               quantidade: 0,
+              pesoUnitario: 0,
+              valorTotal: 0
             };
           })
         );
