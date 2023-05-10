@@ -24,7 +24,7 @@ export const CardEntrega = (props) => {
         )} */}
       </div>
       <div className="mt-2">{get(pedido, "Fornecedor.nomeFantasia")}</div>
-      {pedido.etapaEntrega != '' ? 'Em recebimento' :  formatarData(pedido.dataEntrega) <= formatarData(new Date()) ? <div className="text-danger">Atrasado</div> : <div className="text-primary">Hoje</div>}
+      {pedido.etapaEntrega != '' ? 'Em recebimento' :  formatarData(new Date(pedido.dataEntrega)) == formatarData(new Date()) ? <div className="text-primary">Hoje</div> : new Date(pedido.dataEntrega) < new Date() ? <div className="text-danger">Atrasado</div> :  <div className="text-primary">Em aguardo</div>}
 
       {/* {<div className="mt-4">
         Data prevista: {formatarData(pedido.dataEntrega) || "Indefinida"}
