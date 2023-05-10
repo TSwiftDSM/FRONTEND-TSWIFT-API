@@ -28,7 +28,6 @@ const Produtos = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{ width: "20%" }}>Código</th>
                 <th>Descrição</th>
                 <th style={{ width: "20%" }}>Unidade de medida</th>
               </tr>
@@ -37,7 +36,6 @@ const Produtos = () => {
               {produtos.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th>{p.id}</th>
                     <th>{p.nomeProduto}</th>
                     <th>{p.unidade}</th>
                   </tr>

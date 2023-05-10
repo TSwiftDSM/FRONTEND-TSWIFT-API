@@ -28,7 +28,6 @@ const Fornecedores = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th>Código</th>
                 <th>Nome Fantasia</th>
                 <th>Razão social</th>
                 <th>CNPJ</th>
@@ -39,7 +38,6 @@ const Fornecedores = () => {
               {fornecedores.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th>{p.id}</th>
                     <th>{p.nomeFantasia}</th>
                     <th>{p.razaoSocial}</th>
                     <th>{p.fornecedorCNPJ}</th>
