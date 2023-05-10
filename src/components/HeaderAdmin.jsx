@@ -11,19 +11,19 @@ export const HeaderAdmin = () => {
           <Logo src={logo} alt="Logo" />
         </div>
         <div className="mb-5">
-          <Link className="btn text-white" to={"/"}>
+          <Link className="btn text-white" to={"/admin"}>
             Home
           </Link>
-          <Link className="btn text-white" to={"/"}>
+          <Link className="btn text-white" to={"/admin/produtos"}>
             Produtos
           </Link>
-          <Link className="btn text-white" to={"/"}>
+          <Link className="btn text-white" to={"/admin/fornecedores"}>
             Fornecedores
           </Link>
-          <Link className="btn text-white" to={"/"}>
+          <Link className="btn text-white" to={"/admin/pedidos"}>
             Pedidos
           </Link>
-          <Link className="btn text-white" to={"/"}>
+          <Link className="btn text-white" to={""}>
             Colaboradores
           </Link>
           <Link className="btn text-white" to={"/"}>

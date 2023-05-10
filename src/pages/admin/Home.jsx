@@ -18,14 +18,14 @@ const Home = () => {
   return (
     <div>
       <div className="mb-5">
-        <h3 className="text-white">Home</h3>
+        <h3 className="text-white">Painel Administrativo</h3>
       </div>
       <div className="row">
         {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
         {CardMenu("fa-briefcase", "FORNECEDORES", "/admin/fornecedores")}
         {CardMenu("fa-clipboard-list", "PEDIDOS", "/admin/pedidos")}
         {CardMenu("fa-user-friends", "COLABORADORES")}
-        {CardMenu("fa-clipboard-check", "RECEBIMENTO")}
+        {CardMenu("fa-clipboard-check", "RECEBIMENTO", "/")}
       </div>
     </div>
   );
