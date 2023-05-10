@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,18 +10,44 @@ const NovoColaborador = () => {
   const form = Object.freeze({
     nome: "",
     cpf: "",
-    dataNascimento: "",
-    tipoUsuarioId: "" /* preciso do endpoint */,
+    diaNascimento: "", /*  */
+    mesNascimento: "",
+    anoNascimento: "",
+    tipoUsuario: "",
   });
+
+  const [tiposUsuarios, setTiposUsuarios] = useState([]);
 
   const ref = useRef(null);
 
-  async function submit() {
+  useEffect(() => {
+    axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
+      if (data && data.length) {
+        setTiposUsuarios(
+          data.map((tipo) => {
+            return {
+              value: tipo.id,
+              label: tipo.nome,
+            };
+          })
+        );
+      }
+    });
+  }, []);
+
+  async function handleSubmit() {
     const data = await ref.current.getForm();
-    axios.post("http://localhost:3000/usuarios/", data).then(() => { /* rota do brackend */
-      navigate("/admin/colaboradores");/* rota frontend */
+    const { diaNascimento, mesNascimento, anoNascimento } = data;
+    const dataNascimento = `${anoNascimento}-${mesNascimento}-${diaNascimento}`;
+    const novoColaborador = {
+      ...data,
+      dataNascimento,
+    };
+    axios.post("http://localhost:3000/usuarios/", novoColaborador).then(() => {
+      navigate("/admin/colaboradores");
     });
   }
+
   return (
     <div>
       <div className="mb-4">
@@ -30,24 +56,53 @@ const NovoColaborador = () => {
       <div className="card p-5 col-lg-6 mx-auto">
         <div className="mb-4">
           <Link to={"/admin/colaboradores"}>
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
+            <FontAwesomeIcon icon={["fas", "angle-left"]} className="me-2" />
             Colaboradores
           </Link>
         </div>
         <div>
           <FormGroup formFields={form} ref={ref}>
-            <FormField nome="nome" label="Nome" />
-            <FormField nome="cpf" label="CPF" />
+            <FormField nome="nome" label="Nome" required />
+            <FormField nome="cpf" label="CPF" required />
+            <div className="d-flex">
+              <div className="row">
+                <div className="col">
+                  <FormField
+                    nome="diaNascimento"
+                    label="Dia"
+                    type="number"
+                    required
+                  />
+                </div>
+                <div className="col">
+                  <FormField
+                    nome="mesNascimento"
+                    label="Mês"
+                    type="number"
+                    required
+                  />
+                </div>
+                <div className="col">
+                  <FormField
+                    nome="anoNascimento"
+                    label="Ano"
+                    type="number"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
             <FormField
-              nome="dataNascimento"
-              label="Data de Nascimento"
-              type="date"
+              nome="tipoUsuario"
+              label="Tipo de usuário"
+              tipo="select"
+              options={tiposUsuarios}
+              required
             />
-            <FormField nome="tipoUsuarioId" label="Função" />
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-primary px-5" onClick={submit}>
+          <button className="btn btn-primary px-5" onClick={handleSubmit}>
             CONFIRMAR
           </button>
         </div>
