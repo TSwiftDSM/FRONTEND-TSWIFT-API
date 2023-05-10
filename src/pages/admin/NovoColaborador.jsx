@@ -11,15 +11,15 @@ const NovoColaborador = () => {
     nome: "",
     cpf: "",
     dataNascimento: "",
-    colaboradorFunção: "" /* preciso do endpoint */,
+    tipoUsuarioId: "" /* preciso do endpoint */,
   });
 
   const ref = useRef(null);
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("http://localhost:3000/colaboradores", data).then(() => {
-      navigate("/admin/colaboradores");
+    axios.post("http://localhost:3000/usuarios/", data).then(() => { /* rota do brackend */
+      navigate("/admin/colaboradores");/* rota frontend */
     });
   }
   return (
@@ -36,14 +36,14 @@ const NovoColaborador = () => {
         </div>
         <div>
           <FormGroup formFields={form} ref={ref}>
-            <FormField nome="colaboradorNome" label="Nome" />
-            <FormField nome="colaboradorCpf" label="CPF" />
+            <FormField nome="nome" label="Nome" />
+            <FormField nome="cpf" label="CPF" />
             <FormField
-              nome="colaboradorDataNascimento"
+              nome="dataNascimento"
               label="Data de Nascimento"
               type="date"
             />
-            <FormField nome="colaboradorFunção" label="Função" />
+            <FormField nome="tipoUsuarioId" label="Função" />
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">

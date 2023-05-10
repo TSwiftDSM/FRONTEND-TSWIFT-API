@@ -27,7 +27,7 @@ export const HeaderAdmin = () => {
             Colaboradores
           </Link>
           <Link className="btn text-white" to={"/"}>
-            Recibimentos
+            Recebimentos
           </Link>
           {/* <button className="btn text-white">
             <span className="pe-2">Sair </span>
