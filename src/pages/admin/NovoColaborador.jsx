@@ -10,9 +10,7 @@ const NovoColaborador = () => {
   const form = Object.freeze({
     nome: "",
     cpf: "",
-    diaNascimento: "" /*  */,
-    mesNascimento: "",
-    anoNascimento: "",
+    dataNascimento: "",
     tipoUsuario: "",
   });
 
@@ -22,13 +20,13 @@ const NovoColaborador = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
-      console.log(data);
+      console.log("meu deus" + JSON.stringify(data));
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
             return {
-              value: tipo.id,
-              label: tipo.nome,
+              id: tipo.id,
+              nome: tipo.tipoUsuario,
             };
           })
         );
@@ -93,6 +91,7 @@ const NovoColaborador = () => {
                 </div>
               </div>
             </div>
+
             <FormField
               nome="tipoUsuario"
               label="Tipo de usuário"
