@@ -9,12 +9,19 @@ import axios from "axios";
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
+  const [codPedido, setNumeroPedido] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/entregas").then(({ data }) => {
-      setPedidos(data);
-    });
-  }, []);
+    if (codPedido) {
+      axios.get(`http://localhost:3000/entregas/numeroPedido/${codPedido}`).then(({ data }) => {
+        setPedidos(data);
+      })
+    } else {
+      axios.get("http://localhost:3000/entregas").then(({ data }) => {
+        setPedidos(data);
+      });
+    }
+  }, [codPedido]);
 
   return (
     <div>
@@ -23,6 +30,15 @@ const PedidosAdmin = () => {
       </div>
       <div className="card col-lg-12 p-5">
         <div className="mt-3 d-flex justify-content-end">
+          <div className="col-lg-2 mx-3">
+            <input
+                type="text"
+                className="form-control"
+                placeholder="Código do Pedido"
+                value={codPedido}
+                onChange={(e) => setNumeroPedido(e.target.value)}
+            />
+          </div>
           <Link to={"/admin/novo-pedido"}>
             <Button variant="primary" className="px-4 py-2">
               + Novo
