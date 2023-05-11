@@ -6,12 +6,20 @@ import axios from "axios";
 
 const Fornecedores = () => {
   const [fornecedores, setFornecedores] = useState([]);
+  const [nomeFornecedor, setNomeFornecedor] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
-      setFornecedores(data);
-    });
-  }, []);
+    if (nomeFornecedor){
+        axios.get(`http://localhost:3000/fornecedores/porNome/${nomeFornecedor}`)
+        .then(({ data }) => {
+            setFornecedores(data);
+        });
+    } else {
+        axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
+            setFornecedores(data);
+        });
+    }
+  }, [nomeFornecedor]);
 
   return (
     <div>
@@ -20,6 +28,15 @@ const Fornecedores = () => {
       </div>
       <div className="card mx-auto p-5">
         <div className="d-flex justify-content-end mt-5 mb-3">
+          <div className="col-lg-2 mx-3">
+            <input
+                type="text"
+                className="form-control"
+                placeholder="Nome do Fornecedor"
+                value={nomeFornecedor}
+                onChange={(e) => setNomeFornecedor(e.target.value)}
+            />
+          </div>
           <Link to={"/admin/novo-fornecedor"}>
             <button className="btn btn-primary">+ Novo</button>
           </Link>
