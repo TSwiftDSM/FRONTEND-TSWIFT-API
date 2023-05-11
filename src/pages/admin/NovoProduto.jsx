@@ -35,8 +35,8 @@ const NovoProduto = () => {
         </div>
         <div>
           <FormGroup ref={ref} formFields={form}>
-            <FormField nome="nomeProduto" label="Nome do produto" />
-            <FormField nome="unidade" label="Unidade de medida" />
+            <FormField nome="nomeProduto" label="Nome do produto" required />
+            <FormField nome="unidade" label="Unidade de medida" required />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
             <button className="btn btn-primary py-2 px-5" onClick={submit}>

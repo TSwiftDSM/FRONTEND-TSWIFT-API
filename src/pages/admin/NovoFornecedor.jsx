@@ -39,10 +39,10 @@ const NovoFornecedor = () => {
         </div>
         <div>
           <FormGroup formFields={form} ref={ref}>
-            <FormField nome="nomeFantasia" label="Nome Fantasia" />
-            <FormField nome="fornecedorCNPJ" label="CNPJ" />
-            <FormField nome="razaoSocial" label="Razão Social" />
-            <FormField nome="endereco" label="Endereço" />
+            <FormField nome="nomeFantasia" label="Nome Fantasia" required />
+            <FormField nome="fornecedorCNPJ" label="CNPJ" required />
+            <FormField nome="razaoSocial" label="Razão Social" required />
+            <FormField nome="endereco" label="Endereço" required />
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">

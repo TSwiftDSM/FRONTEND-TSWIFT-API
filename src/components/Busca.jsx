@@ -6,7 +6,7 @@ export const Busca = () => {
     <div className="d-flex">
       <div className="flex-fill">
         <Form>
-          <Form.Control />
+          <Form.Control required />
         </Form>
       </div>
       <button className="btn btn-square btn-secondary ms-2">
