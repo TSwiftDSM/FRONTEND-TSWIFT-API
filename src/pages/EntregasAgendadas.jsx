@@ -6,6 +6,21 @@ import axios from "axios";
 
 const EntregasAgendadas = () => {
   const [pedidos, setPedidos] = useState([]);
+  const [numeroPedido, setNumeroPedido] = useState("");
+
+  useEffect(() => {
+    if (numeroPedido) {
+      axios
+        .get(`http://localhost:3000/entregas/numeroPedido/${numeroPedido}`)
+        .then(({ data }) => {
+          setPedidos(data);
+        });
+    } else {
+      axios.get("http://localhost:3000/entregas").then(({ data }) => {
+        setPedidos(data);
+      });
+    }
+  }, [numeroPedido]);
 
   function listarPedidos() {
     return pedidos.map((p, i) => {
@@ -28,17 +43,20 @@ const EntregasAgendadas = () => {
     });
   }
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/entregas").then(({ data }) => {
-      setPedidos(data);
-    });
-  }, []);
-
   return (
     <div>
       <div className="row justify-content-between mb-5">
         <div className="col-lg-4">
           <h3 className="text-white">Entregas agendadas</h3>
+        </div>
+        <div className="col-lg-4">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Nº do Pedido"
+            value={numeroPedido}
+            onChange={(e) => setNumeroPedido(e.target.value)}
+          />
         </div>
       </div>
       <div className="row">{listarPedidos()}</div>
