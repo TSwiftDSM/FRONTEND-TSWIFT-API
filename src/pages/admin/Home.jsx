@@ -27,7 +27,7 @@ const Home = () => {
         {CardMenu("fa-clipboard-list", "PEDIDOS", "/admin/pedidos")}
         {CardMenu("fa-user-friends", "COLABORADORES", "/admin/colaboradores")}
         {CardMenu("fa-clipboard-check", "RECEBIMENTO", "/")}
-        {CardMenu(faGear, "REGRAS", "/admin/regras")}
+        {/* {CardMenu(faGear, "REGRAS", "/admin/regras")} */}
       </div>
     </div>
   );

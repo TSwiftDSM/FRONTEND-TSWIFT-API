@@ -29,7 +29,7 @@ const Fornecedores = () => {
       </div>
       <div className="card mx-auto p-5">
         <div className="d-flex justify-content-end mt-5 mb-3">
-          <div className="col-lg-2 mx-3">
+          <div className="col-lg-3 mx-3">
             <input
                 type="text"
                 className="form-control"

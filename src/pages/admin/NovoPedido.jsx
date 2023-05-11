@@ -93,7 +93,7 @@ const NovoPedido = () => {
             required
           />
           <FormField
-            label="Quantidade"
+            label="Quantidade (Kg / Litro)"
             tipo="number"
             nome="quantidade"
             required
