@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const CadastroRealizado = () => {
   return (
@@ -13,9 +14,11 @@ const CadastroRealizado = () => {
           Cadastro realizado com sucesso.
         </span>
         <div className="d-flex  justify-content-center">
-          <Button className="py-2 text-white" variant="primary">
-            FINALIZAR
-          </Button>
+          <Link to={"/admin/"}>
+            <Button className="py-2 text-white" variant="primary">
+              FINALIZAR
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

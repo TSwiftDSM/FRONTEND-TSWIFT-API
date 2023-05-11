@@ -10,7 +10,7 @@ const NovoColaborador = () => {
   const form = Object.freeze({
     nome: "",
     cpf: "",
-    diaNascimento: "", /*  */
+    diaNascimento: "" /*  */,
     mesNascimento: "",
     anoNascimento: "",
     tipoUsuario: "",
@@ -22,6 +22,7 @@ const NovoColaborador = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
+      console.log(data);
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
@@ -38,7 +39,7 @@ const NovoColaborador = () => {
   async function handleSubmit() {
     const data = await ref.current.getForm();
     const { diaNascimento, mesNascimento, anoNascimento } = data;
-    const dataNascimento = `${anoNascimento}-${mesNascimento}-${diaNascimento}`;
+    const dataNascimento = `${anoNascimento}-${mesNascimento}-${diaNascimento}`; /* junta os campos de data de nascimento para enviar para o backend */
     const novoColaborador = {
       ...data,
       dataNascimento,
