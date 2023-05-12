@@ -5,6 +5,8 @@ import { useRef } from "react";
 import axios from "axios";
 
 const NovoFornecedor = () => {
+  //const [fornecedores, setFornecedores] = useState([]);
+
   const navigate = useNavigate();
 
   const form = Object.freeze({

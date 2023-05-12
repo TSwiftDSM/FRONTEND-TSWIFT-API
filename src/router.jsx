@@ -12,6 +12,7 @@ import Fornecedores from "./pages/admin/Fornecedores";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import NovoFornecedor from "./pages/admin/NovoFornecedor";
 import NovoColaborador from "./pages/admin/NovoColaborador";
+import AlterarFornecedor from "./pages/admin/AlterarFornecedor";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -114,6 +115,10 @@ const routes = [
         path: "/admin/cadastro-realizado",
         element: <CadastroRealizado />,
       },
+      {
+        path: "/admin/fornecedor/alterar/:id",
+        element: <AlterarFornecedor />,
+      }
     ],
   },
 ];

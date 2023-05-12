@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -45,6 +46,7 @@ const Fornecedores = () => {
           <Table striped bordered>
             <thead>
               <tr>
+                <th> </th>
                 <th>Nome Fantasia</th>
                 <th>Razão social</th>
                 <th>CNPJ</th>
@@ -55,6 +57,7 @@ const Fornecedores = () => {
               {fornecedores.map((p, i) => {
                 return (
                   <tr key={i}>
+                    <Link to={`/admin/fornecedor/alterar/${p.id}`}><th><FontAwesomeIcon icon={faPencil} /></th></Link>
                     <th>{p.nomeFantasia}</th>
                     <th>{p.razaoSocial}</th>
                     <th>{p.fornecedorCNPJ}</th>
