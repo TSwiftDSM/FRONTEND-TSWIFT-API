@@ -122,6 +122,7 @@ const NovoPedido = () => {
     try {
       // pegar dados da entrega
       const entrega = await ref.current.getForm();
+      console.log(entrega)
       // pegar dados de cada produto
       const produtos = await Promise.all(
         nodesRef.current.map((node) => node.getForm())
@@ -154,7 +155,7 @@ const NovoPedido = () => {
       </div>
       <div className="card p-5 col-lg-6 mx-auto">
         <div className="mb-4">
-          <Link to={"/admin/produtos"}>
+          <Link to={"/admin/pedidos"}>
             <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
             Pedidos
           </Link>
@@ -187,6 +188,12 @@ const NovoPedido = () => {
               label="Condição de pagamento"
               tipo="select"
               options={formasDePagamento}
+              required
+            />
+            <FormField
+              nome="dataEntrega"
+              label="Data da entrega"
+              tipo="date"
               required
             />
           </FormGroup>
