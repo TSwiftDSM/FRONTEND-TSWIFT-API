@@ -16,45 +16,29 @@ const AlterarFornecedor = () => {
     fornecedorCNPJ: "",
     nomeFantasia: "",
     razaoSocial: "",
-    transportadora: true
+    transportadora: true,
   });
 
-  const [form, setForm] = useState(formFields);
-
-  function atualizar(e) {
-    const t = e.target;
-    setForm({
-      ...form,
-      [t.name]: t.value.trim(),
-    });
-  }
+  const [form, setForm] = useState({ formFields });
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/fornecedores/porId/${idFornecedor}`)
       .then(({ data }) => {
-        let dados = {
-          nomeFantasia: data.nomeFantasia,
-          fornecedorCNPJ: data.fornecedorCNPJ,
-          endereco: data.endereco,
-          razaoSocial: data.razaoSocial,
-          transporadora: data.transporadora,
-          fornecedor: data.fornecedor
-        };
-        setForm((form) => ({
-          ...form,
-          ...dados,
-        }));
+        setForm({ ...formFields, ...data });
       });
-  }, [idFornecedor]);
+  }, []);
 
   const ref = useRef(null);
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.put(`http://localhost:3000/fornecedores/${idFornecedor}`, data).then(() => {
-      navigate("/admin/fornecedores");
-    });
+    delete data.id;
+    axios
+      .put(`http://localhost:3000/fornecedores/${idFornecedor}`, data)
+      .then(() => {
+        navigate("/admin/fornecedores");
+      });
   }
 
   return (
@@ -71,10 +55,10 @@ const AlterarFornecedor = () => {
         </div>
         <div>
           <FormGroup formFields={form} ref={ref}>
-            <FormField onChange={atualizar} nome="nomeFantasia" label="Nome Fantasia" required value={form.nomeFantasia} />
-            <FormField onChange={atualizar} nome="fornecedorCNPJ" label="CNPJ" required value={form.fornecedorCNPJ} />
-            <FormField onChange={atualizar} nome="razaoSocial" label="Razão Social" required value={form.razaoSocial} />
-            <FormField onChange={atualizar} nome="endereco" label="Endereço" required value={form.endereco} />
+            <FormField nome="nomeFantasia" label="Nome Fantasia" required />
+            <FormField nome="fornecedorCNPJ" label="CNPJ" required />
+            <FormField nome="razaoSocial" label="Razão Social" required />
+            <FormField nome="endereco" label="Endereço" required />
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">

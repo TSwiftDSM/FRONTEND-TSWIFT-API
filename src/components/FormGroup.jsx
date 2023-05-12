@@ -4,6 +4,7 @@ import {
   cloneElement,
   forwardRef,
   useImperativeHandle,
+  useEffect,
 } from "react";
 
 export const FormGroup = forwardRef((props, ref) => {
@@ -18,6 +19,10 @@ export const FormGroup = forwardRef((props, ref) => {
       getForm: () => validar(),
     };
   });
+
+  useEffect(() => {
+    setForm(formFields);
+  }, [formFields]);
 
   // verificar se há campos obrigatórios vazios, caso não haja retorna o form, senão retorna os campos vazios
   const validar = () => {
@@ -55,11 +60,21 @@ export const FormGroup = forwardRef((props, ref) => {
     );
   }
 
+  function defaultValue(tipo) {
+    switch (tipo) {
+      case "number":
+        return 0;
+      default:
+        return "";
+    }
+  }
+
   // função que retorna os props de cada campo do form
-  const childProps = ({ props: { nome } }) => {
+  const childProps = ({ props: { nome, tipo } }) => {
     const props = {
       mudarCampo: atualizar,
       className: camposVazios.find((c) => c === nome) ? "vazio" : "",
+      value: form[nome] || defaultValue(tipo),
     };
     return props;
   };
