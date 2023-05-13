@@ -1,5 +1,7 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -10,15 +12,15 @@ const Produtos = () => {
 
   useEffect(() => {
     if (nomeProduto) {
-        axios.get(`http://localhost:3000/produto/porNome/${nomeProduto}`)
-          .then(({ data }) => {
-            setProdutos(data);
+      axios.get(`http://localhost:3000/produto/porNome/${nomeProduto}`)
+        .then(({ data }) => {
+          setProdutos(data);
         });
     } else {
       axios.get("http://localhost:3000/produto")
         .then(({ data }) => {
           setProdutos(data);
-      });
+        });
     }
   }, [nomeProduto]);
 
@@ -31,11 +33,11 @@ const Produtos = () => {
         <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
-                type="text"
-                className="form-control"
-                placeholder="Nome do Produto"
-                value={nomeProduto}
-                onChange={(e) => setNomeProduto(e.target.value)}
+              type="text"
+              className="form-control"
+              placeholder="Nome do Produto"
+              value={nomeProduto}
+              onChange={(e) => setNomeProduto(e.target.value)}
             />
           </div>
           <Link to={"/admin/novo-produto"}>
@@ -46,6 +48,7 @@ const Produtos = () => {
           <Table striped bordered>
             <thead>
               <tr>
+                <th style={{width: "4%"}}></th>
                 <th>Nome do Produto</th>
                 <th style={{ width: "20%" }}>Unidade de medida</th>
               </tr>
@@ -54,6 +57,7 @@ const Produtos = () => {
               {produtos.map((p, i) => {
                 return (
                   <tr key={i}>
+                    <Link to={`/admin/produto/alterar/${p.id}`}><th><FontAwesomeIcon icon={faPencil} /></th></Link>
                     <th>{p.nomeProduto}</th>
                     <th>{p.unidade}</th>
                   </tr>
