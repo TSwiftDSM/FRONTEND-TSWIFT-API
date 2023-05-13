@@ -29,7 +29,7 @@ const PedidosAdmin = () => {
         <h3 className="text-white">Pedidos</h3>
       </div>
       <div className="card col-lg-12 p-5">
-        <div className="mt-3 d-flex justify-content-end">
+        <div className="mt-2 d-flex justify-content-end">
           <div className="col-lg-3 mx-3">
             <input
                 type="text"
@@ -40,9 +40,7 @@ const PedidosAdmin = () => {
             />
           </div>
           <Link to={"/admin/novo-pedido"}>
-            <Button variant="primary" className="px-4 py-2">
-              + Novo
-            </Button>
+            <button className="btn btn-primary">+ Novo</button>
           </Link>
         </div>
         <div className="my-3">

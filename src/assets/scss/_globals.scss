@@ -58,7 +58,7 @@ header {
 }
 
 .content {
-  min-height: 62vh;
+  height: 62vh;
   transform: translateY(-130px);
 }
 
@@ -88,6 +88,8 @@ footer {
   border-radius: 20px;
   padding: 20px;
   transition: all 0.3s;
+  max-height: 65vh;
+  overflow: auto;
 
   &.vermelho {
     box-shadow: 2px 3px 4px $danger;
