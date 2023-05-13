@@ -30,7 +30,7 @@ const PedidosAdmin = () => {
       </div>
       <div className="card col-lg-12 p-5">
         <div className="mt-3 d-flex justify-content-end">
-          <div className="col-lg-2 mx-3">
+          <div className="col-lg-3 mx-3">
             <input
                 type="text"
                 className="form-control"
