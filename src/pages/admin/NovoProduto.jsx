@@ -3,6 +3,7 @@ import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
+import { unidadeDeMedida } from "../../constants";
 
 const NovoProduto = () => {
   const navigate = useNavigate();
@@ -36,7 +37,8 @@ const NovoProduto = () => {
         <div>
           <FormGroup ref={ref} formFields={form}>
             <FormField nome="nomeProduto" label="Nome do produto" required />
-            <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required />
+            {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
+            <FormField nome="unidade" label="Unidade de medida" tipo="select" options={unidadeDeMedida} required />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
             <button className="btn btn-primary py-2 px-5" onClick={submit}>

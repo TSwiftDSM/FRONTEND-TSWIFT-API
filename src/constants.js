@@ -10,3 +10,8 @@ export const etapas = Object.freeze({
   QUANTITATIVA: 2,
   QUALITATIVA: 3,
 });
+
+export const unidadeDeMedida = [
+  {id: "KG", nome: "KG"},
+  {id: "LITRO", nome: "LITRO"}
+]
