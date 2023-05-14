@@ -54,7 +54,7 @@ const NovoColaborador = () => {
       </div>
       <div className="card p-5 col-lg-6 mx-auto">
         <div className="mb-4">
-          <Link to={"/admin/colaboradores"}>
+          <Link to={"/admin/colaborador"}>
             <FontAwesomeIcon icon={["fas", "angle-left"]} className="me-2" />
             Colaboradores
           </Link>
