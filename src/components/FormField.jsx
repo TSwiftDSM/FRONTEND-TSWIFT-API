@@ -41,11 +41,13 @@ export const FormField = (props) => {
             disabled={disabled || !options}
             required={required}
             className={className}
+            value={value}
           >
             {options &&
               !!options.length &&
               [{ id: "", nome: "Selecione" }, ...options].map((opt) => {
                 return (
+                  
                   <option key={opt.id} value={opt.id}>
                     {opt.nome}
                   </option>
