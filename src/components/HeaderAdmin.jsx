@@ -23,7 +23,7 @@ export const HeaderAdmin = () => {
           <Link className="btn text-white" to={"/admin/pedidos"}>
             Pedidos
           </Link>
-          <Link className="btn text-white" to={""}>
+          <Link className="btn text-white" to={"/admin/colaborador"}>
             Colaboradores
           </Link>
           <Link className="btn text-white" to={"/"}>

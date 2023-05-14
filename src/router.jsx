@@ -13,7 +13,7 @@ import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import NovoFornecedor from "./pages/admin/NovoFornecedor";
 import NovoColaborador from "./pages/admin/NovoColaborador";
 import AlterarFornecedor from "./pages/admin/AlterarFornecedor";
-import AlterarProduto from "./pages/admin/AlterarProduto"
+import AlterarProduto from "./pages/admin/AlterarProduto";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -24,6 +24,7 @@ import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
 import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
 import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 import CadastroRealizado from "./pages/admin/CadastroRealizado";
+import Colaborador from "./pages/admin/Colaborador";
 
 const routes = [
   {
@@ -123,7 +124,11 @@ const routes = [
       {
         path: "/admin/produto/alterar/:id",
         element: <AlterarProduto />,
-      }
+      },
+      {
+        path: "/admin/Colaborador",
+        element: <Colaborador />,
+      },
     ],
   },
 ];

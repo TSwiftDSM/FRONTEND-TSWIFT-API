@@ -20,7 +20,7 @@ const NovoColaborador = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
-      console.log("meu deus" + JSON.stringify(data));
+      /* console.log("meu deus" + JSON.stringify(data)); */
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
