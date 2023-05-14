@@ -9,7 +9,6 @@ const NovoProduto = () => {
   const idProduto = parseInt(useParams().id);
   const navigate = useNavigate();
 
-
   const formFields = Object.freeze({
     nomeProduto: "",
     unidade: "",
@@ -20,21 +19,23 @@ const NovoProduto = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/produto/${idProduto}`)
-      .then(({ data }) => {
-        setForm({ ...formFields, ...data });
-      });
+    axios.get(`http://localhost:3000/produto/${idProduto}`).then(({ data }) => {
+      setForm({ ...formFields, ...data });
+    });
   }, []);
 
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios
-      .put(`http://localhost:3000/produto/${idProduto}`, data)
-      .then(() => {
-        navigate("/admin/produtos");
-      });
+    axios.put(`http://localhost:3000/produto/${idProduto}`, data).then(() => {
+      navigate("/admin/produtos");
+    });
+  }
+
+  function handleDelete() {
+    axios.delete(`http://localhost:3000/produto/${idProduto}`).then(() => {
+      navigate("/admin/produtos");
+    });
   }
 
   return (
@@ -53,9 +54,19 @@ const NovoProduto = () => {
           <FormGroup ref={ref} formFields={form}>
             <FormField nome="nomeProduto" label="Nome do produto" required />
             {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
-            <FormField nome="unidade" label="Unidade de medida" tipo="select" options={unidadeDeMedida} value={form.unidade} required />
+            <FormField
+              nome="unidade"
+              label="Unidade de medida"
+              tipo="select"
+              options={unidadeDeMedida}
+              value={form.unidade}
+              required
+            />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
+            <button className="btn btn-danger px-5 me-4" onClick={handleDelete}>
+              APAGAR
+            </button>
             <button className="btn btn-primary py-2 px-5" onClick={submit}>
               ALTERAR
             </button>

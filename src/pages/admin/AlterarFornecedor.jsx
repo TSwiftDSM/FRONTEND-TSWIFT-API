@@ -31,6 +31,14 @@ const AlterarFornecedor = () => {
 
   const ref = useRef(null);
 
+  function handleDelete() {
+    axios
+      .delete(`http://localhost:3000/fornecedores/${idFornecedor}`)
+      .then(() => {
+        navigate("/admin/fornecedores");
+      });
+  }
+
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
@@ -62,6 +70,9 @@ const AlterarFornecedor = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
+          <button className="btn btn-danger px-5 me-4" onClick={handleDelete}>
+            APAGAR
+          </button>
           <button className="btn btn-primary px-5" onClick={submit}>
             ALTERAR
           </button>
