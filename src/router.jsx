@@ -14,6 +14,7 @@ import NovoFornecedor from "./pages/admin/NovoFornecedor";
 import NovoColaborador from "./pages/admin/NovoColaborador";
 import AlterarFornecedor from "./pages/admin/AlterarFornecedor";
 import AlterarProduto from "./pages/admin/AlterarProduto";
+import AlterarColaborador from "./pages/admin/AlterarColaborador";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -24,7 +25,7 @@ import RecusaQualitativa from "./pages/etapas/RecusaQualitativa";
 import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
 import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 import CadastroRealizado from "./pages/admin/CadastroRealizado";
-import Colaborador from "./pages/admin/Colaborador";
+import Colaborador from "./pages/admin/Colaboradores";
 
 const routes = [
   {
@@ -98,6 +99,10 @@ const routes = [
         element: <Produtos />,
       },
       {
+        path: "/admin/produtos/:id",
+        element: <AlterarProduto />,
+      },
+      {
         path: "/admin/novo-produto",
         element: <NovoProduto />,
       },
@@ -106,8 +111,20 @@ const routes = [
         element: <Fornecedores />,
       },
       {
+        path: "/admin/fornecedores/:id",
+        element: <AlterarFornecedor />,
+      },
+      {
         path: "/admin/novo-fornecedor",
         element: <NovoFornecedor />,
+      },
+      {
+        path: "/admin/colaboradores",
+        element: <Colaborador />,
+      },
+      {
+        path: "/admin/colaboradores/:id",
+        element: <AlterarColaborador />,
       },
       {
         path: "/admin/novo-colaborador",
@@ -116,18 +133,6 @@ const routes = [
       {
         path: "/admin/cadastro-realizado",
         element: <CadastroRealizado />,
-      },
-      {
-        path: "/admin/fornecedor/alterar/:id",
-        element: <AlterarFornecedor />,
-      },
-      {
-        path: "/admin/produto/alterar/:id",
-        element: <AlterarProduto />,
-      },
-      {
-        path: "/admin/Colaborador",
-        element: <Colaborador />,
       },
     ],
   },

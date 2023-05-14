@@ -47,7 +47,7 @@ const Colaborador = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{ width: "4%" }}></th>
+                <th style={{ width: "4%" }} />
                 <th style={{ width: "4%" }}>Código</th>
                 <th>Nome</th>
                 <th style={{ width: "10%" }}>CPF</th>
@@ -59,11 +59,11 @@ const Colaborador = () => {
               {colaborador.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <Link to={`/admin/usuarios/alterar/${p.id}`}>
-                      <th>
+                    <th>
+                      <Link to={`/admin/colaboradores/${p.id}`}>
                         <FontAwesomeIcon icon={faPencil} />
-                      </th>
-                    </Link>
+                      </Link>
+                    </th>
                     <th>{p.id}</th>
                     <th>{p.nome}</th>
                     <th>{p.cpf}</th>

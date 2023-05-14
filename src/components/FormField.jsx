@@ -23,8 +23,8 @@ export const FormField = (props) => {
     className: className,
     required: required,
     disabled: disabled,
-    value: value,
     onChange: mudar,
+    value: value,
     type: tipo,
     name: nome,
   };
@@ -47,7 +47,6 @@ export const FormField = (props) => {
               !!options.length &&
               [{ id: "", nome: "Selecione" }, ...options].map((opt) => {
                 return (
-                  
                   <option key={opt.id} value={opt.id}>
                     {opt.nome}
                   </option>

@@ -150,3 +150,10 @@ footer {
     border-color: $danger;
   }
 }
+
+th {
+  vertical-align: middle;
+  &:has(a) {
+    text-align: center;
+  }
+}

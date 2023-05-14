@@ -20,7 +20,6 @@ const NovoColaborador = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
-      /* console.log("meu deus" + JSON.stringify(data)); */
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
@@ -54,7 +53,7 @@ const NovoColaborador = () => {
       </div>
       <div className="card p-5 col-lg-6 mx-auto">
         <div className="mb-4">
-          <Link to={"/admin/colaborador"}>
+          <Link to={"/admin/colaboradores"}>
             <FontAwesomeIcon icon={["fas", "angle-left"]} className="me-2" />
             Colaboradores
           </Link>

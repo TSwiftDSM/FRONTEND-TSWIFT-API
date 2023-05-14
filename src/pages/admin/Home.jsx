@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+// import { faGear } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   function CardMenu(icone, texto, rota = "") {
@@ -25,7 +25,7 @@ const Home = () => {
         {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
         {CardMenu("fa-briefcase", "FORNECEDORES", "/admin/fornecedores")}
         {CardMenu("fa-clipboard-list", "PEDIDOS", "/admin/pedidos")}
-        {CardMenu("fa-user-friends", "COLABORADORES", "/admin/Colaborador")}
+        {CardMenu("fa-user-friends", "COLABORADORES", "/admin/colaboradores")}
         {CardMenu("fa-clipboard-check", "RECEBIMENTO", "/")}
         {/* {CardMenu(faGear, "REGRAS", "/admin/regras")} */}
       </div>

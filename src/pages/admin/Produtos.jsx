@@ -12,15 +12,15 @@ const Produtos = () => {
 
   useEffect(() => {
     if (nomeProduto) {
-      axios.get(`http://localhost:3000/produto/porNome/${nomeProduto}`)
+      axios
+        .get(`http://localhost:3000/produto/porNome/${nomeProduto}`)
         .then(({ data }) => {
           setProdutos(data);
         });
     } else {
-      axios.get("http://localhost:3000/produto")
-        .then(({ data }) => {
-          setProdutos(data);
-        });
+      axios.get("http://localhost:3000/produto").then(({ data }) => {
+        setProdutos(data);
+      });
     }
   }, [nomeProduto]);
 
@@ -48,7 +48,7 @@ const Produtos = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{width: "4%"}}></th>
+                <th style={{ width: "4%" }} />
                 <th>Nome do Produto</th>
                 <th style={{ width: "20%" }}>Unidade de medida</th>
               </tr>
@@ -57,7 +57,11 @@ const Produtos = () => {
               {produtos.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <Link to={`/admin/produto/alterar/${p.id}`}><th><FontAwesomeIcon icon={faPencil} /></th></Link>
+                    <th>
+                      <Link to={`/admin/produtos/${p.id}`}>
+                        <FontAwesomeIcon icon={faPencil} />
+                      </Link>
+                    </th>
                     <th>{p.nomeProduto}</th>
                     <th>{p.unidade}</th>
                   </tr>

@@ -24,6 +24,28 @@ const Relatorio = () => {
       setShow(true);
     });
   }
+  function statusDoPedido() {
+    switch (pedido.etapaEntrega) {
+      case "":
+        return "Aguardando entrega";
+      case "QUALITATIVO":
+        return get(pedido, "StatusEntrega.length") ? "Recusado" : "Aprovado";
+      default:
+        return "Em recebimento";
+    }
+  }
+  function statusClass() {
+    switch (pedido.etapaEntrega) {
+      case "QUALITATIVO":
+        return get(pedido, "StatusEntrega.length")
+          ? "text-danger"
+          : "text-success";
+      case "":
+        return "text-secondary";
+      default:
+        return "text-warning";
+    }
+  }
 
   function DetalhesQuantitativa(produto = []) {
     const entregas = [...produto];
@@ -111,15 +133,7 @@ const Relatorio = () => {
             </div>
             <div className="small">
               <strong className="me-1">Status:</strong>
-              <strong
-                className={
-                  get(pedido, "StatusEntrega.length")
-                    ? "text-danger"
-                    : "text-success"
-                }
-              >
-                {get(pedido, "StatusEntrega.length") ? "Recusado" : "Aprovado"}
-              </strong>
+              <strong className={statusClass()}>{statusDoPedido()}</strong>
             </div>
             {/* <div className="mt-4 small">
               <strong className="me-1">Data Prevista:</strong>

@@ -10,15 +10,16 @@ const Fornecedores = () => {
   const [nomeFornecedor, setNomeFornecedor] = useState("");
 
   useEffect(() => {
-    if (nomeFornecedor){
-        axios.get(`http://localhost:3000/fornecedores/porNome/${nomeFornecedor}`)
+    if (nomeFornecedor) {
+      axios
+        .get(`http://localhost:3000/fornecedores/porNome/${nomeFornecedor}`)
         .then(({ data }) => {
-            setFornecedores(data);
+          setFornecedores(data);
         });
     } else {
-        axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
-            setFornecedores(data);
-        });
+      axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
+        setFornecedores(data);
+      });
     }
   }, [nomeFornecedor]);
 
@@ -31,11 +32,11 @@ const Fornecedores = () => {
         <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
-                type="text"
-                className="form-control"
-                placeholder="Nome do Fornecedor"
-                value={nomeFornecedor}
-                onChange={(e) => setNomeFornecedor(e.target.value)}
+              type="text"
+              className="form-control"
+              placeholder="Nome do Fornecedor"
+              value={nomeFornecedor}
+              onChange={(e) => setNomeFornecedor(e.target.value)}
             />
           </div>
           <Link to={"/admin/novo-fornecedor"}>
@@ -57,7 +58,13 @@ const Fornecedores = () => {
               {fornecedores.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <Link to={`/admin/fornecedor/alterar/${p.id}`}><th><FontAwesomeIcon icon={faPencil} /></th></Link>
+                    <th>
+                      <Link to={`/admin/fornecedores/${p.id}`}>
+                        <th>
+                          <FontAwesomeIcon icon={faPencil} />
+                        </th>
+                      </Link>
+                    </th>
                     <th>{p.nomeFantasia}</th>
                     <th>{p.razaoSocial}</th>
                     <th>{p.fornecedorCNPJ}</th>

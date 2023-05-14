@@ -1,12 +1,12 @@
 import { formasDePagamento, tiposDeFrete } from "../../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const NovoPedido = () => {
-  const idPedido = parseInt(useParams().id);
+  // const idPedido = parseInt(useParams().id);
   const navigate = useNavigate();
 
   const form = Object.freeze({
@@ -124,7 +124,6 @@ const NovoPedido = () => {
     try {
       // pegar dados da entrega
       const entrega = await ref.current.getForm();
-      console.log(entrega)
       // pegar dados de cada produto
       const produtos = await Promise.all(
         nodesRef.current.map((node) => node.getForm())

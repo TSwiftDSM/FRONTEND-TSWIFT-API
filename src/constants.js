@@ -1,4 +1,7 @@
-export const formasDePagamento = [{ id: "6X", nome: "6x" }];
+export const formasDePagamento = [
+  { id: "6X", nome: "6x" },
+  { id: "12X", nome: "12x" },
+];
 
 export const tiposDeFrete = [
   { id: "CIF", nome: "CIF" },
@@ -12,6 +15,6 @@ export const etapas = Object.freeze({
 });
 
 export const unidadeDeMedida = [
-  {id: "KG", nome: "KG"},
-  {id: "LITRO", nome: "LITRO"}
-]
+  { id: "KG", nome: "KG" },
+  { id: "LITRO", nome: "LITRO" },
+];
