@@ -67,7 +67,14 @@ const Colaborador = () => {
                     <th>{p.id}</th>
                     <th>{p.nome}</th>
                     <th>{p.cpf}</th>
-                    <th>{p.dataNascimento}</th>
+                    {/*   <th>{p.dataNascimento}</th> */}
+                    <th>
+                      {new Date(p.dataNascimento).toLocaleDateString("pt-BR", {
+                        day: "numeric",
+                        month: "numeric",
+                        year: "numeric",
+                      })}
+                    </th>
                     <th>{p.tipoUsuario}</th>
                   </tr>
                 );
