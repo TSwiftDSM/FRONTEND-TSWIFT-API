@@ -30,7 +30,7 @@ const Relatorio = () => {
     switch (pedido.etapaEntrega) {
       case "":
         return "Aguardando entrega";
-      case "QUALITATIVO":
+      case "QUALITATIVA":
         return get(pedido, "StatusEntrega.length") ? "Recusado" : "Aprovado";
       default:
         return "Em recebimento";
@@ -38,7 +38,7 @@ const Relatorio = () => {
   }
   function statusClass() {
     switch (pedido.etapaEntrega) {
-      case "QUALITATIVO":
+      case "QUALITATIVA":
         return get(pedido, "StatusEntrega.length")
           ? "text-danger"
           : "text-success";
@@ -131,7 +131,10 @@ const Relatorio = () => {
             )}
             <div className="mb-4">
               <Link to={"/admin/pedidos"}>
-                <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
+                <FontAwesomeIcon
+                  icon="fa-solid fa-angle-left"
+                  className="me-2"
+                />
                 Voltar
               </Link>
             </div>

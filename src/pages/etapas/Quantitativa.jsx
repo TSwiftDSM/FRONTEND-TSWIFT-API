@@ -28,7 +28,7 @@ const Quantitativa = () => {
               especificacao: "",
               quantidade: 0,
               pesoUnitario: 0,
-              valorTotal: 0
+              valorTotal: 0,
             };
           })
         );
@@ -75,20 +75,21 @@ const Quantitativa = () => {
           Voltar
         </Link>
 
-        {produtos.map((p, i) => {
-          return (
-            <div key={i} className="my-4">
-              <Colapsador
-                nome={`${get(p, "Produto.id")} - ${get(
-                  p,
-                  "Produto.nomeProduto"
-                )}`}
-              >
-                <Produto produto={form[i]} index={i} update={update} />
-              </Colapsador>
-            </div>
-          );
-        })}
+        {!!produtos.length &&
+          produtos.map((p, i) => {
+            return (
+              <div key={i} className="my-4">
+                <Colapsador
+                  nome={`${get(p, "Produto.id")} - ${get(
+                    p,
+                    "Produto.nomeProduto"
+                  )}`}
+                >
+                  <Produto produto={form[i]} index={i} update={update} />
+                </Colapsador>
+              </div>
+            );
+          })}
 
         <div className="mt-4">
           <div className="d-flex justify-content-center">
