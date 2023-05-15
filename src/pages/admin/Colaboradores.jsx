@@ -12,7 +12,7 @@ const Colaborador = () => {
   useEffect(() => {
     if (nomeColaborador) {
       axios
-        .get(`http://localhost:3000/usuarios/porNome/${nomeColaborador}`)
+        .get(`http://localhost:3000/usuarios/${nomeColaborador}`)
         .then(({ data }) => {
           setColaborador(data);
         });
