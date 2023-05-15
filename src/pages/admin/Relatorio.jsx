@@ -5,6 +5,8 @@ import { useParams } from "react-router";
 import { Alert } from "react-bootstrap";
 import get from "lodash/get";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Relatorio = () => {
   const [pedido, setPedido] = useState({});
@@ -127,6 +129,12 @@ const Relatorio = () => {
                 <h3 className="mb-0">Recebimento do pedido aprovado</h3>
               </Alert>
             )}
+            <div className="mb-4">
+              <Link to={"/admin/pedidos"}>
+                <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
+                Voltar
+              </Link>
+            </div>
             <div className="small">
               <strong className="me-1">Nº do Pedido:</strong>
               {pedido.numeroPedido}
