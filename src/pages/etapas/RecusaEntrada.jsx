@@ -19,7 +19,7 @@ const RecusaEntrada = () => {
     const t = e.target;
     setForm({
       ...form,
-      [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
+      [t.name]: t.type === "checkbox" ? t.checked : t.value,
     });
   };
 

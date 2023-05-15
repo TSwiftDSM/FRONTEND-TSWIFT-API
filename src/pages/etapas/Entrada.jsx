@@ -27,9 +27,9 @@ const Entrada = () => {
     const t = e.target;
     setForm({
       ...form,
-      [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
+      [t.name]: t.type === "checkbox" ? t.checked : t.value,
     });
-    if (t.name === "notaFiscal") setDisabled(!t.value.trim());
+    if (t.name === "notaFiscal") setDisabled(!t.value);
   }
 
   useEffect(() => {

@@ -45,10 +45,10 @@ export const FormGroup = forwardRef((props, ref) => {
     const t = e.target;
     setForm({
       ...form,
-      [t.name]: t.type === "checkbox" ? t.checked : t.value.trim(),
+      [t.name]: t.type === "checkbox" ? t.checked : t.value,
     });
     // adiciona a classe de campo vazio se for campo obrigatório
-    t.required && !t.value.trim()
+    t.required && !t.value
       ? t.classList.add("vazio")
       : t.classList.remove("vazio");
   };

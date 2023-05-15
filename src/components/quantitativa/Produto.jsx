@@ -14,8 +14,8 @@ export const Produto = (props) => {
         t.type === "checkbox"
           ? t.checked
           : t.type === "number"
-          ? parseInt(t.value.trim())
-          : t.value.trim(),
+          ? parseInt(t.value)
+          : t.value,
     });
   };
 
@@ -27,7 +27,7 @@ export const Produto = (props) => {
     const valorTotal = quantidade * unidade;
     setForm({
       ...form,
-      valorTotal
+      valorTotal,
     });
   };
 
@@ -55,17 +55,14 @@ export const Produto = (props) => {
           />
           <Form.Label>Valor Total</Form.Label>
           <Form.Control
-             onChange={(e) => {
+            onChange={(e) => {
               atualizar(e);
-              atualizarValorTotal(
-                form.quantidade,
-                form.unidade
-              );
+              atualizarValorTotal(form.quantidade, form.unidade);
             }}
             readOnly
             name="valorTotal"
             type="number"
-            value={ form.valorTotal = form.pesoUnitario * form.quantidade}
+            value={(form.valorTotal = form.pesoUnitario * form.quantidade)}
           />
         </Form.Group>
         {/* <Form.Group>
