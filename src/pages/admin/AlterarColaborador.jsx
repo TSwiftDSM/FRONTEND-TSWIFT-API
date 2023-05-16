@@ -55,6 +55,8 @@ const AlterarColaborador = () => {
     const data = await ref.current.getForm();
     delete data.id;
     delete data.matricula;
+    delete data.login;
+    delete data.senha;
     axios.put(`http://localhost:3000/usuarios/${id}`, data).then(() => {
       navigate("/admin/colaboradores");
     });
