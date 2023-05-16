@@ -14,9 +14,6 @@ const AlterarColaborador = () => {
     cpf: "",
     dataNascimento: "",
     tipoUsuarioId: "",
-    diaNascimento: 0,
-    mesNascimento: 0,
-    anoNascimento: 0,
   });
 
   const [form, setForm] = useState(formFields);

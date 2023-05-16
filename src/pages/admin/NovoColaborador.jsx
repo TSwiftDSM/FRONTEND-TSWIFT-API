@@ -11,7 +11,7 @@ const NovoColaborador = () => {
     nome: "",
     cpf: "",
     dataNascimento: "",
-    tipoUsuario: "",
+    tipoUsuarioId: "",
   });
 
   const [tiposUsuarios, setTiposUsuarios] = useState([]);
@@ -35,11 +35,8 @@ const NovoColaborador = () => {
 
   async function handleSubmit() {
     const data = await ref.current.getForm();
-    const { diaNascimento, mesNascimento, anoNascimento } = data;
-    const dataNascimento = `${anoNascimento}-${mesNascimento}-${diaNascimento}`; /* junta os campos de data de nascimento para enviar para o backend */
     const novoColaborador = {
       ...data,
-      dataNascimento,
     };
     axios.post("http://localhost:3000/usuarios/", novoColaborador).then(() => {
       navigate("/admin/colaboradores");
@@ -62,37 +59,16 @@ const NovoColaborador = () => {
           <FormGroup formFields={form} ref={ref}>
             <FormField nome="nome" label="Nome" required />
             <FormField nome="cpf" label="CPF" required />
-            <div className="d-flex">
-              <div className="row">
-                <div className="col">
-                  <FormField
-                    nome="diaNascimento"
-                    label="Dia"
-                    type="number"
-                    required
-                  />
-                </div>
-                <div className="col">
-                  <FormField
-                    nome="mesNascimento"
-                    label="Mês"
-                    type="number"
-                    required
-                  />
-                </div>
-                <div className="col">
-                  <FormField
-                    nome="anoNascimento"
-                    label="Ano"
-                    type="number"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
 
             <FormField
-              nome="tipoUsuario"
+              nome="dataNascimento"
+              label="Data de nascimento"
+              required
+              tipo="date"
+            />
+
+            <FormField
+              nome="tipoUsuarioId"
               label="Tipo de usuário"
               tipo="select"
               options={tiposUsuarios}
