@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+  faListCheck,
+  faShoppingBag,
+  faBriefcase,
+  faClipboardList,
+  faUserFriends,
+  faClipboardCheck,
+  faFile,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   function CardMenu(icone, texto, rota = "") {
@@ -22,12 +30,13 @@ const Home = () => {
         <h3 className="text-white">Painel Administrativo</h3>
       </div>
       <div className="row">
-        {CardMenu("fa-bag-shopping", "PRODUTOS", "/admin/produtos")}
-        {CardMenu("fa-briefcase", "FORNECEDORES", "/admin/fornecedores")}
-        {CardMenu("fa-clipboard-list", "PEDIDOS", "/admin/pedidos")}
-        {CardMenu("fa-user-friends", "COLABORADORES", "/admin/colaboradores")}
-        {CardMenu("fa-clipboard-check", "RECEBIMENTO", "/")}
-        {/* {CardMenu(faGear, "REGRAS", "/admin/regras")} */}
+        {CardMenu(faShoppingBag, "PRODUTOS", "/admin/produtos")}
+        {CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores")}
+        {CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos")}
+        {CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores")}
+        {CardMenu(faClipboardCheck, "RECEBIMENTO", "/")}
+        {CardMenu(faListCheck, "REGRAS", "/admin/regras")}
+        {CardMenu(faFile, "RELATÓRIOS", "/")}
       </div>
     </div>
   );
