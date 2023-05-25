@@ -8,8 +8,18 @@ import axios from "axios";
 const Colaborador = () => {
   const [colaborador, setColaborador] = useState([]);
   const [nomeColaborador, setNomeColaborador] = useState("");
+  const [TiposUsuarios, setTiposUsuarios] = useState("");
 
   useEffect(() => {
+    axios
+      .get(`http://localhost:3000/tiposUsuarios`)
+      .then(({ data }) => {
+        setTiposUsuarios(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     if (nomeColaborador) {
       axios
         .get(`http://localhost:3000/usuarios/${nomeColaborador}`)
@@ -22,6 +32,11 @@ const Colaborador = () => {
       });
     }
   }, [nomeColaborador]);
+
+  function tipoUsuario(usuario) {
+    return TiposUsuarios.find((t) => t.id === usuario.tipoUsuarioId)
+      .tipoUsuario;
+  }
 
   return (
     <div>
@@ -75,7 +90,7 @@ const Colaborador = () => {
                         year: "numeric",
                       })}
                     </th>
-                    <th>{p.tipoUsuario}</th>
+                    <td>{tipoUsuario(p)}</td>
                   </tr>
                 );
               })}
