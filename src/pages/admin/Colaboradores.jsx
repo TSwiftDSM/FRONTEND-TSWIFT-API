@@ -90,7 +90,7 @@ const Colaborador = () => {
                         year: "numeric",
                       })}
                     </th>
-                    <td>{tipoUsuario(p)}</td>
+                    <th>{tipoUsuario(p)}</th>
                   </tr>
                 );
               })}
