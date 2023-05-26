@@ -15,6 +15,9 @@ import NovoColaborador from "./pages/admin/NovoColaborador";
 import AlterarFornecedor from "./pages/admin/AlterarFornecedor";
 import AlterarProduto from "./pages/admin/AlterarProduto";
 import AlterarColaborador from "./pages/admin/AlterarColaborador";
+import Regras from "./pages/admin/Regras"
+import NovaRegra from "./pages/admin/NovaRegra"
+
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -133,6 +136,14 @@ const routes = [
       {
         path: "/admin/cadastro-realizado",
         element: <CadastroRealizado />,
+      },
+      {
+        path: "/admin/regras",
+        element: <Regras />,
+      },
+      {
+        path: "/admin/regras/:id",
+        element: <NovaRegra />,
       },
     ],
   },
