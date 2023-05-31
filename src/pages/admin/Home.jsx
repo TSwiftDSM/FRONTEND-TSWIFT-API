@@ -25,7 +25,7 @@ const Home = () => {
   }
 
   return (
-    <div className="container pt-5">
+    <div className="container container-home">
       {/* <div className="mb-4">
         <h3 className="text-white">Painel de Acessos</h3>
       </div> */}
