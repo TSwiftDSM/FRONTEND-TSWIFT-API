@@ -1,6 +1,6 @@
 import logo from "../assets/img/logo.svg";
 import styled from "styled-components";
-import { Login } from "../components";
+import { Login } from "../components/Login";
 
 const Auth = () => {
   return (
@@ -18,7 +18,7 @@ const Auth = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Auth;
 

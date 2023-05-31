@@ -22,7 +22,7 @@ export const Header = () => {
           <Link className="btn text-white" to={"/admin"}>
             Home
           </Link>
-          <button className="btn text-white" onClick={() => logout}>
+          <button className="btn text-white" onClick={logout}>
             <span className="pe-2">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
           </button>

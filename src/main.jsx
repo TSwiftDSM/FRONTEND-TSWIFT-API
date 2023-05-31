@@ -27,14 +27,14 @@ function App() {
   const { logado } = useContext(AuthContext);
   return (
     <>
-      {!logado ? (
+      {logado ? (
+        <RouterProvider router={router} />
+      ) : (
         <BrowserRouter>
           <Routes>
             <Route path="" Component={Auth} />
           </Routes>
         </BrowserRouter>
-      ) : (
-        <RouterProvider router={router} />
       )}
     </>
   );
