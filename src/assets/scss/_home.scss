@@ -1,0 +1,25 @@
+.container-home {
+    // background-color: blue;
+    padding-top: 6vh;
+}
+
+.home {
+    .card {
+        background: #ffffff;
+        box-shadow: 2px 3px 4px rgba(52, 52, 52, 0.5);
+        border-radius: 20px;
+        padding: 20px;
+        transition: all 0.3s;
+
+        &.menu-admin {
+            color: rgb(135, 135, 135);
+            transition: 0.3s color, 0.3s transform;
+
+            &:hover {
+                transform: scale(1.02);
+                color: $warning;
+                box-shadow: 2px 3px 4px $warning;
+            }
+        }
+    }
+}

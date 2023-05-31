@@ -13,8 +13,8 @@ import {
 const Home = () => {
   function CardMenu(icone, texto, rota = "") {
     return (
-      <div className="col-lg-3 mb-5 px-4">
-        <Link className="card text-center menu-admin" to={rota}>
+      <div className="home col-lg-3 mb-5 px-4">
+        <Link className="card home text-center menu-admin" to={rota}>
           <div className="py-3">
             <FontAwesomeIcon icon={icone} style={{ fontSize: "48px" }} />
           </div>
@@ -25,8 +25,8 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <div className="mb-5">
+    <div className="container-home container">
+      <div className="mb-4">
         <h3 className="text-white">Painel Administrativo</h3>
       </div>
       <div className="row">
