@@ -6,7 +6,7 @@ import logo from "../assets/img/logo-tswift.png";
 export const Header = () => {
   return (
     <header>
-      <div className="container position-relative d-flex justify-content-between align-items-start">
+      <div className="container d-flex justify-content-between align-items-center">
         <div>
           <Logo src={logo} alt="Logo" />
         </div>
