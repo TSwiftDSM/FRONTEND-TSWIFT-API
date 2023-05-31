@@ -1,12 +1,14 @@
-import logo from "../assets/img/logo-tswift.png";
+import logo from "../assets/img/logo.svg";
 import styled from "styled-components";
 import { Login } from "../components";
 
-function Auth() {
+const Auth = () => {
   return (
     <div className="auth">
-      <header className="container position-relative">
-        <Logo src={logo} alt="Logo" />
+      <header className="container header d-flex">
+        <div>
+          <Logo src={logo} alt="Logo" />
+        </div>
       </header>
       <div className="container d-flex align-items-center justify-content-center content">
         <Login />
@@ -23,7 +25,4 @@ export default Auth;
 const Logo = styled.img`
   height: 70px;
   width: 100px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
 `;

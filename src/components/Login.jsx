@@ -9,11 +9,8 @@ export const Login = () => {
 
   return (
     <div className="login">
-      <div className="text-center">
-        <span className="titulo">LOGIN</span>
-      </div>
       <div>
-        <Form className="d-grid gap-2 my-3">
+        <Form className="d-grid gap-2 mb-3">
           <Form.Group controlId="usuario">
             <Form.Label>Usuário</Form.Label>
             <InputGroup>
