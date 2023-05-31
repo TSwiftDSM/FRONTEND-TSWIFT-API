@@ -24,33 +24,6 @@ html {
 
 }
 
-.login {
-  background: rgba(255, 255, 255, 0.29);
-  width: 350px;
-  border-radius: 49px;
-  padding: 30px;
-  color: #ffffff;
-  .titulo {
-    font-size: 30px;
-  }
-}
-
-.auth {
-  background: radial-gradient(50% 119.66% at 50% 50%, #21a676 0%, #3c7380 100%);
-  background-blend-mode: darken;
-  min-height: 100vh;
-  height: 100%;
-  width: 100%;
-  color: white;
-
-  header {
-    background: none;
-  }
-  footer {
-    border-top: none;
-  }
-}
-
 .content {
   min-height: 82vh;
 }

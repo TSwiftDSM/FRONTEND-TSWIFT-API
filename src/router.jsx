@@ -3,6 +3,8 @@ import App from "./templates/App";
 
 import EntregasAgendadas from "./pages/EntregasAgendadas";
 
+import Auth from "./templates/Auth";
+
 import Home from "./pages/admin/Home";
 import Produtos from "./pages/admin/Produtos";
 import Relatorio from "./pages/admin/Relatorio";
@@ -15,8 +17,8 @@ import NovoColaborador from "./pages/admin/NovoColaborador";
 import AlterarFornecedor from "./pages/admin/AlterarFornecedor";
 import AlterarProduto from "./pages/admin/AlterarProduto";
 import AlterarColaborador from "./pages/admin/AlterarColaborador";
-import Regras from "./pages/admin/Regras"
-import NovaRegra from "./pages/admin/NovaRegra"
+import Regras from "./pages/admin/Regras";
+import NovaRegra from "./pages/admin/NovaRegra";
 
 
 import Entrada from "./pages/etapas/Entrada";
@@ -77,10 +79,10 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <Auth />,
-  // },
+  {
+    path: "/login",
+    element: <Auth />,
+  },
   {
     path: "/admin",
     element: <App admin={true} />,

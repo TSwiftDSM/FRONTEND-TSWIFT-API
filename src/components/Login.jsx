@@ -5,11 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Login = () => {
   return (
     <div className="login">
-      <div className="text-center">
-        <span className="titulo">LOGIN</span>
-      </div>
       <div>
-        <Form className="d-grid gap-2 my-3">
+        <Form className="d-grid gap-2 mb-3">
           <Form.Group controlId="usuario">
             <Form.Label>Usuário</Form.Label>
             <InputGroup>
@@ -28,7 +25,7 @@ export const Login = () => {
               <Form.Control placeholder="Senha" type="password" />
             </InputGroup>
           </Form.Group>
-          <Button variant="secondary" className="mt-3" type="submit">
+          <Button variant="secondary" className="mt-4 btn-md" type="submit">
             ENTRAR
           </Button>
         </Form>
