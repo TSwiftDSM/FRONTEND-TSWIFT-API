@@ -31,7 +31,7 @@ const Relatorio = () => {
       case "":
         return "Aguardando entrega";
       case "QUALITATIVA":
-        return get(pedido, "StatusEntrega.length") ? "Recusado" : "Aprovado";
+        return get(pedido, "StatusEntrega.length") ? "Recusado" : "Recebido";
       default:
         return "Em recebimento";
     }
