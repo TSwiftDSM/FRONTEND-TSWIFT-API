@@ -19,7 +19,7 @@ const NovoColaborador = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/tiposUsuarios/").then(({ data }) => {
+    axios.get("tiposUsuarios/").then(({ data }) => {
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
@@ -38,7 +38,7 @@ const NovoColaborador = () => {
     const novoColaborador = {
       ...data,
     };
-    axios.post("http://localhost:3000/usuarios/", novoColaborador).then(() => {
+    axios.post("usuarios/", novoColaborador).then(() => {
       navigate("/admin/colaboradores");
     });
   }

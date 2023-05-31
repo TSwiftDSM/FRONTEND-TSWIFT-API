@@ -10,13 +10,11 @@ const EntregasAgendadas = () => {
 
   useEffect(() => {
     if (numeroPedido) {
-      axios
-        .get(`http://localhost:3000/entregas/numeroPedido/${numeroPedido}`)
-        .then(({ data }) => {
-          setPedidos(data);
-        });
+      axios.get(`entregas/numeroPedido/${numeroPedido}`).then(({ data }) => {
+        setPedidos(data);
+      });
     } else {
-      axios.get("http://localhost:3000/entregas").then(({ data }) => {
+      axios.get("entregas").then(({ data }) => {
         setPedidos(data);
       });
     }

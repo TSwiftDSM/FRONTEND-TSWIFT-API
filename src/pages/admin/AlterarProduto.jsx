@@ -19,7 +19,7 @@ const NovoProduto = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/produto/${idProduto}`).then(({ data }) => {
+    axios.get(`produto/${idProduto}`).then(({ data }) => {
       setForm({ ...formFields, ...data });
     });
   }, []);
@@ -27,13 +27,13 @@ const NovoProduto = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios.put(`http://localhost:3000/produto/${idProduto}`, data).then(() => {
+    axios.put(`produto/${idProduto}`, data).then(() => {
       navigate("/admin/produtos");
     });
   }
 
   function handleDelete() {
-    axios.delete(`http://localhost:3000/produto/${idProduto}`).then(() => {
+    axios.delete(`produto/${idProduto}`).then(() => {
       navigate("/admin/produtos");
     });
   }

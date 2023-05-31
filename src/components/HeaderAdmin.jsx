@@ -2,13 +2,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/img/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "../main";
+import { useNavigate } from "react-router-dom";
 
 export const HeaderAdmin = () => {
+  const navigate = useNavigate();
+  const context = useAuth();
+  function logout() {
+    navigate("/");
+    context.setLogado(false);
+  }
   return (
     <header>
       <div className="header container d-flex justify-content-between align-items-center">
         <div>
-          <Logo src={logo} alt="Logo"/>
+          <Logo src={logo} alt="Logo" />
         </div>
         <div>
           <Link className="btn" to={"/admin"}>
@@ -32,7 +40,7 @@ export const HeaderAdmin = () => {
           <Link className="btn" to={"#"}>
             Regras
           </Link>
-          <button className="btn">
+          <button className="btn" onClick={logout}>
             <span className="">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
           </button>

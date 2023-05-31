@@ -14,14 +14,14 @@ const Relatorio = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/entregas/${id}`).then(({ data }) => {
+    axios.get(`entregas/${id}`).then(({ data }) => {
       setPedido(data);
     });
   }, [id]);
 
   async function submit() {
-    await axios.post(`http://localhost:3000/alterar/forcarAceitacao/${id}/1`);
-    axios.get(`http://localhost:3000/entregas/${id}`).then(({ data }) => {
+    await axios.post(`alterar/forcarAceitacao/${id}/1`);
+    axios.get(`entregas/${id}`).then(({ data }) => {
       setPedido(data);
       setShow(true);
     });

@@ -36,7 +36,7 @@ const NovoPedido = () => {
 
   useEffect(() => {
     // pegar fornecedores do backend
-    axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
+    axios.get("fornecedores").then(({ data }) => {
       if (data && data.length) {
         setFornecedores(
           data.map((f) => {
@@ -49,22 +49,20 @@ const NovoPedido = () => {
       }
     });
     // pegar transportadoras do backend
-    axios
-      .get("http://localhost:3000/fornecedores/transportadora")
-      .then(({ data }) => {
-        if (data && data.length) {
-          setTransportadoras(
-            data.map((f) => {
-              return {
-                id: f.id,
-                nome: f.nomeFantasia,
-              };
-            })
-          );
-        }
-      });
+    axios.get("fornecedores/transportadora").then(({ data }) => {
+      if (data && data.length) {
+        setTransportadoras(
+          data.map((f) => {
+            return {
+              id: f.id,
+              nome: f.nomeFantasia,
+            };
+          })
+        );
+      }
+    });
     // pegar produtos do backend
-    axios.get("http://localhost:3000/produto").then(({ data }) => {
+    axios.get("produto").then(({ data }) => {
       if (data && data.length) {
         setProdutos(
           data.map((p) => {
@@ -132,11 +130,11 @@ const NovoPedido = () => {
       // cadastrar entrega no backend e retornar o id
       const {
         data: { id },
-      } = await axios.post("http://localhost:3000/entregas", entrega);
+      } = await axios.post("entregas", entrega);
 
       // cadastrar o produto da entrega usando o id retornado
       produtos.forEach((produto) => {
-        axios.post("http://localhost:3000/entregaProduto", {
+        axios.post("entregaProduto", {
           ...produto,
           EntregaId: id,
         });

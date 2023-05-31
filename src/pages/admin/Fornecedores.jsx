@@ -11,13 +11,11 @@ const Fornecedores = () => {
 
   useEffect(() => {
     if (nomeFornecedor) {
-      axios
-        .get(`http://localhost:3000/fornecedores/porNome/${nomeFornecedor}`)
-        .then(({ data }) => {
-          setFornecedores(data);
-        });
+      axios.get(`fornecedores/porNome/${nomeFornecedor}`).then(({ data }) => {
+        setFornecedores(data);
+      });
     } else {
-      axios.get("http://localhost:3000/fornecedores").then(({ data }) => {
+      axios.get("fornecedores").then(({ data }) => {
         setFornecedores(data);
       });
     }

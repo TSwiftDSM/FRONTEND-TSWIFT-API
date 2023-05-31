@@ -23,13 +23,13 @@ const AlterarColaborador = () => {
   const ref = useRef(null);
 
   function handleDelete() {
-    axios.delete(`http://localhost:3000/usuarios/${id}`).then(() => {
+    axios.delete(`usuarios/${id}`).then(() => {
       navigate("/admin/colaboradores");
     });
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3000/tiposUsuarios/").then(
+    axios.get("tiposUsuarios/").then(
       ({ data }) => {
         if (data && data.length) {
           setTiposUsuarios(
@@ -42,7 +42,7 @@ const AlterarColaborador = () => {
           );
         }
       },
-      axios.get(`http://localhost:3000/usuarios/id/${id}`).then(({ data }) => {
+      axios.get(`usuarios/id/${id}`).then(({ data }) => {
         setForm({
           ...data,
           dataNascimento: moment(data.dataNascimento).format("YYYY-MM-DD"),
@@ -57,7 +57,7 @@ const AlterarColaborador = () => {
     delete data.matricula;
     delete data.login;
     delete data.senha;
-    axios.put(`http://localhost:3000/usuarios/${id}`, data).then(() => {
+    axios.put(`usuarios/${id}`, data).then(() => {
       navigate("/admin/colaboradores");
     });
   }

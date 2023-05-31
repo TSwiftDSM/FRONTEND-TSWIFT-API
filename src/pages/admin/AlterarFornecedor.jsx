@@ -22,31 +22,25 @@ const AlterarFornecedor = () => {
   const [form, setForm] = useState({ formFields });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/fornecedores/porId/${idFornecedor}`)
-      .then(({ data }) => {
-        setForm({ ...formFields, ...data });
-      });
+    axios.get(`fornecedores/porId/${idFornecedor}`).then(({ data }) => {
+      setForm({ ...formFields, ...data });
+    });
   }, []);
 
   const ref = useRef(null);
 
   function handleDelete() {
-    axios
-      .delete(`http://localhost:3000/fornecedores/${idFornecedor}`)
-      .then(() => {
-        navigate("/admin/fornecedores");
-      });
+    axios.delete(`fornecedores/${idFornecedor}`).then(() => {
+      navigate("/admin/fornecedores");
+    });
   }
 
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios
-      .put(`http://localhost:3000/fornecedores/${idFornecedor}`, data)
-      .then(() => {
-        navigate("/admin/fornecedores");
-      });
+    axios.put(`fornecedores/${idFornecedor}`, data).then(() => {
+      navigate("/admin/fornecedores");
+    });
   }
 
   return (

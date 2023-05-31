@@ -22,7 +22,7 @@ const NovoFornecedor = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("http://localhost:3000/fornecedores", data).then(() => {
+    axios.post("fornecedores", data).then(() => {
       navigate("/admin/fornecedores");
     });
   }

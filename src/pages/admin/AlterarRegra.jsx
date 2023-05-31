@@ -17,7 +17,7 @@ const AlterarRegra = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/testeQualidade/porId/${idRegra}`).then(({ data }) => {
+    axios.get(`testeQualidade/porId/${idRegra}`).then(({ data }) => {
       setForm({ ...formFields, ...data });
     });
   }, []);
@@ -25,13 +25,13 @@ const AlterarRegra = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios.put(`http://localhost:3000/testeQualidade/${idRegra}`, data).then(() => {
+    axios.put(`testeQualidade/${idRegra}`, data).then(() => {
       navigate("/admin/regras");
     });
   }
 
   function handleDelete() {
-    axios.delete(`http://localhost:3000/testeQualidade/${idRegra}`).then(() => {
+    axios.delete(`testeQualidade/${idRegra}`).then(() => {
       navigate("/admin/regras");
     });
   }

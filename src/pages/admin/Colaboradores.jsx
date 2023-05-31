@@ -12,7 +12,7 @@ const Colaborador = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/tiposUsuarios`)
+      .get(`tiposUsuarios`)
       .then(({ data }) => {
         setTiposUsuarios(data);
       })
@@ -21,13 +21,11 @@ const Colaborador = () => {
       });
 
     if (nomeColaborador) {
-      axios
-        .get(`http://localhost:3000/usuarios/${nomeColaborador}`)
-        .then(({ data }) => {
-          setColaborador(data);
-        });
+      axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
+        setColaborador(data);
+      });
     } else {
-      axios.get("http://localhost:3000/usuarios").then(({ data }) => {
+      axios.get("usuarios").then(({ data }) => {
         setColaborador(data);
       });
     }

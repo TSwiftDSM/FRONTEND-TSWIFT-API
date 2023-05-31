@@ -2,7 +2,11 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useAuth } from "../main";
+
 export const Login = () => {
+  const context = useAuth();
+
   return (
     <div className="login">
       <div className="text-center">
@@ -28,7 +32,11 @@ export const Login = () => {
               <Form.Control placeholder="Senha" type="password" />
             </InputGroup>
           </Form.Group>
-          <Button variant="secondary" className="mt-3" type="submit">
+          <Button
+            variant="secondary"
+            className="mt-3"
+            onClick={() => context.setLogado(true)}
+          >
             ENTRAR
           </Button>
         </Form>

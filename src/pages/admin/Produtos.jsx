@@ -12,13 +12,11 @@ const Produtos = () => {
 
   useEffect(() => {
     if (nomeProduto) {
-      axios
-        .get(`http://localhost:3000/produto/porNome/${nomeProduto}`)
-        .then(({ data }) => {
-          setProdutos(data);
-        });
+      axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
+        setProdutos(data);
+      });
     } else {
-      axios.get("http://localhost:3000/produto").then(({ data }) => {
+      axios.get("produto").then(({ data }) => {
         setProdutos(data);
       });
     }

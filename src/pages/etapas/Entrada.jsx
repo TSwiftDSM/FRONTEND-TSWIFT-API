@@ -34,7 +34,7 @@ const Entrada = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/cadastrar/material/api/EntradaMaterial/${id}`)
+      .get(`cadastrar/material/api/EntradaMaterial/${id}`)
       .then(({ data }) => {
         let dados = {
           numeroPedido: data.numeroPedido,
@@ -55,10 +55,7 @@ const Entrada = () => {
 
   const submit = () => {
     axios
-      .post(
-        "http://localhost:3000/cadastrar/material/api/EntradaMaterial",
-        form
-      )
+      .post("cadastrar/material/api/EntradaMaterial", form)
       .then(() => navigate(`/${id}/quantitativa`));
   };
 

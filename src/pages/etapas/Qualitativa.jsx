@@ -13,9 +13,7 @@ const Qualitativa = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:3000/conferencia/qualitativa/api/qualitativa/${idEntrega}`
-      )
+      .get(`conferencia/qualitativa/api/qualitativa/${idEntrega}`)
       .then(({ data }) => {
         setTestes(Object.values(data));
       });
@@ -43,10 +41,9 @@ const Qualitativa = () => {
 
   function submit() {
     axios
-      .post(
-        `http://localhost:3000/conferencia/qualitativa/api/PersistenciaQualitativa`,
-        { qualidadeProdutos: form }
-      )
+      .post(`conferencia/qualitativa/api/PersistenciaQualitativa`, {
+        qualidadeProdutos: form,
+      })
       .then(() => {
         navigate(`/${idEntrega}/relatorio`);
       });

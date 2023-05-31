@@ -33,11 +33,9 @@ const RecusaEntrada = () => {
   ];
 
   function submit() {
-    axios
-      .post(`http://localhost:3000/recusar/entradaMateriais/${id}`, form)
-      .then(() => {
-        navigate(`/${id}/quantitativa`);
-      });
+    axios.post(`recusar/entradaMateriais/${id}`, form).then(() => {
+      navigate(`/${id}/quantitativa`);
+    });
   }
   function voltar() {
     navigate(`/${id}/entrada`);

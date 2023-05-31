@@ -12,15 +12,14 @@ const Produtos = () => {
 
   useEffect(() => {
     if (descricao) {
-        axios.get(`http://localhost:3000/testeQualidade/porNome/${descricao}`).then(({ data }) => {
-          setRegras(data);
-        });
-    } else {
-      axios.get("http://localhost:3000/testeQualidade/").then(({ data }) => {
+      axios.get(`testeQualidade/porNome/${descricao}`).then(({ data }) => {
         setRegras(data);
       });
-      }
-     
+    } else {
+      axios.get("testeQualidade/").then(({ data }) => {
+        setRegras(data);
+      });
+    }
   }, [descricao]);
 
   return (

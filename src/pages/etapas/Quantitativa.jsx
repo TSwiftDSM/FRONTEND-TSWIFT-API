@@ -16,23 +16,21 @@ const Quantitativa = () => {
   const [disable, setDisable] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/conferencia/quantitativa/${id}`)
-      .then(({ data }) => {
-        setProdutos(data);
-        setForm(
-          data.map((p) => {
-            return {
-              id_entrega_produto: p.id,
-              peso_previsto: p.pesoPrevisto,
-              especificacao: "",
-              quantidade: 0,
-              pesoUnitario: 0,
-              valorTotal: 0,
-            };
-          })
-        );
-      });
+    axios.get(`conferencia/quantitativa/${id}`).then(({ data }) => {
+      setProdutos(data);
+      setForm(
+        data.map((p) => {
+          return {
+            id_entrega_produto: p.id,
+            peso_previsto: p.pesoPrevisto,
+            especificacao: "",
+            quantidade: 0,
+            pesoUnitario: 0,
+            valorTotal: 0,
+          };
+        })
+      );
+    });
   }, [id]);
 
   function update(p, i) {
@@ -48,15 +46,13 @@ const Quantitativa = () => {
       id_usuario: 1,
       update_objects: form,
     };
-    axios
-      .post(`http://localhost:3000/conferencia/quantitativa/${id}`, data)
-      .then(({ data }) => {
-        const rota =
-          data === "Etapa Concluida"
-            ? `/${id}/qualitativa`
-            : `/${id}/recusa-quantitativa`;
-        navigate(rota);
-      });
+    axios.post(`conferencia/quantitativa/${id}`, data).then(({ data }) => {
+      const rota =
+        data === "Etapa Concluida"
+          ? `/${id}/qualitativa`
+          : `/${id}/recusa-quantitativa`;
+      navigate(rota);
+    });
   }
 
   return (

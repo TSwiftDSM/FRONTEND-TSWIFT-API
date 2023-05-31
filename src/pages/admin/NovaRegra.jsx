@@ -15,7 +15,7 @@ const NovaRegra = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("http://localhost:3000/testeQualidade/", data).then(() => {
+    axios.post("testeQualidade/", data).then(() => {
       navigate("/admin/regras");
     });
   }
