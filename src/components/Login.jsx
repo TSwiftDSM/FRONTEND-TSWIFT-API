@@ -1,42 +1,46 @@
-import { Form, Button, InputGroup } from "react-bootstrap";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { useAuth } from "../main";
+
+import { FormGroup } from "./FormGroup";
+import { FormField } from "./FormField";
+
+import { useRef } from "react";
 
 export const Login = () => {
   const context = useAuth();
 
+  async function login() {
+    const data = await ref.current.getForm();
+    context.login(data).then();
+  }
+  const form = Object.freeze({
+    login: "",
+    senha: "",
+  });
+  const ref = useRef(null);
+
   return (
     <div className="login">
       <div>
-        <Form className="d-grid gap-2 mb-3">
-          <Form.Group controlId="usuario">
-            <Form.Label>Usuário</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FontAwesomeIcon icon="fa-regular fa-user" />
-              </InputGroup.Text>
-              <Form.Control placeholder="Usuário" />
-            </InputGroup>
-          </Form.Group>
-          <Form.Group controlId="senha">
-            <Form.Label>Senha</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FontAwesomeIcon icon="fa-solid fa-lock" />
-              </InputGroup.Text>
-              <Form.Control placeholder="Senha" type="password" />
-            </InputGroup>
-          </Form.Group>
-          <Button
-            variant="secondary"
-            className="mt-3"
-            onClick={() => context.setLogado(true)}
-          >
-            ENTRAR
-          </Button>
-        </Form>
+        <FormGroup ref={ref} formFields={form}>
+          <FormField
+            nome="login"
+            label="Usuário"
+            placeholder="Usuário"
+            required
+            icon="fa-regular fa-user"
+          />
+          <FormField
+            nome="senha"
+            label="Senha"
+            placeholder="Senha"
+            required
+            icon="fa-solid fa-lock"
+            tipo="password"
+          />
+        </FormGroup>
+        <button className="btn btn-secondary col-12 mt-2" onClick={login}>
+          ENTRAR
+        </button>
       </div>
     </div>
   );

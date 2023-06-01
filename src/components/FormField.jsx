@@ -1,4 +1,5 @@
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const FormField = (props) => {
   const {
@@ -10,6 +11,7 @@ export const FormField = (props) => {
     options,
     value,
     label,
+    icon,
     nome,
     tipo,
   } = props;
@@ -55,7 +57,16 @@ export const FormField = (props) => {
           </Form.Select>
         );
       default:
-        return <Form.Control {...childProps} />;
+        return (
+          <InputGroup>
+            {icon && (
+              <InputGroup.Text className={className}>
+                <FontAwesomeIcon icon={icon} />
+              </InputGroup.Text>
+            )}
+            <Form.Control {...childProps} />
+          </InputGroup>
+        );
     }
   }
 

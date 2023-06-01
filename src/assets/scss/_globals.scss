@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 a {
   text-decoration: none;
   color: black;
@@ -19,9 +18,8 @@ html {
   height: 100%;
   background-color: whitesmoke;
   background-image: url(../img/background.svg);
-  background-size:contain;
+  background-size: contain;
   background-repeat: no-repeat;
-
 }
 
 .content {
@@ -113,6 +111,22 @@ footer {
 .form-control,
 .form-select {
   &.vazio {
+    border-color: $danger;
+  }
+}
+
+.input-group-text,
+.form-control {
+  transition: border 0.5s;
+}
+.input-group:has(.form-control:focus) {
+  .input-group-text,
+  .form-control {
+    border-color: $success;
+  }
+}
+.input-group:has(.vazio) {
+  .input-group-text {
     border-color: $danger;
   }
 }

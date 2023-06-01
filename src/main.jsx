@@ -42,9 +42,35 @@ function App() {
 
 function AuthProvider({ children }) {
   const [logado, setLogado] = useState(false);
+  const [usuario, setUsuario] = useState({});
+
+  function login(dados) {
+    return new Promise((resolve, reject) => {
+      return axios
+        .post(`/autenticacao`, dados)
+        .then(({ data }) => {
+          const { usuario, tokenUsuario } = data;
+          if (usuario && tokenUsuario) {
+            axios.defaults.headers["Authorization"] = `Bearer ${tokenUsuario}`;
+            setUsuario(usuario);
+            setLogado(true);
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(reject);
+    });
+  }
+
+  function logout() {
+    setUsuario({});
+    setLogado(false);
+    axios.defaults.headers["Authorization"] = "";
+  }
 
   return (
-    <AuthContext.Provider value={{ logado: logado, setLogado }}>
+    <AuthContext.Provider value={{ logado, login, usuario, logout }}>
       {children}
     </AuthContext.Provider>
   );

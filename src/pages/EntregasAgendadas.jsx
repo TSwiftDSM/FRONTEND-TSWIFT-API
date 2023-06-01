@@ -58,8 +58,8 @@ const EntregasAgendadas = () => {
         </div>
       </div>
       <div className="row">{listarPedidos()}</div>
-      <div className="verMaisEntregas">
-        <a href="/admin/pedidos">Ver mais</a>
+      <div className="d-flex justify-content-end">
+        <Link to={"/admin/pedidos"}>Ver mais</Link>
       </div>
     </div>
   );

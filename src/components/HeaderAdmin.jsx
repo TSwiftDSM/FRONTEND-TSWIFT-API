@@ -10,7 +10,7 @@ export const HeaderAdmin = () => {
   const context = useAuth();
   function logout() {
     navigate("/");
-    context.setLogado(false);
+    context.logout();
   }
   return (
     <header>
