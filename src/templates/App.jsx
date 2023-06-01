@@ -5,7 +5,8 @@ function App(props) {
   const { admin = false } = props;
   return (
     <div className="app">
-      {admin ? <HeaderAdmin /> : <Header />}
+      <HeaderAdmin />
+      {/* {admin ? <HeaderAdmin /> : <Header />} */}
       {/* if (admin) {<HeaderAdmin/>} else {<Header/>} */}
 
       <div className="container content">

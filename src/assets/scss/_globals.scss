@@ -7,6 +7,7 @@
 a {
   text-decoration: none;
   color: black;
+
   &:hover {
     color: $warning;
   }
@@ -21,6 +22,8 @@ html {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+
 
 .content {
   min-height: 82vh;
@@ -38,12 +41,25 @@ footer {
 .input-group-text {
   background-color: white;
 }
-.input-group > :not(:first-child) {
+
+.input-group> :not(:first-child) {
   border-left: none;
 }
 
 .form-control:focus {
   box-shadow: none;
+}
+
+.container-cards {
+  padding: 4vh 20px 20px 20px;
+}
+
+.card-list {
+  background: #ffffff;
+  box-shadow: 2px 3px 4px rgba(52, 52, 52, 0.5);
+  border-radius: 20px;
+  max-height: 65vh;
+  overflow: auto;
 }
 
 .card {
@@ -58,12 +74,15 @@ footer {
   &.vermelho {
     box-shadow: 2px 3px 4px $danger;
   }
+
   &.verde {
     box-shadow: 2px 3px 4px $primary;
   }
+
   &.azul {
     box-shadow: 2px 3px 4px $warning;
   }
+
   &.amarelo {
     box-shadow: 2px 3px 4px $secondary;
   }
@@ -77,6 +96,7 @@ footer {
   &.menu-admin {
     color: rgb(135, 135, 135);
     transition: 0.3s color, 0.3s transform;
+
     &:hover {
       transform: scale(1.02);
       color: $warning;
@@ -91,12 +111,15 @@ footer {
 
 .btn {
   color: white;
+
   &:hover {
     color: white;
   }
 }
+
 .btn-outline-dark {
   color: black;
+
   &:hover {
     color: white;
   }
@@ -119,12 +142,15 @@ footer {
 .form-control {
   transition: border 0.5s;
 }
+
 .input-group:has(.form-control:focus) {
+
   .input-group-text,
   .form-control {
     border-color: $success;
   }
 }
+
 .input-group:has(.vazio) {
   .input-group-text {
     border-color: $danger;
@@ -133,6 +159,7 @@ footer {
 
 th {
   vertical-align: middle;
+
   &:has(a) {
     text-align: center;
   }
@@ -143,6 +170,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
