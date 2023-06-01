@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -24,12 +23,12 @@ const PedidosAdmin = () => {
   }, [codPedido]);
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Pedidos</h3>
       </div>
-      <div className="card col-lg-12 p-5">
-        <div className="mt-2 d-flex justify-content-end">
+      <div className="card-list p-5">
+        <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
               type="text"
@@ -43,72 +42,40 @@ const PedidosAdmin = () => {
             <button className="btn btn-primary">+ Novo</button>
           </Link>
         </div>
-        <div className="my-3">
-          {pedidos && pedidos.length ? (
-            <Table
-              striped
-              bordered
-              style={{
-                gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th style={{ width: "6%" }}>Código</th>
-                  <th style={{ width: "12%" }}>Fornecedor</th>
-                  {/* <th style={{ width: "12%" }}>Transportadora</th> */}
-                  {/* <th style={{ width: "18%" }}>Produto</th> */}
-                  <th style={{ width: "12%" }}>Cond. Pag.</th>
-                  <th style={{ width: "10%" }}>Tipo de Frete</th>
-                  <th style={{ width: "12%" }}>Data prevista</th>
-                  {/* <th style={{ width: "10%" }}>Status</th> */}
-                  <th style={{ width: "4%" }} />
-                </tr>
-              </thead>
-              <tbody>
-                {pedidos.map((p, i) => {
-                  return (
-                    <tr key={i}>
-                      <th>{p.id}</th>
-                      <th>{get(p, "Fornecedor.nomeFantasia")}</th>
-                      {/* <th>{p.transportadora}</th> */}
-                      {/* <th>
-                      {p.produtos.map((prod, i) => {
-                        return (
-                          <div key={i}>
-                            <span>{prod.cod} - </span>
-                            <span>{prod.nome} - </span>
-                            <span>{prod.peso}</span>
-                          </div>
-                        );
-                      })}
-                    </th> */}
-                      <th>{p.formaPagamento}</th>
-                      <th>{p.tipoFrete}</th>
-                      <th>{formatarData(p.dataEntrega)}</th>
-
-                      {/* <th>{p.status}</th> */}
-                      <th>
-                        <Link
-                          className="d-flex align-items-center justify-content-center"
-                          to={`/${p.id}/relatorio`}
-                        >
-                          <button className="btn btn-square btn-outline-dark text-center">
-                            <FontAwesomeIcon icon={"fa-solid fa-angle-right"} />
-                          </button>
-                        </Link>
-                      </th>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          ) : (
-            <div className="text-center my-5">
-              <h3>Não foram encontrados pedidos</h3>
-            </div>
-          )}
-        </div>
+        {pedidos && pedidos.length ? (
+          <Table striped bordered >
+            <thead>
+              <tr>
+                <th className="text-center" style={{ width: "10%" }}>Nº Pedido</th>
+                <th>Fornecedor</th>
+                <th>Data prevista</th>
+                <th>Status</th>
+                <th style={{ width: "10%" }} />
+              </tr>
+            </thead>
+            <tbody>
+              {pedidos.map((p, i) => {
+                return (
+                  <tr key={i}>
+                    <th className="text-center">{p.id}</th>
+                    <th>{get(p, "Fornecedor.nomeFantasia")}</th>
+                    <th>{formatarData(p.dataEntrega)}</th>
+                    <th>{p.status}</th>
+                    <th>
+                      <Link to={`/${p.id}/relatorio`}>
+                        ver mais
+                      </Link>
+                    </th>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        ) : (
+          <div className="text-center my-5">
+            <h3>Não foram encontrados pedidos</h3>
+          </div>
+        )}
       </div>
     </div>
   );
