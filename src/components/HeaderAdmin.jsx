@@ -34,12 +34,12 @@ export const HeaderAdmin = () => {
           <Link className="btn" to={"/admin/colaboradores"}>
             Colaboradores
           </Link>
-          <Link className="btn" to={"#"}>
+          {/* <Link className="btn" to={"#"}>
             Recebimentos
           </Link>
           <Link className="btn" to={"#"}>
             Regras
-          </Link>
+          </Link> */}
           <button className="btn" onClick={logout}>
             <span className="">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />

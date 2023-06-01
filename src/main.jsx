@@ -8,6 +8,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   BrowserRouter,
+  Navigate,
   Routes,
   Route,
 } from "react-router-dom";
@@ -33,6 +34,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="" Component={Auth} />
+            <Route path="*" element={<Navigate to="" />} />
           </Routes>
         </BrowserRouter>
       )}
