@@ -22,6 +22,30 @@ const PedidosAdmin = () => {
     }
   }, [codPedido]);
 
+  function statusDoPedido(pedidos) {
+    switch (pedidos.etapaEntrega) {
+      case "":
+        return "Aguardando entrega";
+      case "QUALITATIVA":
+        return get(pedidos, "StatusEntrega.length") ? "Recusado" : "Recebido";
+      default:
+        return "Em recebimento";
+    }
+  }
+
+  function statusClass(pedidos) {
+    switch (pedidos.etapaEntrega) {
+      case "QUALITATIVA":
+        return get(pedidos, "StatusEntrega.length")
+          ? "text-danger"
+          : "text-success";
+      case "":
+        return "text-secondary";
+      default:
+        return "text-warning";
+    }
+  }
+
   return (
     <div className="container-cards">
       <div className="mb-4">
@@ -60,7 +84,7 @@ const PedidosAdmin = () => {
                     <th className="text-center">{p.id}</th>
                     <th>{get(p, "Fornecedor.nomeFantasia")}</th>
                     <th>{formatarData(p.dataEntrega)}</th>
-                    <th>{p.status}</th>
+                    <th><strong className={statusClass(p)}>{statusDoPedido(p)}</strong></th>
                     <th>
                       <Link to={`/${p.id}/relatorio`}>
                         ver mais
