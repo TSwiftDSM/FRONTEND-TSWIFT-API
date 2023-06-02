@@ -14,7 +14,6 @@ import {
 
 const Home = () => {
   const {usuario} = useAuth();
-  // const permissaoUsuario = usuario.usuarioPermissao.PermissaoUsuario;
   
   function CardMenu(icone, texto, rota = "") {
     return (

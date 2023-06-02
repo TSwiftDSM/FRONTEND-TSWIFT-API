@@ -7,11 +7,38 @@ import { useNavigate } from "react-router-dom";
 
 export const HeaderAdmin = () => {
   const navigate = useNavigate();
-  const context = useAuth();
+  const {usuario} = useAuth();
+
   function logout() {
     navigate("/");
-    context.logout();
+    usuario.logout();
   }
+
+  function barItem(path, texto){
+    return (
+        <Link className="btn" to={path}>
+            {texto}
+        </Link>
+    );
+  }
+
+  function renderBar(usuario){
+    const permissoes = {
+        1: barItem("/admin/produtos", "Produtos"),
+        2: barItem("/admin/fornecedores", "Fornecedores"),
+        3: barItem("/admin/pedidos", "Pedidos"),
+        4: barItem("/admin/colaboradores", "Colaboradores"),
+        5: barItem("/recebimentos", "Recebimentos"),
+        6: barItem("/admin/regras", "Regras"),
+        7: barItem("/admin/transportadora", "Transportadora"),
+        8: barItem("/admin/menu-relatorios", "Relatórios"),
+    }
+    return usuario.PermissaoUsuario.map(permissao => {
+        console.log(permissao)
+        return permissoes[permissao.permissaoId]
+        })
+  }
+
   return (
     <header>
       <div className="header container d-flex justify-content-between align-items-center">
@@ -19,30 +46,7 @@ export const HeaderAdmin = () => {
           <Logo src={logo} alt="Logo" />
         </div>
         <div>
-          <Link className="btn" to={"/admin"}>
-            Home
-          </Link>
-          <Link className="btn" to={"/admin/produtos"}>
-            Produtos
-          </Link>
-          <Link className="btn" to={"/admin/fornecedores"}>
-            Fornecedores
-          </Link>
-          <Link className="btn" to={"/admin/pedidos"}>
-            Pedidos
-          </Link>
-          <Link className="btn" to={"/admin/colaboradores"}>
-            Colaboradores
-          </Link>
-          <Link className="btn" to={"/recebimentos"}>
-            Recebimentos
-          </Link>
-          <Link className="btn" to={"/admin/regras"}>
-            Regras
-          </Link>
-          <Link className="btn" to={"/admin/menu-relatorios"}>
-            Relatórios
-          </Link>
+          {renderBar(usuario)}
           <button className="btn" onClick={logout}>
             <span className="">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
