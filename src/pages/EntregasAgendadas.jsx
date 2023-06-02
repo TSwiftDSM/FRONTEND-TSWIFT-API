@@ -21,7 +21,11 @@ const EntregasAgendadas = () => {
   }, [numeroPedido]);
 
   function listarPedidos() {
-    return pedidos.map((p, i) => {
+    const maxContador = 6;
+    const pedidosLimitados = [];
+  
+    for (let i = 0; i < pedidos.length; i++) {
+      const p = pedidos[i];
       const etapa = etapas[p.etapaEntrega] || 0;
       const rota = Object.freeze({
         0: "entrada",
@@ -29,7 +33,12 @@ const EntregasAgendadas = () => {
         2: "qualitativa",
         3: "relatorio",
       });
-      return (
+  
+      if (i >= maxContador) {
+        break;
+      }
+  
+      pedidosLimitados.push(
         <Link
           className="col-lg-4 col-md-6 mb-3"
           key={i}
@@ -38,7 +47,9 @@ const EntregasAgendadas = () => {
           <CardEntrega pedido={p} />
         </Link>
       );
-    });
+    }
+  
+    return pedidosLimitados;
   }
 
   return (
