@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -60,35 +60,33 @@ const Colaborador = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{ width: "4%" }} />
-                <th style={{ width: "4%" }}>Código</th>
+                <th style={{ width: "4%" }}>Matrícula</th>
                 <th>Nome</th>
                 <th style={{ width: "10%" }}>CPF</th>
-                <th style={{ width: "21%" }}>Data de Nascimento</th>
                 <th style={{ width: "20%" }}>Função</th>
+                <th style={{ width: "4%" }} />
+                <th style={{ width: "4%" }} />
               </tr>
             </thead>
             <tbody>
               {colaborador.map((p, i) => {
                 return (
                   <tr key={i}>
+                    <th>{p.id}</th>
+                    <th>{p.nome}</th>
+                    <th>{p.cpf}</th>
+                    {/*   <th>{p.dataNascimento}</th> */}
+                    <th>{tipoUsuario(p)}</th>
                     <th>
                       <Link to={`/admin/colaboradores/${p.id}`}>
                         <FontAwesomeIcon icon={faPencil} />
                       </Link>
                     </th>
-                    <th>{p.id}</th>
-                    <th>{p.nome}</th>
-                    <th>{p.cpf}</th>
-                    {/*   <th>{p.dataNascimento}</th> */}
                     <th>
-                      {new Date(p.dataNascimento).toLocaleDateString("pt-BR", {
-                        day: "numeric",
-                        month: "numeric",
-                        year: "numeric",
-                      })}
+                      <button onClick={() => handleDelete(p.id)}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
                     </th>
-                    <th>{tipoUsuario(p)}</th>
                   </tr>
                 );
               })}
