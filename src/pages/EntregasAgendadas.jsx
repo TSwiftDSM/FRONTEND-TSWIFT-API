@@ -53,8 +53,8 @@ const EntregasAgendadas = () => {
   }
 
   return (
-    <div>
-      <div className="row justify-content-between mb-5">
+    <div className="container-cards">
+      <div className="row justify-content-between mb-4">
         <div className="col-lg-4">
           <h3 className="text-white">Entregas agendadas</h3>
         </div>

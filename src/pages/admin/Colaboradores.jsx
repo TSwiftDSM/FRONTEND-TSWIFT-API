@@ -60,11 +60,11 @@ const Colaborador = () => {
   }
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Colaboradores</h3>
       </div>
-      <div className="card-list mx-auto p-5">
+      <div className="card-list p-5">
         <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
@@ -83,10 +83,10 @@ const Colaborador = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{ width: "4%" }}>Matrícula</th>
+                <th  className="text-center" style={{ width: "4%" }}>Matrícula</th>
                 <th>Nome</th>
-                <th style={{ width: "10%" }}>CPF</th>
-                <th style={{ width: "20%" }}>Função</th>
+                <th style={{ width: "30%" }}>CPF</th>
+                <th style={{ width: "25%" }}>Função</th>
                 <th style={{ width: "4%" }} />
                 <th style={{ width: "4%" }} />
               </tr>
@@ -95,7 +95,7 @@ const Colaborador = () => {
               {colaborador.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th>{p.id}</th>
+                    <th  className="text-center">{p.id}</th>
                     <th>{p.nome}</th>
                     <th>{p.cpf}</th>
                     {/*   <th>{p.dataNascimento}</th> */}
