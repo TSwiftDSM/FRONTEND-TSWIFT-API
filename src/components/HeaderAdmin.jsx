@@ -34,13 +34,13 @@ export const HeaderAdmin = () => {
           <Link className="btn" to={"/admin/colaboradores"}>
             Colaboradores
           </Link>
-          <Link className="btn" to={"#"}>
+          <Link className="btn" to={"/"}>
             Recebimentos
           </Link>
-          <Link className="btn" to={"#"}>
+          <Link className="btn" to={"/admin/regras"}>
             Regras
           </Link>
-          <Link className="btn" to={"#"}>
+          <Link className="btn" to={"/admin/menu-relatorios"}>
             Relatórios
           </Link>
           <button className="btn" onClick={logout}>
