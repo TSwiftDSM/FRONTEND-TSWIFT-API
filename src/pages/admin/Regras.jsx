@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
@@ -22,12 +22,18 @@ const Produtos = () => {
     }
   }, [descricao]);
 
+  function handleDelete(idProduto) {
+    axios.delete(`produto/${idProduto}`).then(() => {
+      setAtualizarTabela(true);
+    });
+  }
+
   return (
-    <div>
+    <div  className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Regras</h3>
       </div>
-      <div className="card mx-auto p-5">
+      <div className="card-list p-5">
         <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
@@ -46,20 +52,26 @@ const Produtos = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th style={{ width: "4%" }} />
                 <th>Nome da Regra</th>
+                <th style={{ width: "4%" }} />
+                <th style={{ width: "4%" }} />
               </tr>
             </thead>
             <tbody>
               {regras.map((r, i) => {
                 return (
                   <tr key={i}>
+                    <th>{r.nomeTeste}</th>
                     <th>
                       <Link to={`/admin/regras/${r.id}`}>
                         <FontAwesomeIcon icon={faPencil} />
                       </Link>
                     </th>
-                    <th>{r.nomeTeste}</th>
+                    <th>
+                      <button className="btn-excluir" onClick={() => handleDelete(p.id)}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </th>
                   </tr>
                 );
               })}
