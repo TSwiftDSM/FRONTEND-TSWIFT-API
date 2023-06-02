@@ -35,7 +35,7 @@ const Home = () => {
         {CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores")}
         {CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos")}
         {CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores")}
-        {CardMenu(faClipboardCheck, "RECEBIMENTO", "/")}
+        {CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos")}
         {CardMenu(faListCheck, "REGRAS", "/admin/regras")}
         {CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora")}
         {CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios")}

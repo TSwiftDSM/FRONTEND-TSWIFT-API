@@ -38,6 +38,10 @@ const routes = [
     children: [
       {
         path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/recebimentos",
         element: <EntregasAgendadas />,
       },
       {
