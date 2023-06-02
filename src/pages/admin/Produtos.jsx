@@ -9,6 +9,7 @@ import axios from "axios";
 const Produtos = () => {
   const [produtos, setProdutos] = useState([]);
   const [nomeProduto, setNomeProduto] = useState("");
+  const [atualizarTabela, setAtualizarTabela] = useState(false);
 
   useEffect(() => {
     if (nomeProduto) {
@@ -20,7 +21,29 @@ const Produtos = () => {
         setProdutos(data);
       });
     }
-  }, [nomeProduto]);
+  }, [nomeProduto, atualizarTabela]);
+
+  function handleDelete(idProduto) {
+    axios.delete(`produto/${idProduto}`).then(() => {
+      setAtualizarTabela(true);
+    });
+  }
+
+  useEffect(() => {
+    if (atualizarTabela) {
+      if (nomeProduto) {
+        axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
+          setProdutos(data);
+          setAtualizarTabela(false);
+        });
+      } else {
+        axios.get("produto").then(({ data }) => {
+          setProdutos(data);
+          setAtualizarTabela(false);
+        });
+      }
+    }
+  }, [atualizarTabela, nomeProduto]);
 
   return (
     <div className="container-cards">
@@ -64,9 +87,9 @@ const Produtos = () => {
                       </Link>
                     </th>
                     <th>
-                      <Link to={``}>
+                      <button onClick={() => handleDelete(p.id)}>
                         <FontAwesomeIcon icon={faTrashCan} />
-                      </Link>
+                      </button>
                     </th>
                   </tr>
                 );
