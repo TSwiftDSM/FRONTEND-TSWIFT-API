@@ -9,6 +9,7 @@ const Colaborador = () => {
   const [colaborador, setColaborador] = useState([]);
   const [nomeColaborador, setNomeColaborador] = useState("");
   const [TiposUsuarios, setTiposUsuarios] = useState("");
+  const [atualizarTabela, setAtualizarTabela] = useState(false);
 
   useEffect(() => {
     axios
@@ -29,11 +30,33 @@ const Colaborador = () => {
         setColaborador(data);
       });
     }
-  }, [nomeColaborador]);
+  }, [nomeColaborador,atualizarTabela]);
+
+  useEffect(() => {
+    if (atualizarTabela) {
+      if (nomeColaborador) {
+        axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
+          setColaborador(data);
+          setAtualizarTabela(false);
+        });
+      } else {
+        axios.get("usuarios").then(({ data }) => {
+          setColaborador(data);
+          setAtualizarTabela(false);
+        });
+      }
+    }
+  }, [atualizarTabela, nomeColaborador]);
 
   function tipoUsuario(usuario) {
     return TiposUsuarios.find((t) => t.id === usuario.tipoUsuarioId)
       .tipoUsuario;
+  }
+
+  function handleDelete(id) {
+    axios.delete(`usuarios/${id}`).then(() => {
+      setAtualizarTabela(true);
+    });
   }
 
   return (
