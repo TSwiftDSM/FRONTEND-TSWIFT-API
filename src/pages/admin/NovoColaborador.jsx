@@ -12,6 +12,7 @@ const NovoColaborador = () => {
     cpf: "",
     dataNascimento: "",
     tipoUsuarioId: "",
+    permissaoId: []
   });
 
   const [tiposUsuarios, setTiposUsuarios] = useState([]);
