@@ -64,7 +64,7 @@ const Colaborador = () => {
       <div className="mb-4">
         <h3 className="text-white">Colaboradores</h3>
       </div>
-      <div className="card mx-auto p-5">
+      <div className="card-list mx-auto p-5">
         <div className="d-flex justify-content-end mt-2 mb-3">
           <div className="col-lg-3 mx-3">
             <input
@@ -106,7 +106,7 @@ const Colaborador = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => handleDelete(p.id)}>
+                      <button className="btn-excluir" onClick={() => handleDelete(p.id)}>
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>
