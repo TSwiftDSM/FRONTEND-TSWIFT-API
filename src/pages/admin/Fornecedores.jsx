@@ -8,6 +8,7 @@ import axios from "axios";
 const Fornecedores = () => {
   const [fornecedores, setFornecedores] = useState([]);
   const [nomeFornecedor, setNomeFornecedor] = useState("");
+  const [atualizarTabela, setAtualizarTabela] = useState(false);
 
   useEffect(() => {
     if (nomeFornecedor) {
@@ -19,7 +20,29 @@ const Fornecedores = () => {
         setFornecedores(data);
       });
     }
-  }, [nomeFornecedor]);
+  }, [nomeFornecedor, atualizarTabela]);
+
+  function handleDelete(idFornecedor) {
+    axios.delete(`fornecedores/${idFornecedor}`).then(() => {
+      setAtualizarTabela(true);
+    });
+  }
+
+  useEffect(() => {
+    if (atualizarTabela) {
+      if (nomeFornecedor) {
+        axios.get(`fornecedores/porNome/${nomeFornecedor}`).then(({ data }) => {
+          setFornecedores(data);
+          setAtualizarTabela(false);
+        });
+      } else {
+        axios.get("fornecedores").then(({ data }) => {
+          setFornecedores(data);
+          setAtualizarTabela(false);
+        });
+      }
+    }
+  }, [atualizarTabela, nomeFornecedor]);
 
   return (
     <div className="container-cards">
@@ -63,13 +86,13 @@ const Fornecedores = () => {
                     <th>{p.endereco}</th>
                     <th>
                       <Link to={`/admin/fornecedores/${p.id}`}>
-                          <FontAwesomeIcon icon={faPencil} />
+                        <FontAwesomeIcon icon={faPencil} />
                       </Link>
                     </th>
                     <th>
-                      <Link to={``}>
+                      <button onClick={() => handleDelete(p.id)}>
                         <FontAwesomeIcon icon={faTrashCan} />
-                      </Link>
+                      </button>
                     </th>
                   </tr>
                 );
