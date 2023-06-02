@@ -37,8 +37,8 @@ const Home = () => {
         {CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores")}
         {CardMenu(faClipboardCheck, "RECEBIMENTO", "/")}
         {CardMenu(faListCheck, "REGRAS", "/admin/regras")}
-        {CardMenu(faFile, "RELATÓRIOS", "/")}
         {CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora")}
+        {CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios")}
       </div>
     </div>
   );

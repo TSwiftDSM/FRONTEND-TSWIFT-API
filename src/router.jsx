@@ -29,6 +29,7 @@ import RecusaQuantitativa from "./pages/etapas/RecusaQuantitativa";
 import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 import CadastroRealizado from "./pages/admin/CadastroRealizado";
 import Colaborador from "./pages/admin/Colaboradores";
+import Menurelatorio from "./pages/admin/MenuRelatorio";
 
 const routes = [
   {
@@ -148,6 +149,10 @@ const routes = [
       {
         path: "/admin/transportadora/novo",
         element: <NovoTransportadora />,
+      },
+      {
+        path: "/admin/menu-relatorios",
+        element: <Menurelatorio />,
       },
     ],
   },
