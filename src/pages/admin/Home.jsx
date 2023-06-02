@@ -8,6 +8,7 @@ import {
   faUserFriends,
   faClipboardCheck,
   faFile,
+  faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
         {CardMenu(faClipboardCheck, "RECEBIMENTO", "/")}
         {CardMenu(faListCheck, "REGRAS", "/admin/regras")}
         {CardMenu(faFile, "RELATÓRIOS", "/")}
+        {CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora")}
       </div>
     </div>
   );

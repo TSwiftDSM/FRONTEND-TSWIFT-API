@@ -16,6 +16,8 @@ import AlterarProduto from "./pages/admin/AlterarProduto";
 import AlterarColaborador from "./pages/admin/AlterarColaborador";
 import Regras from "./pages/admin/Regras";
 import NovaRegra from "./pages/admin/NovaRegra";
+import Transportadoras from "./pages/admin/Transportadoras";
+import NovoTransportadora from "./pages/admin/NovoTransportador"
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -138,6 +140,14 @@ const routes = [
       {
         path: "/admin/regras/:id",
         element: <NovaRegra />,
+      },
+      {
+        path: "/admin/transportadora",
+        element: <Transportadoras />,
+      },
+      {
+        path: "/admin/transportadora/novo",
+        element: <NovoTransportadora />,
       },
     ],
   },
