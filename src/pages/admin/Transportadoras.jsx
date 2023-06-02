@@ -12,9 +12,11 @@ const Transportadoras = () => {
 
   useEffect(() => {
     if (nomeTransportadora) {
-      axios.get(`fornecedores/porNome/${nomeTransportadora}/transportadora`).then(({ data }) => {
-        setTransportadora(data);
-      });
+      axios
+        .get(`fornecedores/porNome/${nomeTransportadora}/transportadora`)
+        .then(({ data }) => {
+          setTransportadora(data);
+        });
     } else {
       axios.get("fornecedores/transportadora").then(({ data }) => {
         setTransportadora(data);
@@ -31,10 +33,12 @@ const Transportadoras = () => {
   useEffect(() => {
     if (atualizarTabela) {
       if (nomeTransportadora) {
-        axios.get(`fornecedores/porNome/${nomeTransportadora}/transportadora`).then(({ data }) => {
-          setTransportadora(data);
-          setAtualizarTabela(false);
-        });
+        axios
+          .get(`fornecedores/porNome/${nomeTransportadora}/transportadora`)
+          .then(({ data }) => {
+            setTransportadora(data);
+            setAtualizarTabela(false);
+          });
       } else {
         axios.get("fornecedores/transportadora").then(({ data }) => {
           setTransportadora(data);

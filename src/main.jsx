@@ -46,7 +46,7 @@ function AuthProvider({ children }) {
   function getLogged() {
     return sessionStorage.getItem("usuario") !== null;
   }
-  const usuario = sessionStorage.getItem("usuario");
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   function login(dados) {
     return new Promise((resolve, reject) => {
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
           const { usuario, tokenUsuario } = data;
           if (usuario && tokenUsuario) {
             axios.defaults.headers["Authorization"] = `Bearer ${tokenUsuario}`;
-            sessionStorage.setItem("usuario", usuario);
+            sessionStorage.setItem("usuario", JSON.stringify(usuario));
             document.location.href = "";
             resolve(data);
           } else {

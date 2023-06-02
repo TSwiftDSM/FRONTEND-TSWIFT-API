@@ -32,7 +32,6 @@ const NovoProduto = () => {
     });
   }
 
-
   return (
     <div>
       <div className="mb-4">
@@ -59,7 +58,6 @@ const NovoProduto = () => {
             />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-          
             <button className="btn btn-primary py-2 px-5" onClick={submit}>
               ALTERAR
             </button>

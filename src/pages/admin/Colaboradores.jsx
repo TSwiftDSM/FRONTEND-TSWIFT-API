@@ -30,7 +30,7 @@ const Colaborador = () => {
         setColaborador(data);
       });
     }
-  }, [nomeColaborador,atualizarTabela]);
+  }, [nomeColaborador, atualizarTabela]);
 
   useEffect(() => {
     if (atualizarTabela) {
@@ -83,7 +83,9 @@ const Colaborador = () => {
           <Table striped bordered>
             <thead>
               <tr>
-                <th  className="text-center" style={{ width: "4%" }}>Matrícula</th>
+                <th className="text-center" style={{ width: "4%" }}>
+                  Matrícula
+                </th>
                 <th>Nome</th>
                 <th style={{ width: "30%" }}>CPF</th>
                 <th style={{ width: "25%" }}>Função</th>
@@ -95,7 +97,7 @@ const Colaborador = () => {
               {colaborador.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th  className="text-center">{p.id}</th>
+                    <th className="text-center">{p.id}</th>
                     <th>{p.nome}</th>
                     <th>{p.cpf}</th>
                     {/*   <th>{p.dataNascimento}</th> */}
@@ -106,7 +108,10 @@ const Colaborador = () => {
                       </Link>
                     </th>
                     <th>
-                      <button className="btn-excluir" onClick={() => handleDelete(p.id)}>
+                      <button
+                        className="btn-excluir"
+                        onClick={() => handleDelete(p.id)}
+                      >
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>

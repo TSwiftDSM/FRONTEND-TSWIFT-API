@@ -67,10 +67,12 @@ const PedidosAdmin = () => {
           </Link>
         </div>
         {pedidos && pedidos.length ? (
-          <Table striped bordered >
+          <Table striped bordered>
             <thead>
               <tr>
-                <th className="text-center" style={{ width: "10%" }}>Nº Pedido</th>
+                <th className="text-center" style={{ width: "10%" }}>
+                  Nº Pedido
+                </th>
                 <th>Fornecedor</th>
                 <th>Data prevista</th>
                 <th>Status</th>
@@ -84,11 +86,13 @@ const PedidosAdmin = () => {
                     <th className="text-center">{p.id}</th>
                     <th>{get(p, "Fornecedor.nomeFantasia")}</th>
                     <th>{formatarData(p.dataEntrega)}</th>
-                    <th><strong className={statusClass(p)}>{statusDoPedido(p)}</strong></th>
                     <th>
-                      <Link to={`/${p.id}/relatorio`}>
-                        ver mais
-                      </Link>
+                      <strong className={statusClass(p)}>
+                        {statusDoPedido(p)}
+                      </strong>
+                    </th>
+                    <th>
+                      <Link to={`/${p.id}/relatorio`}>ver mais</Link>
                     </th>
                   </tr>
                 );

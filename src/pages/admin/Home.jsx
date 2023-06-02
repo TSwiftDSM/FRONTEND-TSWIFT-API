@@ -13,8 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
-  const {usuario} = useAuth();
-  
+  const { usuario } = useAuth();
+
   function CardMenu(icone, texto, rota = "") {
     return (
       <div className="home col-lg-3 p-4">
@@ -28,30 +28,27 @@ const Home = () => {
     );
   }
 
-  function renderizaHome(usuario){
+  function renderizaHome(usuario) {
     const permissoes = {
-        1: CardMenu(faShoppingBag, "PRODUTOS", "/admin/produtos"),
-        2: CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores"),
-        3: CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos"),
-        4: CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores"),
-        5: CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos"),
-        6: CardMenu(faListCheck, "REGRAS", "/admin/regras"),
-        7: CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora"),
-        8: CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios"),
-    }
+      1: CardMenu(faShoppingBag, "PRODUTOS", "/admin/produtos"),
+      2: CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores"),
+      3: CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos"),
+      4: CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores"),
+      5: CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos"),
+      6: CardMenu(faListCheck, "REGRAS", "/admin/regras"),
+      7: CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora"),
+      8: CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios"),
+    };
 
-    return usuario.PermissaoUsuario.map(permissao => {
-        console.log(permissao)
-        return permissoes[permissao.permissaoId]
-        })
-
+    return usuario.PermissaoUsuario.map((permissao) => {
+      console.log(permissao);
+      return permissoes[permissao.permissaoId];
+    });
   }
 
   return (
     <div className="container container-home">
-      <div className="row">
-        {renderizaHome(usuario)}
-      </div>
+      <div className="row">{renderizaHome(usuario)}</div>
     </div>
   );
 };

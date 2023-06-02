@@ -88,7 +88,6 @@ const AlterarColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-         
           <button className="btn btn-primary px-5" onClick={handleSubmit}>
             ALTERAR
           </button>

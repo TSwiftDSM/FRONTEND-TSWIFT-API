@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
@@ -22,14 +22,14 @@ const Produtos = () => {
     }
   }, [descricao]);
 
-  function handleDelete(idProduto) {
-    axios.delete(`produto/${idProduto}`).then(() => {
-      setAtualizarTabela(true);
-    });
-  }
+  // function handleDelete(idProduto) {
+  //   axios.delete(`produto/${idProduto}`).then(() => {
+  //     setAtualizarTabela(true);
+  //   });
+  // }
 
   return (
-    <div  className="container-cards">
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Regras</h3>
       </div>
@@ -68,9 +68,12 @@ const Produtos = () => {
                       </Link>
                     </th>
                     <th>
-                      <button className="btn-excluir" onClick={() => handleDelete(p.id)}>
+                      {/* <button
+                        className="btn-excluir"
+                        onClick={() => handleDelete(p.id)}
+                      >
                         <FontAwesomeIcon icon={faTrashCan} />
-                      </button>
+                      </button> */}
                     </th>
                   </tr>
                 );
