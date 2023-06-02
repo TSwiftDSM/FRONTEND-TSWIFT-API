@@ -22,12 +22,6 @@ const AlterarColaborador = () => {
 
   const ref = useRef(null);
 
-  function handleDelete() {
-    axios.delete(`usuarios/${id}`).then(() => {
-      navigate("/admin/colaboradores");
-    });
-  }
-
   useEffect(() => {
     axios.get("tiposUsuarios/").then(
       ({ data }) => {
@@ -94,9 +88,7 @@ const AlterarColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-danger px-5 me-4" onClick={handleDelete}>
-            APAGAR
-          </button>
+         
           <button className="btn btn-primary px-5" onClick={handleSubmit}>
             ALTERAR
           </button>

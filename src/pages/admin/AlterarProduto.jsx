@@ -32,11 +32,6 @@ const NovoProduto = () => {
     });
   }
 
-  function handleDelete() {
-    axios.delete(`produto/${idProduto}`).then(() => {
-      navigate("/admin/produtos");
-    });
-  }
 
   return (
     <div>
@@ -64,9 +59,7 @@ const NovoProduto = () => {
             />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-danger px-5 me-4" onClick={handleDelete}>
-              APAGAR
-            </button>
+          
             <button className="btn btn-primary py-2 px-5" onClick={submit}>
               ALTERAR
             </button>
