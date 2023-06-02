@@ -21,14 +21,14 @@ axios.defaults.baseURL = "http://localhost:3000/";
 
 const router = createBrowserRouter(routes);
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 const AuthContext = createContext({});
 
 function App() {
-  const { logado } = useContext(AuthContext);
+  const { getLogged } = useContext(AuthContext);
   return (
     <>
-      {logado ? (
+      {getLogged() ? (
         <RouterProvider router={router} />
       ) : (
         <BrowserRouter>
@@ -43,8 +43,10 @@ function App() {
 }
 
 function AuthProvider({ children }) {
-  const [logado, setLogado] = useState(false);
-  const [usuario, setUsuario] = useState({});
+  function getLogged() {
+    return sessionStorage.getItem("usuario") !== null;
+  }
+  const usuario = sessionStorage.getItem("usuario");
 
   function login(dados) {
     return new Promise((resolve, reject) => {
@@ -54,8 +56,8 @@ function AuthProvider({ children }) {
           const { usuario, tokenUsuario } = data;
           if (usuario && tokenUsuario) {
             axios.defaults.headers["Authorization"] = `Bearer ${tokenUsuario}`;
-            setUsuario(usuario);
-            setLogado(true);
+            sessionStorage.setItem("usuario", usuario);
+            document.location.href = "";
             resolve(data);
           } else {
             reject(data);
@@ -66,13 +68,20 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
-    setUsuario({});
-    setLogado(false);
     axios.defaults.headers["Authorization"] = "";
+    sessionStorage.removeItem("usuario");
+    document.location.href = "";
   }
 
   return (
-    <AuthContext.Provider value={{ logado, login, usuario, logout }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        logout,
+        getLogged,
+        usuario,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
