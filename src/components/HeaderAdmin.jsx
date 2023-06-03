@@ -38,6 +38,7 @@ export const HeaderAdmin = () => {
           <Logo src={logo} alt="Logo" />
         </div>
         <div>
+          {barItem("", "Home")}
           {renderBar(usuario)}
           <button className="btn" onClick={logout}>
             <span className="">Sair </span>
