@@ -1,13 +1,38 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FormGroup, FormField } from "../../components";
+import Modal from "react-modal";
+
 import { useRef, useEffect, useState } from "react";
 
 const AlterarFornecedor = () => {
   //const [fornecedores, setFornecedores] = useState([]);
 
   const idFornecedor = parseInt(useParams().id);
-  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+
+          <h2>Exclusão realizada Com Sucesso!</h2>
+          <Link to={"/admin/fornecedores"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+          
+        </Modal>
+      );
+    }
+  }
 
   const formFields = Object.freeze({
     endereco: "",
@@ -31,9 +56,7 @@ const AlterarFornecedor = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    window.axios.put(`fornecedores/${idFornecedor}`, data).then(() => {
-      navigate("/admin/fornecedores");
-    });
+    window.axios.put(`fornecedores/${idFornecedor}`, data)
   }
 
   return (
@@ -57,10 +80,12 @@ const AlterarFornecedor = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-primary px-5" onClick={submit}>
+          <button className="btn btn-primary px-5" onClick={() => { openModal(); submit() }}>
             ALTERAR
           </button>
         </div>
+
+        {MyModal(modalIsOpen)}
       </div>
     </div>
   );

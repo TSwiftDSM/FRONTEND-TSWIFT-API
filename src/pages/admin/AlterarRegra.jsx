@@ -1,11 +1,34 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import Modal from "react-modal";
 
 const AlterarRegra = () => {
   const idRegra = parseInt(useParams().id);
-  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Alteração realizada Com Sucesso!</h2>
+          <Link to={"/admin/regras"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+        </Modal>
+      );
+    }
+  }
+
 
   const formFields = Object.freeze({
     nomeTeste: "",
@@ -24,9 +47,7 @@ const AlterarRegra = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    window.axios.put(`testeQualidade/${idRegra}`, data).then(() => {
-      navigate("/admin/regras");
-    });
+    window.axios.put(`testeQualidade/${idRegra}`, data)
   }
 
   return (
@@ -47,10 +68,11 @@ const AlterarRegra = () => {
             {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={submit}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { openModal(); submit() }}>
               ALTERAR
             </button>
           </div>
+          {MyModal(modalIsOpen)}
         </div>
       </div>
     </div>

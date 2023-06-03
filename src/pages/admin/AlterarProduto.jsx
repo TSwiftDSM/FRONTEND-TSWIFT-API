@@ -1,12 +1,35 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FormGroup, FormField } from "../../components";
 import { useRef, useEffect, useState } from "react";
 import { unidadeDeMedida } from "../../constants";
+import Modal from "react-modal";
 
 const NovoProduto = () => {
   const idProduto = parseInt(useParams().id);
-  const navigate = useNavigate();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Alteração realizada Com Sucesso!</h2>
+          <Link to={"/admin/produtos"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+        </Modal>
+      );
+    }
+  }
 
   const formFields = Object.freeze({
     nomeProduto: "",
@@ -26,9 +49,7 @@ const NovoProduto = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    window.axios.put(`produto/${idProduto}`, data).then(() => {
-      navigate("/admin/produtos");
-    });
+    window.axios.put(`produto/${idProduto}`, data)
   }
 
   return (
@@ -57,10 +78,11 @@ const NovoProduto = () => {
             />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={submit}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { openModal(); submit() }}>
               ALTERAR
             </button>
           </div>
+          {MyModal(modalIsOpen)}
         </div>
       </div>
     </div>

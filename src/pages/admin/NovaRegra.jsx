@@ -1,10 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
-import { Link, useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-modal";
+
+import { useRef, useState } from "react";
 
 const NovaRegra = () => {
-  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Cadastro realizado Com Sucesso!</h2>
+          <Link to={"/admin/regras"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+        </Modal>
+      );
+    }
+  }
 
   const form = Object.freeze({
     nomeTeste: "",
@@ -14,9 +37,7 @@ const NovaRegra = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    window.axios.post("testeQualidade/", data).then(() => {
-      navigate("/admin/regras");
-    });
+    window.axios.post("testeQualidade/", data)
   }
 
   return (
@@ -37,10 +58,11 @@ const NovaRegra = () => {
             {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={submit}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { openModal(); submit() }}>
               CADASTRAR
             </button>
           </div>
+          {MyModal(modalIsOpen)}
         </div>
       </div>
     </div>
