@@ -4,24 +4,52 @@ import { Link } from "react-router-dom";
 import { formatarData } from "../../helpers";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
+import axios from "axios";
 
 const Menurelatorio = () => {
   const [pedidos, setPedidos] = useState([]);
   const [codPedido, setNumeroPedido] = useState("");
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     if (codPedido) {
-      window.axios
-        .get(`entregas/numeroPedido/${codPedido}`)
-        .then(({ data }) => {
-          setPedidos(data);
-        });
+      axios.get(`entregas/numeroPedido/${codPedido}`).then(({ data }) => {
+        setPedidos(data);
+      });
+    } else if (status) {
+      axios.get(`entregas/status/${status}`).then(({ data }) => {
+        setPedidos(data);
+      });
     } else {
       window.axios.get("entregas").then(({ data }) => {
         setPedidos(data);
       });
     }
-  }, [codPedido]);
+  }, [codPedido, status]);
+
+  function statusDoPedido(pedido) {
+    switch (pedido.etapaEntrega) {
+      case "":
+        return "Aguardando entrega";
+      case "QUALITATIVA":
+        return get(pedido, "StatusEntrega.length") ? "Recusado" : "Recebido";
+      default:
+        return "Em recebimento";
+    }
+  }
+
+  function statusClass(pedido) {
+    switch (pedido.etapaEntrega) {
+      case "QUALITATIVA":
+        return get(pedido, "StatusEntrega.length")
+          ? "text-danger"
+          : "text-success";
+      case "":
+        return "text-secondary";
+      default:
+        return "text-warning";
+    }
+  }
 
   return (
     <div>
@@ -44,11 +72,11 @@ const Menurelatorio = () => {
               type="text"
               className="form-control"
               placeholder="Status do Pedido"
-              /* value={Status} */
-              /* onChange={(e) => status(e.target.value)} */
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
             />
           </div>
-          <Link to={"/admin/novo-pedido"}>
+          <Link to={"/admin/"}>
             <button className="btn btn-primary">Gerar Relatório geral</button>
           </Link>
         </div>
@@ -65,7 +93,7 @@ const Menurelatorio = () => {
                 <tr>
                   <th style={{ width: "2%" }}>Código</th>
                   <th style={{ width: "12%" }}>Fornecedor</th>
-                  <th style={{ width: "12%" }}>Data Prevista</th>
+                  {/*  <th style={{ width: "12%" }}>Data Prevista</th> */}
                   <th style={{ width: "10%" }}>Data Entrega</th>
                   <th style={{ width: "12%" }}>Status</th>
                   <th style={{ width: "4%" }} />
@@ -77,10 +105,14 @@ const Menurelatorio = () => {
                     <tr key={i}>
                       <th>{p.id}</th>
                       <th>{get(p, "Fornecedor.nomeFantasia")}</th>
-
-                      <th>{p.formaPagamento}</th>
+                      {/* 
+                      <th>{formatarData(p.dataEntrega)}</th> */}
                       <th>{formatarData(p.dataEntrega)}</th>
-                      <th>{p.tipoFrete}</th>
+                      <th>
+                        <strong className={statusClass(p)}>
+                          {statusDoPedido(p)}
+                        </strong>
+                      </th>
                       {/* <th>{formatarData(p.dataEntrega)}</th> */}
 
                       <th>
