@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import Modal from "react-modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -10,6 +10,26 @@ const Produtos = () => {
   const [produtos, setProdutos] = useState([]);
   const [nomeProduto, setNomeProduto] = useState("");
   const [atualizarTabela, setAtualizarTabela] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Exclusão realizada Com Sucesso!</h2>
+          <button onClick={closeModal}>OK</button>
+        </Modal>
+      );
+    }
+  }
 
   useEffect(() => {
     if (nomeProduto) {
@@ -87,10 +107,7 @@ const Produtos = () => {
                       </Link>
                     </th>
                     <th>
-                      <button
-                        className="btn-excluir"
-                        onClick={() => handleDelete(p.id)}
-                      >
+                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>
@@ -104,6 +121,7 @@ const Produtos = () => {
             <h3>Não há produtos cadastrados</h3>
           </div>
         )}
+        {MyModal(modalIsOpen)}
       </div>
     </div>
   );

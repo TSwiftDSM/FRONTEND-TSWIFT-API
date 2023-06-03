@@ -1,11 +1,35 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormField, FormGroup } from "../../components";
+import Modal from "react-modal";
 
 const NovoColaborador = () => {
-  const navigate = useNavigate();
+
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Cadastro realizado Com Sucesso!</h2>
+          <Link to={"/admin/colaboradores"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+        </Modal>
+      );
+    }
+  }
 
   const form = Object.freeze({
     nome: "",
@@ -39,9 +63,7 @@ const NovoColaborador = () => {
     const novoColaborador = {
       ...data,
     };
-    axios.post("usuarios/", novoColaborador).then(() => {
-      navigate("/admin/colaboradores");
-    });
+    axios.post("usuarios/", novoColaborador)
   }
 
   return (
@@ -78,9 +100,10 @@ const NovoColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-primary px-5" onClick={handleSubmit}>
+          <button className="btn btn-primary px-5" onClick={() => { openModal(); handleSubmit() }}>
             CONFIRMAR
           </button>
+          {MyModal(modalIsOpen)}
         </div>
       </div>
     </div>
