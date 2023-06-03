@@ -44,7 +44,7 @@ const Produtos = () => {
               onChange={(e) => setDescricao(e.target.value)}
             />
           </div>
-          <Link to={"/admin/novo-produto"}>
+          <Link to={"/admin/nova-regra"}>
             <button className="btn btn-primary">+ Novo</button>
           </Link>
         </div>
