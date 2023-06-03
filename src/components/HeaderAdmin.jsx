@@ -7,9 +7,9 @@ import { useAuth } from "../main";
 export const HeaderAdmin = () => {
   const { usuario, logout } = useAuth();
 
-  function barItem(path, texto) {
+  function barItem(path, texto, i) {
     return (
-      <Link className="btn" to={path}>
+      <Link className="btn" to={path} key={i}>
         {texto}
       </Link>
     );
@@ -17,17 +17,16 @@ export const HeaderAdmin = () => {
 
   function renderBar(usuario) {
     const permissoes = {
-      1: barItem("/admin/produtos", "Produtos"),
-      2: barItem("/admin/fornecedores", "Fornecedores"),
-      3: barItem("/admin/pedidos", "Pedidos"),
-      4: barItem("/admin/colaboradores", "Colaboradores"),
-      5: barItem("/recebimentos", "Recebimentos"),
-      6: barItem("/admin/regras", "Regras"),
-      7: barItem("/admin/transportadora", "Transportadora"),
-      8: barItem("/admin/menu-relatorios", "Relatórios"),
+      1: barItem("/admin/produtos", "Produtos", 1),
+      2: barItem("/admin/fornecedores", "Fornecedores", 2),
+      3: barItem("/admin/pedidos", "Pedidos", 3),
+      4: barItem("/admin/colaboradores", "Colaboradores", 4),
+      5: barItem("/recebimentos", "Recebimentos", 5),
+      6: barItem("/admin/regras", "Regras", 6),
+      7: barItem("/admin/transportadora", "Transportadora", 7),
+      8: barItem("/admin/menu-relatorios", "Relatórios", 8),
     };
     return usuario.PermissaoUsuario.map((permissao) => {
-      console.log(permissao);
       return permissoes[permissao.permissaoId];
     });
   }
