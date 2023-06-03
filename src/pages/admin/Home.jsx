@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "../../main";
 import {
   faListCheck,
   faShoppingBag,
@@ -12,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
+  const { usuario } = useAuth();
+
   function CardMenu(icone, texto, rota = "") {
     return (
       <div className="home col-lg-3 p-4">
@@ -25,21 +28,27 @@ const Home = () => {
     );
   }
 
+  function renderizaHome(usuario) {
+    const permissoes = {
+      1: CardMenu(faShoppingBag, "PRODUTOS", "/admin/produtos"),
+      2: CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores"),
+      3: CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos"),
+      4: CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores"),
+      5: CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos"),
+      6: CardMenu(faListCheck, "REGRAS", "/admin/regras"),
+      7: CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora"),
+      8: CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios"),
+    };
+
+    return usuario.PermissaoUsuario.map((permissao) => {
+      console.log(permissao);
+      return permissoes[permissao.permissaoId];
+    });
+  }
+
   return (
     <div className="container container-home">
-      {/* <div className="mb-4">
-        <h3 className="text-white">Painel de Acessos</h3>
-      </div> */}
-      <div className="row">
-        {CardMenu(faShoppingBag, "PRODUTOS", "/admin/produtos")}
-        {CardMenu(faBriefcase, "FORNECEDORES", "/admin/fornecedores")}
-        {CardMenu(faClipboardList, "PEDIDOS", "/admin/pedidos")}
-        {CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores")}
-        {CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos")}
-        {CardMenu(faListCheck, "REGRAS", "/admin/regras")}
-        {CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora")}
-        {CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios")}
-      </div>
+      <div className="row">{renderizaHome(usuario)}</div>
     </div>
   );
 };

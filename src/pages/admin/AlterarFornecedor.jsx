@@ -29,8 +29,6 @@ const AlterarFornecedor = () => {
 
   const ref = useRef(null);
 
-
-
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;

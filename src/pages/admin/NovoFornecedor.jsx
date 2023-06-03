@@ -28,11 +28,11 @@ const NovoFornecedor = () => {
   }
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Novo Fornecedor</h3>
       </div>
-      <div className="card p-5 col-lg-6 mx-auto">
+      <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <div className="mb-4">
           <Link to={"/admin/fornecedores"}>
             <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />

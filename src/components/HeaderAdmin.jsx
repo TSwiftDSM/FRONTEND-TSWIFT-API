@@ -3,15 +3,34 @@ import styled from "styled-components";
 import logo from "../assets/img/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../main";
-import { useNavigate } from "react-router-dom";
 
 export const HeaderAdmin = () => {
-  const navigate = useNavigate();
-  const context = useAuth();
-  function logout() {
-    navigate("/");
-    context.logout();
+  const { usuario, logout } = useAuth();
+
+  function barItem(path, texto, i) {
+    return (
+      <Link className="btn" to={path} key={i}>
+        {texto}
+      </Link>
+    );
   }
+
+  function renderBar(usuario) {
+    const permissoes = {
+      1: barItem("/admin/produtos", "Produtos", 1),
+      2: barItem("/admin/fornecedores", "Fornecedores", 2),
+      3: barItem("/admin/pedidos", "Pedidos", 3),
+      4: barItem("/admin/colaboradores", "Colaboradores", 4),
+      5: barItem("/recebimentos", "Recebimentos", 5),
+      6: barItem("/admin/regras", "Regras", 6),
+      7: barItem("/admin/transportadora", "Transportadora", 7),
+      8: barItem("/admin/menu-relatorios", "Relatórios", 8),
+    };
+    return usuario.PermissaoUsuario.map((permissao) => {
+      return permissoes[permissao.permissaoId];
+    });
+  }
+
   return (
     <header>
       <div className="header container d-flex justify-content-between align-items-center">
@@ -19,30 +38,7 @@ export const HeaderAdmin = () => {
           <Logo src={logo} alt="Logo" />
         </div>
         <div>
-          <Link className="btn" to={"/admin"}>
-            Home
-          </Link>
-          <Link className="btn" to={"/admin/produtos"}>
-            Produtos
-          </Link>
-          <Link className="btn" to={"/admin/fornecedores"}>
-            Fornecedores
-          </Link>
-          <Link className="btn" to={"/admin/pedidos"}>
-            Pedidos
-          </Link>
-          <Link className="btn" to={"/admin/colaboradores"}>
-            Colaboradores
-          </Link>
-          <Link className="btn" to={"/recebimentos"}>
-            Recebimentos
-          </Link>
-          <Link className="btn" to={"/admin/regras"}>
-            Regras
-          </Link>
-          <Link className="btn" to={"/admin/menu-relatorios"}>
-            Relatórios
-          </Link>
+          {renderBar(usuario)}
           <button className="btn" onClick={logout}>
             <span className="">Sair </span>
             <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />

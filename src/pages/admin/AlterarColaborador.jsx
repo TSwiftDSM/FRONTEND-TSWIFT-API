@@ -110,8 +110,12 @@ const AlterarColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
+<<<<<<< HEAD
 
           <button className="btn btn-primary px-5" onClick={() => { openModal(); handleSubmit() }}>
+=======
+          <button className="btn btn-primary px-5" onClick={handleSubmit}>
+>>>>>>> 4917bde993de7b536237a247874a400b4497460e
             ALTERAR
           </button>
         </div>
