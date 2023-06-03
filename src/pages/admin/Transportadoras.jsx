@@ -93,7 +93,7 @@ const Transportadoras = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => handleDelete(p.id)}>
+                      <button className="btn-excluir" onClick={() => handleDelete(p.id)}>
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>

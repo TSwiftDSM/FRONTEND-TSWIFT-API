@@ -114,7 +114,7 @@ const Fornecedores = () => {
                       </Link>
                     </th>
                     <th>
-                      <button
+                      <button className="btn-excluir"
                         onClick={() => {
                           openModal();
                           handleDelete(p.id);
