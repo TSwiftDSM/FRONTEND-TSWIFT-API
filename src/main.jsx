@@ -55,7 +55,10 @@ function AuthProvider({ children }) {
         .then(({ data }) => {
           const { usuario, tokenUsuario } = data;
           if (usuario && tokenUsuario) {
-            axios.defaults.headers["Authorization"] = `Bearer ${tokenUsuario}`;
+            axios.defaults.headers.common[
+              "authorization"
+            ] = `Bearer ${tokenUsuario}`;
+            console.log(axios.defaults.headers);
             sessionStorage.setItem("usuario", JSON.stringify(usuario));
             document.location.href = "";
             resolve(data);
@@ -68,7 +71,7 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
-    axios.defaults.headers["Authorization"] = "";
+    axios.defaults.headers.common["authorization"] = "";
     sessionStorage.removeItem("usuario");
     document.location.href = "";
   }
