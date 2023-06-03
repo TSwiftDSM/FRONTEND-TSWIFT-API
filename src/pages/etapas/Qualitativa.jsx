@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Contador } from "../../components";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 
 const Qualitativa = () => {
   const idEntrega = parseInt(useParams().id);
@@ -12,7 +11,7 @@ const Qualitativa = () => {
   const [testes, setTestes] = useState([]);
 
   useEffect(() => {
-    axios
+    window.axios
       .get(`conferencia/qualitativa/api/qualitativa/${idEntrega}`)
       .then(({ data }) => {
         setTestes(Object.values(data));
@@ -40,7 +39,7 @@ const Qualitativa = () => {
   }
 
   function submit() {
-    axios
+    window.axios
       .post(`conferencia/qualitativa/api/PersistenciaQualitativa`, {
         qualidadeProdutos: form,
       })

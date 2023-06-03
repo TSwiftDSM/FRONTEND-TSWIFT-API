@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useParams } from "react-router-dom";
 import { FormField, FormGroup } from "../../components";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import moment from "moment";
+import { Link, useParams } from "react-router-dom";
 import Modal from "react-modal";
+import moment from "moment";
 
 const AlterarColaborador = () => {
   const { id } = useParams();
@@ -43,11 +42,10 @@ const AlterarColaborador = () => {
     }
   }
 
-
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get("tiposUsuarios/").then(
+    window.axios.get("tiposUsuarios/").then(
       ({ data }) => {
         if (data && data.length) {
           setTiposUsuarios(
@@ -60,7 +58,7 @@ const AlterarColaborador = () => {
           );
         }
       },
-      axios.get(`usuarios/id/${id}`).then(({ data }) => {
+      window.axios.get(`usuarios/id/${id}`).then(({ data }) => {
         setForm({
           ...data,
           dataNascimento: moment(data.dataNascimento).format("YYYY-MM-DD"),
@@ -75,7 +73,7 @@ const AlterarColaborador = () => {
     delete data.matricula;
     delete data.login;
     delete data.senha;
-    axios.put(`usuarios/${id}`, data)
+    window.axios.put(`usuarios/${id}`, data);
   }
 
   return (
@@ -110,8 +108,13 @@ const AlterarColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-
-          <button className="btn btn-primary px-5" onClick={() => { openModal(); handleSubmit() }}>
+          <button
+            className="btn btn-primary px-5"
+            onClick={() => {
+              openModal();
+              handleSubmit();
+            }}
+          >
             ALTERAR
           </button>
         </div>

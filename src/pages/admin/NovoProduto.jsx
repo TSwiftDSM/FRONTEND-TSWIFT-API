@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
-import { useRef } from "react";
-import axios from "axios";
 import { unidadeDeMedida } from "../../constants";
+import { useRef } from "react";
 
 const NovoProduto = () => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const NovoProduto = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("produto", data).then(() => {
+    window.axios.post("produto", data).then(() => {
       navigate("/admin/produtos");
     });
   }

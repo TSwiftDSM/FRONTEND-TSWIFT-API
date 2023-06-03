@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FormGroup, FormField } from "../../components";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
 
 const AlterarFornecedor = () => {
   //const [fornecedores, setFornecedores] = useState([]);
@@ -22,7 +21,7 @@ const AlterarFornecedor = () => {
   const [form, setForm] = useState({ formFields });
 
   useEffect(() => {
-    axios.get(`fornecedores/porId/${idFornecedor}`).then(({ data }) => {
+    window.axios.get(`fornecedores/porId/${idFornecedor}`).then(({ data }) => {
       setForm({ ...formFields, ...data });
     });
   }, []);
@@ -32,7 +31,7 @@ const AlterarFornecedor = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios.put(`fornecedores/${idFornecedor}`, data).then(() => {
+    window.axios.put(`fornecedores/${idFornecedor}`, data).then(() => {
       navigate("/admin/fornecedores");
     });
   }

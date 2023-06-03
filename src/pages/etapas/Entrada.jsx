@@ -3,7 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import { Contador } from "../../components";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
-import axios from "axios";
 
 const Entrada = () => {
   const { id } = useParams();
@@ -33,7 +32,7 @@ const Entrada = () => {
   }
 
   useEffect(() => {
-    axios
+    window.axios
       .get(`cadastrar/material/api/EntradaMaterial/${id}`)
       .then(({ data }) => {
         let dados = {
@@ -54,7 +53,7 @@ const Entrada = () => {
   }, [id]);
 
   const submit = () => {
-    axios
+    window.axios
       .post("cadastrar/material/api/EntradaMaterial", form)
       .then(() => navigate(`/${id}/quantitativa`));
   };

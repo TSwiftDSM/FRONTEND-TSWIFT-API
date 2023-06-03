@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import axios from "axios";
 
 const Fornecedores = () => {
   const [fornecedores, setFornecedores] = useState([]);
@@ -22,18 +21,20 @@ const Fornecedores = () => {
 
   useEffect(() => {
     if (nomeFornecedor) {
-      axios.get(`fornecedores/porNome/${nomeFornecedor}`).then(({ data }) => {
-        setFornecedores(data);
-      });
+      window.axios
+        .get(`fornecedores/porNome/${nomeFornecedor}`)
+        .then(({ data }) => {
+          setFornecedores(data);
+        });
     } else {
-      axios.get("fornecedores").then(({ data }) => {
+      window.axios.get("fornecedores").then(({ data }) => {
         setFornecedores(data);
       });
     }
   }, [nomeFornecedor, atualizarTabela]);
 
   function handleDelete(idFornecedor) {
-    axios.delete(`fornecedores/${idFornecedor}`).then(() => {
+    window.axios.delete(`fornecedores/${idFornecedor}`).then(() => {
       setAtualizarTabela(true);
     });
   }
@@ -41,12 +42,14 @@ const Fornecedores = () => {
   useEffect(() => {
     if (atualizarTabela) {
       if (nomeFornecedor) {
-        axios.get(`fornecedores/porNome/${nomeFornecedor}`).then(({ data }) => {
-          setFornecedores(data);
-          setAtualizarTabela(false);
-        });
+        window.axios
+          .get(`fornecedores/porNome/${nomeFornecedor}`)
+          .then(({ data }) => {
+            setFornecedores(data);
+            setAtualizarTabela(false);
+          });
       } else {
-        axios.get("fornecedores").then(({ data }) => {
+        window.axios.get("fornecedores").then(({ data }) => {
           setFornecedores(data);
           setAtualizarTabela(false);
         });
@@ -111,7 +114,12 @@ const Fornecedores = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
+                      <button
+                        onClick={() => {
+                          openModal();
+                          handleDelete(p.id);
+                        }}
+                      >
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>

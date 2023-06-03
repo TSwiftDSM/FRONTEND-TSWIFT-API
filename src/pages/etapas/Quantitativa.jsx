@@ -5,7 +5,6 @@ import { Contador, Colapsador } from "../../components";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { get } from "lodash";
-import axios from "axios";
 
 const Quantitativa = () => {
   const id = parseInt(useParams().id);
@@ -16,7 +15,7 @@ const Quantitativa = () => {
   const [disable, setDisable] = useState(false);
 
   useEffect(() => {
-    axios.get(`conferencia/quantitativa/${id}`).then(({ data }) => {
+    window.axios.get(`conferencia/quantitativa/${id}`).then(({ data }) => {
       setProdutos(data);
       setForm(
         data.map((p) => {
@@ -46,13 +45,15 @@ const Quantitativa = () => {
       id_usuario: 1,
       update_objects: form,
     };
-    axios.post(`conferencia/quantitativa/${id}`, data).then(({ data }) => {
-      const rota =
-        data === "Etapa Concluida"
-          ? `/${id}/qualitativa`
-          : `/${id}/recusa-quantitativa`;
-      navigate(rota);
-    });
+    window.axios
+      .post(`conferencia/quantitativa/${id}`, data)
+      .then(({ data }) => {
+        const rota =
+          data === "Etapa Concluida"
+            ? `/${id}/qualitativa`
+            : `/${id}/recusa-quantitativa`;
+        navigate(rota);
+      });
   }
 
   return (

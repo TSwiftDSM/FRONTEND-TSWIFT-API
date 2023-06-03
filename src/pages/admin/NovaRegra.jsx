@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
-import axios from "axios";
 
 const NovaRegra = () => {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const NovaRegra = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("testeQualidade/", data).then(() => {
+    window.axios.post("testeQualidade/", data).then(() => {
       navigate("/admin/regras");
     });
   }

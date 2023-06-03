@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
 const RecusaEntrada = () => {
   const { id } = useParams();
@@ -33,7 +31,7 @@ const RecusaEntrada = () => {
   ];
 
   function submit() {
-    axios.post(`recusar/entradaMateriais/${id}`, form).then(() => {
+    window.axios.post(`recusar/entradaMateriais/${id}`, form).then(() => {
       navigate(`/${id}/quantitativa`);
     });
   }

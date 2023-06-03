@@ -4,7 +4,6 @@ import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Produtos = () => {
   const [produtos, setProdutos] = useState([]);
@@ -33,18 +32,18 @@ const Produtos = () => {
 
   useEffect(() => {
     if (nomeProduto) {
-      axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
+      window.axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
         setProdutos(data);
       });
     } else {
-      axios.get("produto").then(({ data }) => {
+      window.axios.get("produto").then(({ data }) => {
         setProdutos(data);
       });
     }
   }, [nomeProduto, atualizarTabela]);
 
   function handleDelete(idProduto) {
-    axios.delete(`produto/${idProduto}`).then(() => {
+    window.axios.delete(`produto/${idProduto}`).then(() => {
       setAtualizarTabela(true);
     });
   }
@@ -52,12 +51,12 @@ const Produtos = () => {
   useEffect(() => {
     if (atualizarTabela) {
       if (nomeProduto) {
-        axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
+        window.axios.get(`produto/porNome/${nomeProduto}`).then(({ data }) => {
           setProdutos(data);
           setAtualizarTabela(false);
         });
       } else {
-        axios.get("produto").then(({ data }) => {
+        window.axios.get("produto").then(({ data }) => {
           setProdutos(data);
           setAtualizarTabela(false);
         });
@@ -107,7 +106,12 @@ const Produtos = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
+                      <button
+                        onClick={() => {
+                          openModal();
+                          handleDelete(p.id);
+                        }}
+                      >
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>

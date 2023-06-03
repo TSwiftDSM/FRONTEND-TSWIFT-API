@@ -1,9 +1,8 @@
-import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 const Colaborador = () => {
@@ -33,7 +32,7 @@ const Colaborador = () => {
   }
 
   useEffect(() => {
-    axios
+    window.axios
       .get(`tiposUsuarios`)
       .then(({ data }) => {
         setTiposUsuarios(data);
@@ -43,11 +42,11 @@ const Colaborador = () => {
       });
 
     if (nomeColaborador) {
-      axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
+      window.axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
         setColaborador(data);
       });
     } else {
-      axios.get("usuarios").then(({ data }) => {
+      window.axios.get("usuarios").then(({ data }) => {
         setColaborador(data);
       });
     }
@@ -56,12 +55,12 @@ const Colaborador = () => {
   useEffect(() => {
     if (atualizarTabela) {
       if (nomeColaborador) {
-        axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
+        window.axios.get(`usuarios/${nomeColaborador}`).then(({ data }) => {
           setColaborador(data);
           setAtualizarTabela(false);
         });
       } else {
-        axios.get("usuarios").then(({ data }) => {
+        window.axios.get("usuarios").then(({ data }) => {
           setColaborador(data);
           setAtualizarTabela(false);
         });
@@ -75,7 +74,7 @@ const Colaborador = () => {
   }
 
   function handleDelete(id) {
-    axios.delete(`usuarios/${id}`).then(() => {
+    window.axios.delete(`usuarios/${id}`).then(() => {
       setAtualizarTabela(true);
     });
   }
@@ -129,7 +128,12 @@ const Colaborador = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
+                      <button
+                        onClick={() => {
+                          openModal();
+                          handleDelete(p.id);
+                        }}
+                      >
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>

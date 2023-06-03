@@ -1,10 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Produtos = () => {
   const [regras, setRegras] = useState([]);
@@ -12,18 +10,20 @@ const Produtos = () => {
 
   useEffect(() => {
     if (descricao) {
-      axios.get(`testeQualidade/porNome/${descricao}`).then(({ data }) => {
-        setRegras(data);
-      });
+      window.axios
+        .get(`testeQualidade/porNome/${descricao}`)
+        .then(({ data }) => {
+          setRegras(data);
+        });
     } else {
-      axios.get("testeQualidade/").then(({ data }) => {
+      window.axios.get("testeQualidade/").then(({ data }) => {
         setRegras(data);
       });
     }
   }, [descricao]);
 
   // function handleDelete(idProduto) {
-  //   axios.delete(`produto/${idProduto}`).then(() => {
+  //   window.axios.delete(`produto/${idProduto}`).then(() => {
   //     setAtualizarTabela(true);
   //   });
   // }

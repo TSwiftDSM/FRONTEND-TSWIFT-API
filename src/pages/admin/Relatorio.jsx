@@ -1,12 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Colapsador } from "../../components";
 import { formatarData } from "../../helpers";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Alert } from "react-bootstrap";
-import get from "lodash/get";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import get from "lodash/get";
 
 const Relatorio = () => {
   const [pedido, setPedido] = useState({});
@@ -14,14 +13,14 @@ const Relatorio = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`entregas/${id}`).then(({ data }) => {
+    window.axios.get(`entregas/${id}`).then(({ data }) => {
       setPedido(data);
     });
   }, [id]);
 
   async function submit() {
-    await axios.post(`alterar/forcarAceitacao/${id}/1`);
-    axios.get(`entregas/${id}`).then(({ data }) => {
+    await window.axios.post(`alterar/forcarAceitacao/${id}/1`);
+    window.axios.get(`entregas/${id}`).then(({ data }) => {
       setPedido(data);
       setShow(true);
     });

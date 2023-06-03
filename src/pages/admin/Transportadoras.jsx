@@ -1,9 +1,8 @@
+import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Transportadoras = () => {
   const [transportadoras, setTransportadora] = useState([]);
@@ -12,20 +11,20 @@ const Transportadoras = () => {
 
   useEffect(() => {
     if (nomeTransportadora) {
-      axios
+      window.axios
         .get(`fornecedores/porNome/${nomeTransportadora}/transportadora`)
         .then(({ data }) => {
           setTransportadora(data);
         });
     } else {
-      axios.get("fornecedores/transportadora").then(({ data }) => {
+      window.axios.get("fornecedores/transportadora").then(({ data }) => {
         setTransportadora(data);
       });
     }
   }, [nomeTransportadora, atualizarTabela]);
 
   function handleDelete(idFornecedor) {
-    axios.delete(`fornecedores/${idFornecedor}`).then(() => {
+    window.axios.delete(`fornecedores/${idFornecedor}`).then(() => {
       setAtualizarTabela(true);
     });
   }
@@ -33,14 +32,14 @@ const Transportadoras = () => {
   useEffect(() => {
     if (atualizarTabela) {
       if (nomeTransportadora) {
-        axios
+        window.axios
           .get(`fornecedores/porNome/${nomeTransportadora}/transportadora`)
           .then(({ data }) => {
             setTransportadora(data);
             setAtualizarTabela(false);
           });
       } else {
-        axios.get("fornecedores/transportadora").then(({ data }) => {
+        window.axios.get("fornecedores/transportadora").then(({ data }) => {
           setTransportadora(data);
           setAtualizarTabela(false);
         });

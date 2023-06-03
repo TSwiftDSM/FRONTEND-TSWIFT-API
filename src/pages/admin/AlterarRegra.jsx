@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
 
 const AlterarRegra = () => {
   const idRegra = parseInt(useParams().id);
@@ -17,7 +16,7 @@ const AlterarRegra = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get(`testeQualidade/porId/${idRegra}`).then(({ data }) => {
+    window.axios.get(`testeQualidade/porId/${idRegra}`).then(({ data }) => {
       setForm({ ...formFields, ...data });
     });
   }, []);
@@ -25,7 +24,7 @@ const AlterarRegra = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios.put(`testeQualidade/${idRegra}`, data).then(() => {
+    window.axios.put(`testeQualidade/${idRegra}`, data).then(() => {
       navigate("/admin/regras");
     });
   }

@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormField, FormGroup } from "../../components";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 const NovoColaborador = () => {
-
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -44,7 +41,7 @@ const NovoColaborador = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get("tiposUsuarios/").then(({ data }) => {
+    window.axios.get("tiposUsuarios/").then(({ data }) => {
       if (data && data.length) {
         setTiposUsuarios(
           data.map((tipo) => {
@@ -63,7 +60,7 @@ const NovoColaborador = () => {
     const novoColaborador = {
       ...data,
     };
-    axios.post("usuarios/", novoColaborador)
+    window.axios.post("usuarios/", novoColaborador);
   }
 
   return (
@@ -100,7 +97,13 @@ const NovoColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-primary px-5" onClick={() => { openModal(); handleSubmit() }}>
+          <button
+            className="btn btn-primary px-5"
+            onClick={() => {
+              openModal();
+              handleSubmit();
+            }}
+          >
             CONFIRMAR
           </button>
           {MyModal(modalIsOpen)}

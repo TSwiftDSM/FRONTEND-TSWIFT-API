@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { formatarData } from "../../helpers";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
-import axios from "axios";
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -12,11 +11,11 @@ const PedidosAdmin = () => {
 
   useEffect(() => {
     if (codPedido) {
-      axios.get(`entregas/numeroPedido/${codPedido}`).then(({ data }) => {
+      window.axios.get(`entregas/numeroPedido/${codPedido}`).then(({ data }) => {
         setPedidos(data);
       });
     } else {
-      axios.get("entregas").then(({ data }) => {
+      window.axios.get("entregas").then(({ data }) => {
         setPedidos(data);
       });
     }

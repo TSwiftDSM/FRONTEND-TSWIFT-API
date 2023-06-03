@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 
 const NovoPedido = () => {
   // const idPedido = parseInt(useParams().id);
@@ -36,7 +35,7 @@ const NovoPedido = () => {
 
   useEffect(() => {
     // pegar fornecedores do backend
-    axios.get("fornecedores").then(({ data }) => {
+    window.axios.get("fornecedores").then(({ data }) => {
       if (data && data.length) {
         setFornecedores(
           data.map((f) => {
@@ -49,7 +48,7 @@ const NovoPedido = () => {
       }
     });
     // pegar transportadoras do backend
-    axios.get("fornecedores/transportadora").then(({ data }) => {
+    window.axios.get("fornecedores/transportadora").then(({ data }) => {
       if (data && data.length) {
         setTransportadoras(
           data.map((f) => {
@@ -62,7 +61,7 @@ const NovoPedido = () => {
       }
     });
     // pegar produtos do backend
-    axios.get("produto").then(({ data }) => {
+    window.axios.get("produto").then(({ data }) => {
       if (data && data.length) {
         setProdutos(
           data.map((p) => {
@@ -130,11 +129,11 @@ const NovoPedido = () => {
       // cadastrar entrega no backend e retornar o id
       const {
         data: { id },
-      } = await axios.post("entregas", entrega);
+      } = await window.axios.post("entregas", entrega);
 
       // cadastrar o produto da entrega usando o id retornado
       produtos.forEach((produto) => {
-        axios.post("entregaProduto", {
+        window.axios.post("entregaProduto", {
           ...produto,
           EntregaId: id,
         });

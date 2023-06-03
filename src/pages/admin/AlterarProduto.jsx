@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { FormGroup, FormField } from "../../components";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
 import { unidadeDeMedida } from "../../constants";
 
 const NovoProduto = () => {
@@ -19,7 +18,7 @@ const NovoProduto = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get(`produto/${idProduto}`).then(({ data }) => {
+    window.axios.get(`produto/${idProduto}`).then(({ data }) => {
       setForm({ ...formFields, ...data });
     });
   }, []);
@@ -27,7 +26,7 @@ const NovoProduto = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    axios.put(`produto/${idProduto}`, data).then(() => {
+    window.axios.put(`produto/${idProduto}`, data).then(() => {
       navigate("/admin/produtos");
     });
   }

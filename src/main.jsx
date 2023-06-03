@@ -17,7 +17,9 @@ import Auth from "./templates/Auth";
 import routes from "./router";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000/";
+window.axios = axios;
+
+window.axios.defaults.baseURL = "http://localhost:3000/";
 
 const router = createBrowserRouter(routes);
 
@@ -50,15 +52,13 @@ function AuthProvider({ children }) {
 
   function login(dados) {
     return new Promise((resolve, reject) => {
-      return axios
+      return window.axios
         .post(`/autenticacao`, dados)
         .then(({ data }) => {
           const { usuario, tokenUsuario } = data;
           if (usuario && tokenUsuario) {
-            axios.defaults.headers.common[
-              "authorization"
-            ] = `Bearer ${tokenUsuario}`;
-            console.log(axios.defaults.headers);
+            window.axios.defaults.headers.common.Authorization = `Bearer ${tokenUsuario}`;
+            console.log(window.axios.defaults.headers.common.Authorization);
             sessionStorage.setItem("usuario", JSON.stringify(usuario));
             document.location.href = "";
             resolve(data);
@@ -71,7 +71,7 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
-    axios.defaults.headers.common["authorization"] = "";
+    window.axios.defaults.headers.common["Authorization"] = "";
     sessionStorage.removeItem("usuario");
     document.location.href = "";
   }

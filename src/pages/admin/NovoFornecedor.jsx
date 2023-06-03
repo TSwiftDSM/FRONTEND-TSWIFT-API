@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { FormGroup, FormField } from "../../components";
 import { useRef } from "react";
-import axios from "axios";
 
 const NovoFornecedor = () => {
   //const [fornecedores, setFornecedores] = useState([]);
@@ -22,7 +21,7 @@ const NovoFornecedor = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    axios.post("fornecedores", data).then(() => {
+    window.axios.post("fornecedores", data).then(() => {
       navigate("/admin/fornecedores");
     });
   }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { CardEntrega } from "../components";
 import { Link } from "react-router-dom";
 import { etapas } from "../constants";
-import axios from "axios";
 
 const EntregasAgendadas = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -10,11 +9,13 @@ const EntregasAgendadas = () => {
 
   useEffect(() => {
     if (numeroPedido) {
-      axios.get(`entregas/numeroPedido/${numeroPedido}`).then(({ data }) => {
-        setPedidos(data);
-      });
+      window.axios
+        .get(`entregas/numeroPedido/${numeroPedido}`)
+        .then(({ data }) => {
+          setPedidos(data);
+        });
     } else {
-      axios.get("entregas").then(({ data }) => {
+      window.axios.get("entregas").then(({ data }) => {
         setPedidos(data);
       });
     }
