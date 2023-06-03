@@ -21,6 +21,14 @@ window.axios = axios;
 
 window.axios.defaults.baseURL = "http://localhost:3000/";
 
+axios.interceptors.request.use(
+  async (config) => {
+    config.headers.Authorization = sessionStorage.getItem("token");
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 const router = createBrowserRouter(routes);
 
 import { createContext, useContext } from "react";
@@ -57,8 +65,7 @@ function AuthProvider({ children }) {
         .then(({ data }) => {
           const { usuario, tokenUsuario } = data;
           if (usuario && tokenUsuario) {
-            window.axios.defaults.headers.common.Authorization = `Bearer ${tokenUsuario}`;
-            console.log(window.axios.defaults.headers.common.Authorization);
+            sessionStorage.setItem("token", `Bearer ${tokenUsuario}`);
             sessionStorage.setItem("usuario", JSON.stringify(usuario));
             document.location.href = "";
             resolve(data);
@@ -71,8 +78,8 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
-    window.axios.defaults.headers.common["Authorization"] = "";
     sessionStorage.removeItem("usuario");
+    sessionStorage.removeItem("token");
     document.location.href = "";
   }
 
