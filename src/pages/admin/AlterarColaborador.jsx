@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FormField, FormGroup } from "../../components";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import moment from "moment";
+import Modal from "react-modal";
 
 const AlterarColaborador = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const formFields = Object.freeze({
     nome: "",
@@ -19,6 +19,30 @@ const AlterarColaborador = () => {
   const [form, setForm] = useState(formFields);
 
   const [tiposUsuarios, setTiposUsuarios] = useState([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Exclusão realizada Com Sucesso!</h2>
+          <Link to={"/admin/colaboradores"}>
+            <button onClick={closeModal}>OK</button>
+          </Link>
+        </Modal>
+      );
+    }
+  }
+
 
   const ref = useRef(null);
 
@@ -51,9 +75,7 @@ const AlterarColaborador = () => {
     delete data.matricula;
     delete data.login;
     delete data.senha;
-    axios.put(`usuarios/${id}`, data).then(() => {
-      navigate("/admin/colaboradores");
-    });
+    axios.put(`usuarios/${id}`, data)
   }
 
   return (
@@ -88,11 +110,12 @@ const AlterarColaborador = () => {
           </FormGroup>
         </div>
         <div className="mt-5 d-flex justify-content-center">
-         
-          <button className="btn btn-primary px-5" onClick={handleSubmit}>
+
+          <button className="btn btn-primary px-5" onClick={() => { openModal(); handleSubmit() }}>
             ALTERAR
           </button>
         </div>
+        {MyModal(modalIsOpen)}
       </div>
     </div>
   );

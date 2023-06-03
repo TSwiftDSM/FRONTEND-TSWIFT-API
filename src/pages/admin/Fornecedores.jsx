@@ -3,12 +3,22 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import Modal from "react-modal";
 import axios from "axios";
 
 const Fornecedores = () => {
   const [fornecedores, setFornecedores] = useState([]);
   const [nomeFornecedor, setNomeFornecedor] = useState("");
   const [atualizarTabela, setAtualizarTabela] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     if (nomeFornecedor) {
@@ -43,6 +53,17 @@ const Fornecedores = () => {
       }
     }
   }, [atualizarTabela, nomeFornecedor]);
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Exclusão realizada Com Sucesso!</h2>
+          <button onClick={closeModal}>OK</button>
+        </Modal>
+      );
+    }
+  }
 
   return (
     <div className="container-cards">
@@ -90,7 +111,7 @@ const Fornecedores = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => handleDelete(p.id)}>
+                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>
@@ -104,6 +125,7 @@ const Fornecedores = () => {
             <h3>Não há fornecedores cadastrados</h3>
           </div>
         )}
+        {MyModal(modalIsOpen)}
       </div>
     </div>
   );

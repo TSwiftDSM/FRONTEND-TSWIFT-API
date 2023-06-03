@@ -23,7 +23,7 @@ const EntregasAgendadas = () => {
   function listarPedidos() {
     const maxContador = 6;
     const pedidosLimitados = [];
-  
+
     for (let i = 0; i < pedidos.length; i++) {
       const p = pedidos[i];
       const etapa = etapas[p.etapaEntrega] || 0;
@@ -33,11 +33,11 @@ const EntregasAgendadas = () => {
         2: "qualitativa",
         3: "relatorio",
       });
-  
+
       if (i >= maxContador) {
         break;
       }
-  
+
       pedidosLimitados.push(
         <Link
           className="col-lg-4 col-md-6 mb-3"
@@ -48,7 +48,7 @@ const EntregasAgendadas = () => {
         </Link>
       );
     }
-  
+
     return pedidosLimitados;
   }
 

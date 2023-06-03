@@ -4,12 +4,33 @@ import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Modal from "react-modal";
 
 const Colaborador = () => {
   const [colaborador, setColaborador] = useState([]);
   const [nomeColaborador, setNomeColaborador] = useState("");
   const [TiposUsuarios, setTiposUsuarios] = useState("");
   const [atualizarTabela, setAtualizarTabela] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal}>
+          <h2>Exclusão realizada Com Sucesso!</h2>
+          <button onClick={closeModal}>OK</button>
+        </Modal>
+      );
+    }
+  }
 
   useEffect(() => {
     axios
@@ -30,7 +51,7 @@ const Colaborador = () => {
         setColaborador(data);
       });
     }
-  }, [nomeColaborador,atualizarTabela]);
+  }, [nomeColaborador, atualizarTabela]);
 
   useEffect(() => {
     if (atualizarTabela) {
@@ -95,7 +116,7 @@ const Colaborador = () => {
               {colaborador.map((p, i) => {
                 return (
                   <tr key={i}>
-                    <th>{p.id}</th>
+                    <th>{p.matricula}</th>
                     <th>{p.nome}</th>
                     <th>{p.cpf}</th>
                     {/*   <th>{p.dataNascimento}</th> */}
@@ -106,7 +127,7 @@ const Colaborador = () => {
                       </Link>
                     </th>
                     <th>
-                      <button onClick={() => handleDelete(p.id)}>
+                      <button onClick={() => { openModal(); handleDelete(p.id) }}>
                         <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                     </th>
@@ -120,6 +141,7 @@ const Colaborador = () => {
             <h3>Não há colaboradores cadastrados</h3>
           </div>
         )}
+        {MyModal(modalIsOpen)}
       </div>
     </div>
   );
