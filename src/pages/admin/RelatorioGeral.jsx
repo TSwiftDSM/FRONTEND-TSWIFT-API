@@ -18,6 +18,14 @@ const RelatioGeral = () => {
           <strong className="me-1">Nº do Pedido:</strong>
           {p.numeroPedido}
         </div>
+        <div className="small">
+          <strong className="me-1">Status:</strong>
+          <span>{p.statusPedido}</span>
+        </div>
+        <div className="small">
+          <strong className="me-1">Data Entrega:</strong>
+          <span>{p.dataEntrega}</span>
+        </div>
       </div>
     ));
   }
@@ -25,7 +33,7 @@ const RelatioGeral = () => {
   return (
     <>
       <div className="mb-4">
-        <h3 className="text-white">Relatório</h3>
+        <h3 className="text-white">Relatório Geral</h3>
       </div>
       <div className="card mx-auto col-lg-6 p-5">
         <div className="mb-4">
