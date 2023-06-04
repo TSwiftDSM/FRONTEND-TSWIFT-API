@@ -81,7 +81,7 @@ const NovoPedido = () => {
       }
     });
     // pegar transportadoras do backend
-    window.axios.get("fornecedores/transportadora").then(({ data }) => {
+    window.axios.get("fornecedores/").then(({ data }) => {
       if (data && data.length) {
         setTransportadoras(
           data.map((f) => {

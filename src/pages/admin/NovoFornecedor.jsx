@@ -35,7 +35,7 @@ const NovoFornecedor = () => {
     razaoSocial: "",
     endereco: "",
     fornecedor: true,
-    transportadora: false,
+    transportadora: true,
   });
 
   const ref = useRef(null);
