@@ -23,7 +23,7 @@ const Colaborador = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">          
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
           <h2 className="text-center mb-5">Exclusão realizada com Sucesso!</h2>
           <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={closeModal}>OK</button>
         </Modal>
@@ -76,6 +76,8 @@ const Colaborador = () => {
   function handleDelete(id) {
     window.axios.delete(`usuarios/${id}`).then(() => {
       setAtualizarTabela(true);
+    }).then(() => {
+      openModal();
     });
   }
 
@@ -130,8 +132,8 @@ const Colaborador = () => {
                     <th>
                       <button className="btn-excluir"
                         onClick={() => {
-                          openModal();
                           handleDelete(p.id);
+
                         }}
                       >
                         <FontAwesomeIcon icon={faTrashCan} />

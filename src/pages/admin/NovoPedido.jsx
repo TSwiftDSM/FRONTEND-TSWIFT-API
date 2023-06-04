@@ -219,10 +219,16 @@ const NovoPedido = () => {
                     options={produtos}
                     required
                   />
-                  <FormField
+                   <FormField
                     label="Quantidade"
                     tipo="number"
                     nome="quantidade"
+                    required
+                  />
+                  <FormField
+                    label="Peso Previsto"
+                    tipo="number"
+                    nome="pesoPrevisto"
                     required
                   />
                 </FormGroup>
@@ -254,6 +260,10 @@ const NovoPedido = () => {
                   <div>
                     Quantidade:
                     {p.quantidade}
+                  </div>
+                  <div>
+                    Peso:
+                    {p.pesoPrevisto}
                   </div>
                 </div>
               ))}
