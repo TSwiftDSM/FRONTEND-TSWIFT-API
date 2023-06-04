@@ -18,6 +18,7 @@ export const FormGroup = forwardRef((props, ref) => {
     return {
       getForm: () => validar(),
       clear: () => setForm(formFields),
+      value: form,
     };
   });
 

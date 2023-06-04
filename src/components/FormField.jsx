@@ -56,6 +56,8 @@ export const FormField = (props) => {
               })}
           </Form.Select>
         );
+      case "check":
+        return <Form.Check name={nome} checked={value} onChange={mudar} />;
       default:
         return (
           <InputGroup>
