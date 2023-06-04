@@ -43,7 +43,7 @@ const EntregasAgendadas = () => {
         <Link
           className="col-lg-4 col-md-6 mb-3"
           key={i}
-          to={`${p.id}/${rota[etapa]}`}
+          to={`/${p.id}/${rota[etapa]}`}
         >
           <CardEntrega pedido={p} />
         </Link>
