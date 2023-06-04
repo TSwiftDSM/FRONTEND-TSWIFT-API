@@ -1,6 +1,5 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { formatarData } from "../../helpers";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
@@ -76,7 +75,7 @@ const Menurelatorio = () => {
               onChange={(e) => setStatus(e.target.value)}
             />
           </div>
-          <Link to={"/admin/"}>
+          <Link to={"/admin/relatorio-geral"}>
             <button className="btn btn-primary">Gerar Relatório geral</button>
           </Link>
         </div>
