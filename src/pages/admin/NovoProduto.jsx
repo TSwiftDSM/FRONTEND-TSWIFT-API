@@ -75,7 +75,6 @@ const NovoProduto = () => {
               CADASTRAR
             </button>
           </div>
-
           {MyModal(modalIsOpen)}
         </div>
       </div>
