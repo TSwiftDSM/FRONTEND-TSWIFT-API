@@ -16,7 +16,7 @@ const NovoPedido = () => {
   });
   const formProduto = Object.freeze({
     produtoId: null,
-    EntregaId: null,
+    entregaId: null,
     quantidade: "",
 
     pesoPrevisto: 0,

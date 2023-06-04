@@ -22,7 +22,7 @@ const Produtos = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">          
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
           <h2 className="text-center mb-5">Exclusão realizada com Sucesso!</h2>
           <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={closeModal}>OK</button>
         </Modal>
@@ -54,15 +54,15 @@ const Produtos = () => {
     if (atualizarTabela) {
       if (descricao) {
         window.axios
-        .get(`testeQualidade/porNome/${descricao}`)
-        .then(({ data }) => {
+          .get(`testeQualidade/porNome/${descricao}`)
+          .then(({ data }) => {
+            setRegras(data);
+            setAtualizarTabela(false);
+          });
+      } else {
+        window.axios.get("testeQualidade/").then(({ data }) => {
           setRegras(data);
           setAtualizarTabela(false);
-        });
-    } else {
-      window.axios.get("testeQualidade/").then(({ data }) => {
-        setRegras(data);
-        setAtualizarTabela(false);
         });
       }
     }
@@ -84,9 +84,17 @@ const Produtos = () => {
               onChange={(e) => setDescricao(e.target.value)}
             />
           </div>
-          <Link to={"/admin/nova-regra"}>
-            <button className="btn btn-primary">+ Novo</button>
-          </Link>
+          <div>
+            <Link to={"/admin/regra-quantitativa"}>
+              <button className="btn btn-primary">Regra Quantitativa</button>
+            </Link>
+          </div>
+          <div>
+            <Link to={"/admin/nova-regra"}>
+              <button className="btn btn-primary">+ Novo</button>
+            </Link>
+          </div>
+
         </div>
         {regras.length ? (
           <Table striped bordered>
