@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 const NovoPedido = () => {
   const navigate = useNavigate();
@@ -23,13 +24,13 @@ const NovoPedido = () => {
     especificacao: "Alguma especificação",
   });
 
-  const [nodes, setNodes] = useState([]);
+  const ref = useRef(null);
+  const productRef = useRef(null);
+
   const [produtos, setProdutos] = useState([]);
   const [fornecedores, setFornecedores] = useState([]);
   const [transportadoras, setTransportadoras] = useState([]);
-
-  const ref = useRef(null);
-  const nodesRef = useRef([]);
+  const [produtosPedido, setProdutosPedido] = useState([]);
 
   useEffect(() => {
     // pegar fornecedores do backend
@@ -73,56 +74,23 @@ const NovoPedido = () => {
     });
   }, []);
 
-  useEffect(() => {
-    // inicializar a página com uma caixa de produto
-    if (produtos.length) {
-      setNodes([
-        <FormGroup
-          key={nodes.length}
-          formFields={formProduto}
-          ref={(elem) => (nodesRef.current[nodes.length] = elem)}
-        >
-          <FormField
-            label="Produto"
-            tipo="select"
-            options={produtos}
-            nome="produtoId"
-            required
-          />
-          <FormField
-            label="Quantidade (Kg / Litro)"
-            tipo="number"
-            nome="quantidade"
-            required
-          />
-        </FormGroup>,
-      ]);
-    }
-  }, [produtos]); // eslint-disable-line react-hooks/exhaustive-deps
+  async function addProduct() {
+    const produto = await productRef.current.getForm();
+    setProdutosPedido((valorAtual) => [...valorAtual, produto]);
+    console.log(produto);
+    productRef.current.clear();
+  }
 
-  function addNode() {
-    // função para adicionar novas caixas de produto
-    setNodes([
-      ...nodes,
-      <FormGroup
-        key={nodes.length}
-        formFields={formProduto}
-        ref={(elem) => (nodesRef.current[nodes.length] = elem)}
-      >
-        <FormField label="Produto" tipo="select" options={produtos} required />
-        <FormField label="Quantidade" tipo="number" required />
-      </FormGroup>,
-    ]);
+  function removerProduto(i) {
+    let atualizado = [...produtosPedido];
+    atualizado.splice(i, 1);
+    setProdutosPedido(atualizado);
   }
 
   async function submit() {
     try {
       // pegar dados da entrega
       const entrega = await ref.current.getForm();
-      // pegar dados de cada produto
-      const produtos = await Promise.all(
-        nodesRef.current.map((node) => node.getForm())
-      );
 
       // cadastrar entrega no backend e retornar o id
       const {
@@ -130,7 +98,7 @@ const NovoPedido = () => {
       } = await window.axios.post("entregas", entrega);
 
       // cadastrar o produto da entrega usando o id retornado
-      produtos.forEach((produto) => {
+      produtosPedido.forEach((produto) => {
         window.axios.post("entregaProduto", {
           ...produto,
           EntregaId: id,
@@ -143,6 +111,17 @@ const NovoPedido = () => {
       console.log(e);
     }
   }
+
+  const CloseButton = styled.button`
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 10px;
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    color: red;
+  `;
 
   return (
     <div className="container-cards">
@@ -194,21 +173,63 @@ const NovoPedido = () => {
             />
           </FormGroup>
 
-          {nodes.map((node, i) => {
-            return (
-              <div key={i} className="p-4 my-4 border border-dark rounded">
-                {node}
+          {produtos.length > 0 && (
+            <>
+              <div className="p-4 my-4 border border-dark rounded">
+                <FormGroup formFields={formProduto} ref={productRef}>
+                  <FormField
+                    label="Produto"
+                    nome="produtoId"
+                    tipo="select"
+                    options={produtos}
+                    required
+                  />
+                  <FormField
+                    label="Quantidade"
+                    tipo="number"
+                    nome="quantidade"
+                    required
+                  />
+                </FormGroup>
               </div>
-            );
-          })}
-          <div className="d-flex justify-content-end">
-            <button className="btn btn-primary" onClick={addNode}>
-              Adicionar +
-            </button>
+              <div className="d-flex justify-content-end">
+                <button className="btn btn-primary" onClick={addProduct}>
+                  Adicionar +
+                </button>
+              </div>
+            </>
+          )}
+
+          <div className="row">
+            {produtosPedido.length > 0 &&
+              produtosPedido.map((p, i) => (
+                <div
+                  className="col-6 border border-dark rounded p-4 my-3 position-relative"
+                  key={i}
+                >
+                  <CloseButton onClick={() => removerProduto(i)}>X</CloseButton>
+                  <div className="mb-2">
+                    Produto:{" "}
+                    {
+                      produtos.find(
+                        (produto) => produto.id === parseInt(p.produtoId)
+                      ).nome
+                    }
+                  </div>
+                  <div>
+                    Quantidade:
+                    {p.quantidade}
+                  </div>
+                </div>
+              ))}
           </div>
 
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={submit}>
+            <button
+              className="btn btn-primary py-2 px-5 text-white"
+              onClick={submit}
+              disabled={produtosPedido.length < 1}
+            >
               CADASTRAR
             </button>
           </div>

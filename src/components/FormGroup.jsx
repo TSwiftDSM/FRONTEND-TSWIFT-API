@@ -17,6 +17,7 @@ export const FormGroup = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => {
     return {
       getForm: () => validar(),
+      clear: () => setForm(formFields),
     };
   });
 
@@ -28,8 +29,8 @@ export const FormGroup = forwardRef((props, ref) => {
   const validar = () => {
     return new Promise((resolve, reject) => {
       const vazios = Array.isArray(children)
-      ? children.filter(({ props }) => props.required && !form[props.nome])
-      : [];
+        ? children.filter(({ props }) => props.required && !form[props.nome])
+        : [];
       if (vazios && vazios.length) {
         const nomes = vazios.map(({ props: { nome } }) => {
           return nome;
