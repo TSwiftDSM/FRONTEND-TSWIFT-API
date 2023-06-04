@@ -22,15 +22,27 @@ const NovoPedido = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          className="caixa-modal mx-auto"
+        >
           <h2 className="text-center mb-5">Cadastro realizado com sucesso!</h2>
-            <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={()=> {closeModal(); window.location.href = '/admin/pedidos';}}>OK</button>
+          <button
+            className="btn btn-primary py-2 px-5 col-3 mx-auto"
+            onClick={() => {
+              closeModal();
+              window.location.href = "/admin/pedidos";
+            }}
+          >
+            OK
+          </button>
         </Modal>
       );
     }
   }
 
-  const form = Object.freeze({
+  const [form, setForm] = useState({
     fornecedorId: null,
     transportadoraId: null,
     tipoFrete: "",
@@ -98,8 +110,9 @@ const NovoPedido = () => {
 
   async function addProduct() {
     const produto = await productRef.current.getForm();
+    const obj = await ref.current.value;
+    setForm(obj);
     setProdutosPedido((valorAtual) => [...valorAtual, produto]);
-    console.log(produto);
     productRef.current.clear();
   }
 
@@ -123,7 +136,7 @@ const NovoPedido = () => {
       produtosPedido.forEach((produto) => {
         window.axios.post("entregaProduto", {
           ...produto,
-          EntregaId: id,
+          entregaId: parseInt(id),
         });
       });
 
