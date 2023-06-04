@@ -1,12 +1,34 @@
 import { formasDePagamento, tiposDeFrete } from "../../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormGroup, FormField } from "../../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Modal from "react-modal";
 
 const NovoPedido = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  function MyModal(isOpen) {
+    if (isOpen) {
+      return (
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
+          <h2 className="text-center mb-5">Cadastro realizado com sucesso!</h2>
+            <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={()=> {closeModal(); window.location.href = '/admin/pedidos';}}>OK</button>
+        </Modal>
+      );
+    }
+  }
 
   const form = Object.freeze({
     fornecedorId: null,
@@ -16,7 +38,7 @@ const NovoPedido = () => {
   });
   const formProduto = Object.freeze({
     produtoId: null,
-    EntregaId: null,
+    entregaId: null,
     quantidade: "",
 
     pesoPrevisto: 0,
@@ -106,7 +128,7 @@ const NovoPedido = () => {
       });
 
       // voltar para a página de pedidos
-      navigate("/admin/pedidos");
+      openModal();
     } catch (e) {
       console.log(e);
     }
@@ -233,6 +255,7 @@ const NovoPedido = () => {
               CADASTRAR
             </button>
           </div>
+          {MyModal(modalIsOpen)}
         </div>
       </div>
     </div>
