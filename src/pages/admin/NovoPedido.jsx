@@ -219,7 +219,7 @@ const NovoPedido = () => {
                     options={produtos}
                     required
                   />
-                   <FormField
+                  <FormField
                     label="Quantidade"
                     tipo="number"
                     nome="quantidade"
@@ -241,16 +241,13 @@ const NovoPedido = () => {
             </>
           )}
 
-          <div className="row">
+          <div>
             {produtosPedido.length > 0 &&
               produtosPedido.map((p, i) => (
-                <div
-                  className="col-6 border border-dark rounded p-4 my-3 position-relative"
-                  key={i}
-                >
+                <div className="border border-dark rounded p-4 my-4 position-relative" key={i} >
                   <CloseButton onClick={() => removerProduto(i)}>X</CloseButton>
                   <div className="mb-2">
-                    Produto:{" "}
+                    <p className="fw-bold d-inline">Produto:{" "}</p>
                     {
                       produtos.find(
                         (produto) => produto.id === parseInt(p.produtoId)
@@ -258,11 +255,11 @@ const NovoPedido = () => {
                     }
                   </div>
                   <div>
-                    Quantidade:
+                  <p className="fw-bold d-inline">Quantidade:</p>
                     {p.quantidade}
                   </div>
                   <div>
-                    Peso:
+                  <p className="fw-bold d-inline">Peso:</p>
                     {p.pesoPrevisto}
                   </div>
                 </div>
