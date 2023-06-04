@@ -16,13 +16,13 @@ const EntregasAgendadas = () => {
         });
     } else {
       window.axios.get("entregas").then(({ data }) => {
-        setPedidos(data);
+        setPedidos(data.filter((i) => i.etapaEntrega !== "QUALITATIVA"));
       });
     }
   }, [numeroPedido]);
 
   function listarPedidos() {
-    const maxContador = 6;
+    const maxContador = 15;
     const pedidosLimitados = [];
 
     for (let i = 0; i < pedidos.length; i++) {
@@ -76,9 +76,9 @@ const EntregasAgendadas = () => {
           <h3>Não foram encontrados pedidos</h3>
         </div>
       )}
-      <div className="d-flex justify-content-end">
+      {/* <div className="d-flex justify-content-end">
         <Link to={"#"}>Ver mais</Link>
-      </div>
+      </div> */}
     </div>
   );
 };
