@@ -39,7 +39,13 @@ const NovoProduto = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    window.axios.post("produto", data)
+    window.axios.post("produto", data).then(() => {
+      openModal();
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar a requisição POST:", error);
+      // Lógica de tratamento de erro
+    });
   }
 
   return (
@@ -67,7 +73,7 @@ const NovoProduto = () => {
             />
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={() => { openModal(); submit() }}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { submit() }}>
               CADASTRAR
             </button>
           </div>

@@ -47,7 +47,13 @@ const AlterarRegra = () => {
   async function submit() {
     const data = await ref.current.getForm();
     delete data.id;
-    window.axios.put(`testeQualidade/${idRegra}`, data)
+    window.axios.put(`testeQualidade/${idRegra}`, data).then(() => {
+      openModal();
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar a requisição PUT:", error);
+      // Lógica de tratamento de erro
+    });
   }
 
   return (

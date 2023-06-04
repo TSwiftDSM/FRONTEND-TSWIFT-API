@@ -73,7 +73,13 @@ const AlterarColaborador = () => {
     delete data.matricula;
     delete data.login;
     delete data.senha;
-    window.axios.put(`usuarios/${id}`, data);
+    window.axios.put(`usuarios/${id}`, data).then(() => {
+      openModal();
+    })
+      .catch((error) => {
+        console.error("Erro ao enviar a requisição PUT:", error);
+        // Lógica de tratamento de erro
+      });;
   }
 
   return (
@@ -111,7 +117,7 @@ const AlterarColaborador = () => {
           <button
             className="btn btn-primary px-5"
             onClick={() => {
-              openModal();
+            
               handleSubmit();
             }}
           >

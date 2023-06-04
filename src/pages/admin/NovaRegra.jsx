@@ -37,7 +37,13 @@ const NovaRegra = () => {
 
   async function submit() {
     const data = await ref.current.getForm();
-    window.axios.post("testeQualidade/", data)
+    window.axios.post("testeQualidade/", data).then(() => {
+      openModal();
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar a requisição POST:", error);
+      // Lógica de tratamento de erro
+    });
   }
 
   return (
@@ -58,7 +64,7 @@ const NovaRegra = () => {
             {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
           </FormGroup>
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={() => { openModal(); submit() }}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { submit() }}>
               CADASTRAR
             </button>
           </div>

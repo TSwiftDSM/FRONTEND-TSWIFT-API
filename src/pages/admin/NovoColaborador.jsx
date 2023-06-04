@@ -60,7 +60,13 @@ const NovoColaborador = () => {
     const novoColaborador = {
       ...data,
     };
-    window.axios.post("usuarios/", novoColaborador);
+    window.axios.post("usuarios/", novoColaborador).then(() => {
+      openModal();
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar a requisição POST:", error);
+      // Lógica de tratamento de erro
+    });;
   }
 
   return (
@@ -100,7 +106,6 @@ const NovoColaborador = () => {
           <button
             className="btn btn-primary px-5"
             onClick={() => {
-              openModal();
               handleSubmit();
             }}
           >
