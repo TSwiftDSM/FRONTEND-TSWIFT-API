@@ -95,7 +95,6 @@ const Fornecedores = () => {
                 <th>Nome Fantasia</th>
                 <th>Razão social</th>
                 <th>CNPJ</th>
-                <th>Endereço</th>
                 <th style={{ width: "4%" }} />
                 <th style={{ width: "4%" }} />
               </tr>
@@ -107,7 +106,6 @@ const Fornecedores = () => {
                     <th>{p.nomeFantasia}</th>
                     <th>{p.razaoSocial}</th>
                     <th>{p.fornecedorCNPJ}</th>
-                    <th>{p.endereco}</th>
                     <th>
                       <Link to={`/admin/fornecedores/${p.id}`}>
                         <FontAwesomeIcon icon={faPencil} />
