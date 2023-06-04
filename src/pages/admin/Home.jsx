@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <div className="container container-home">
-      <div className="row">{renderizaHome(usuario)}</div>
+        <div className="row">{renderizaHome(usuario)}</div>
     </div>
   );
 };

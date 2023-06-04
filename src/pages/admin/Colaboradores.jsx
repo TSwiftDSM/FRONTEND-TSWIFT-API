@@ -23,9 +23,9 @@ const Colaborador = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal}>
-          <h2>Exclusão realizada Com Sucesso!</h2>
-          <button onClick={closeModal}>OK</button>
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">          
+          <h2 className="text-center mb-5">Exclusão realizada com Sucesso!</h2>
+          <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={closeModal}>OK</button>
         </Modal>
       );
     }

@@ -192,3 +192,15 @@ input[type="number"] {
   justify-content: end;
   padding-right: 20px;
 }
+
+.caixa-modal {
+  background-color: rgba(rgb(199, 199, 199), 0.7);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 40vh;
+  margin-top: 30vh;
+  border-radius: 5%;
+}
