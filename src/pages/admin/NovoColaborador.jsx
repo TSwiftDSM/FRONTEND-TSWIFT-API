@@ -19,11 +19,9 @@ const NovoColaborador = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal}>
-          <h2>Cadastro realizado Com Sucesso!</h2>
-          <Link to={"/admin/colaboradores"}>
-            <button onClick={closeModal}>OK</button>
-          </Link>
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
+          <h2 className="text-center mb-5">Cadastro realizado com sucesso!</h2>
+          <button className="btn btn-primary py-2 px-5 col-3 mx-auto" onClick={()=> {closeModal(); window.location.href = '/admin/colaboradores';}}>OK</button>
         </Modal>
       );
     }
@@ -142,12 +140,13 @@ const NovoColaborador = () => {
         </div>
         {permissoes.length > 0 && (
           <>
-            <h4>Permissões</h4>
+            <p>Permissões</p>
             <Table striped bordered>
               <tbody>{tabelaPermissoes()}</tbody>
             </Table>
           </>
         )}
+        
         <div className="mt-5 d-flex justify-content-center">
           <button
             className="btn btn-primary px-5"
