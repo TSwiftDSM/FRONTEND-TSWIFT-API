@@ -18,6 +18,7 @@ import Regras from "./pages/admin/Regras";
 import NovaRegra from "./pages/admin/NovaRegra";
 import Transportadoras from "./pages/admin/Transportadoras";
 import NovoTransportadora from "./pages/admin/NovoTransportador";
+import RelatorioGeral from "./pages/admin/RelatorioGeral";
 
 import Entrada from "./pages/etapas/Entrada";
 import Qualitativa from "./pages/etapas/Qualitativa";
@@ -162,6 +163,10 @@ const routes = [
       {
         path: "/admin/menu-relatorios",
         element: <Menurelatorio />,
+      },
+      {
+        path: "/admin/relatorio-geral",
+        element: <RelatorioGeral />,
       },
     ],
   },

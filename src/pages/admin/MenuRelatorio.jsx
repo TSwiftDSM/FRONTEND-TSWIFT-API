@@ -1,6 +1,5 @@
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { formatarData } from "../../helpers";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
@@ -14,15 +13,15 @@ const Menurelatorio = () => {
   useEffect(() => {
     if (codPedido) {
       axios.get(`entregas/numeroPedido/${codPedido}`).then(({ data }) => {
-        setPedidos(data);
+        setPedidos(data.filter((i) => i.etapaEntrega));
       });
     } else if (status) {
       axios.get(`entregas/status/${status}`).then(({ data }) => {
-        setPedidos(data);
+        setPedidos(data.filter((i) => i.etapaEntrega));
       });
     } else {
       window.axios.get("entregas").then(({ data }) => {
-        setPedidos(data);
+        setPedidos(data.filter((i) => i.etapaEntrega));
       });
     }
   }, [codPedido, status]);
@@ -58,27 +57,33 @@ const Menurelatorio = () => {
       </div>
       <div className="card col-lg-12 p-5">
         <div className="mt-2 d-flex justify-content-end">
-          <div className="col-lg-3 mx-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Código do Pedido"
-              value={codPedido}
-              onChange={(e) => setNumeroPedido(e.target.value)}
-            />
-          </div>
-          <div className="col-lg-3 mx-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Status do Pedido"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            />
-          </div>
-          <Link to={"/admin/"}>
-            <button className="btn btn-primary">Gerar Relatório geral</button>
-          </Link>
+          {pedidos && pedidos.length > 0 && (
+            <>
+              <div className="col-lg-3 mx-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Código do Pedido"
+                  value={codPedido}
+                  onChange={(e) => setNumeroPedido(e.target.value)}
+                />
+              </div>
+              <div className="col-lg-3 mx-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Status do Pedido"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+              </div>
+              <Link to={"/admin/relatorio-geral"}>
+                <button className="btn btn-primary">
+                  Gerar Relatório geral
+                </button>
+              </Link>
+            </>
+          )}
         </div>
         <div className="my-3">
           {pedidos && pedidos.length ? (
@@ -105,7 +110,7 @@ const Menurelatorio = () => {
                     <tr key={i}>
                       <th>{p.id}</th>
                       <th>{get(p, "Fornecedor.nomeFantasia")}</th>
-                      {/* 
+                      {/*
                       <th>{formatarData(p.dataEntrega)}</th> */}
                       <th>{formatarData(p.dataEntrega)}</th>
                       <th>

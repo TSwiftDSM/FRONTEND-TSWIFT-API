@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormField, FormGroup } from "../../components";
 import { useEffect, useRef, useState } from "react";
+import { Table, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
@@ -28,15 +29,16 @@ const NovoColaborador = () => {
     }
   }
 
-  const form = Object.freeze({
+  const [formPermissoes, setFormPermissoes] = useState({});
+  const [form, setForm] = useState({
     nome: "",
     cpf: "",
     dataNascimento: "",
     tipoUsuarioId: "",
-    permissaoId: [],
   });
 
   const [tiposUsuarios, setTiposUsuarios] = useState([]);
+  const [permissoes, setPermissoes] = useState([]);
 
   const ref = useRef(null);
 
@@ -53,20 +55,56 @@ const NovoColaborador = () => {
         );
       }
     });
+    window.axios.get("permissao").then(({ data }) => {
+      if (data && data.length) {
+        setPermissoes(data);
+        let obj = {};
+        data.forEach((v) => (obj[v.id] = false));
+        setFormPermissoes(obj);
+      }
+    });
   }, []);
+
+  function tabelaPermissoes() {
+    return permissoes.map((p) => (
+      <tr key={p.id}>
+        <th>{p.descricao}</th>
+        <th style={{ width: "10%" }}>
+          <div className="d-flex align-items-center justify-content-center">
+            <Form.Check
+              name={p.id}
+              checked={formPermissoes[p.id]}
+              onChange={atualizar}
+            />
+          </div>
+        </th>
+      </tr>
+    ));
+  }
+
+  async function atualizar(e) {
+    const obj = { ...formPermissoes };
+    obj[e.target.name] = e.target.checked;
+    setFormPermissoes(obj);
+    setForm(ref.current.value);
+  }
 
   async function handleSubmit() {
     const data = await ref.current.getForm();
     const novoColaborador = {
       ...data,
     };
-    window.axios.post("usuarios/", novoColaborador).then(() => {
-      openModal();
-    })
-    .catch((error) => {
-      console.error("Erro ao enviar a requisição POST:", error);
-      // Lógica de tratamento de erro
-    });;
+    const user = await window.axios.post("usuarios/", novoColaborador);
+    Promise.all(
+      Object.keys(formPermissoes).map((v) => {
+        if (formPermissoes[v]) {
+          return window.axios.post("permissaoUsuario", {
+            usuarioId: user.data.id,
+            permissaoId: parseInt(v),
+          });
+        }
+      })
+    ).then(openModal);
   }
 
   return (
@@ -102,6 +140,14 @@ const NovoColaborador = () => {
             />
           </FormGroup>
         </div>
+        {permissoes.length > 0 && (
+          <>
+            <h4>Permissões</h4>
+            <Table striped bordered>
+              <tbody>{tabelaPermissoes()}</tbody>
+            </Table>
+          </>
+        )}
         <div className="mt-5 d-flex justify-content-center">
           <button
             className="btn btn-primary px-5"
