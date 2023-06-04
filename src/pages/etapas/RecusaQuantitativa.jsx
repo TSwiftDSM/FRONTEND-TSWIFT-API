@@ -5,18 +5,18 @@ const RecusaQuantitativa = () => {
   const { id } = useParams();
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">
           Recebimento de Produto - Conferência Quantitativa
         </h3>
       </div>
-      <div className="card mx-auto col-lg-6 p-5 text-center">
+      <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <h3 className="mb-4">ENTREGA RECUSADA</h3>
-        <span className="mb-4">
+        <p className="mb-4">
           O valor total informado ultrapassou o limite de +/- 5% de diferença
           entre o pedido e a Nota Fiscal.
-        </span>
+        </p>
         <div className="d-flex justify-content-between">
           <div className="col-lg-5 mb-4">
             <Link to={`/${id}/quantitativa`}>

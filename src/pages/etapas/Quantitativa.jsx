@@ -57,14 +57,14 @@ const Quantitativa = () => {
   }
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">
           Recebimento de Produto - Conferência Quantitativa
         </h3>
       </div>
-      <div className="card mx-auto col-lg-6 p-5">
-        <div className="mx-auto mb-3">
+      <div className="card-cadastro p-5 col-lg-6 mx-auto">
+        <div className="mb-3 d-flex justify-content-center">
           <Contador etapa={2} /> {/* posição do indicador de etapas */}
         </div>
         <Link to={"/"}>
