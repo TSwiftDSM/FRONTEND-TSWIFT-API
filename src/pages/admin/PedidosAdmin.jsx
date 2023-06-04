@@ -85,10 +85,8 @@ const PedidosAdmin = () => {
                     <th className="text-center">{p.id}</th>
                     <th>{get(p, "Fornecedor.nomeFantasia")}</th>
                     <th>{formatarData(p.dataEntrega)}</th>
-                    <th>
-                      <strong className={statusClass(p)}>
+                    <th className={statusClass(p)}>
                         {statusDoPedido(p)}
-                      </strong>
                     </th>
                     <th>
                       <Link to={`/${p.id}/relatorio`}>ver mais</Link>
