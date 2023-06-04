@@ -69,9 +69,15 @@ const EntregasAgendadas = () => {
           />
         </div>
       </div>
-      <div className="row">{listarPedidos()}</div>
+      {pedidos && pedidos.length ? (
+        <div className="row">{listarPedidos()}</div>
+      ) : (
+        <div className="text-center my-5 pt-3">
+          <h3>Não foram encontrados pedidos</h3>
+        </div>
+      )}
       <div className="d-flex justify-content-end">
-        <Link to={"/admin/pedidos"}>Ver mais</Link>
+        <Link to={"#"}>Ver mais</Link>
       </div>
     </div>
   );
