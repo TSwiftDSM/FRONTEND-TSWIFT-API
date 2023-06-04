@@ -14,7 +14,7 @@ const RecusaQuantitativa = () => {
       <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <h3 className="mb-4">ENTREGA RECUSADA</h3>
         <p className="mb-4">
-          O valor total informado ultrapassou o limite de +/- 5% de diferença
+          O valor total informado ultrapassou o limite da Regra Quantitativa de diferença
           entre o pedido e a Nota Fiscal.
         </p>
         <div className="d-flex justify-content-between">
