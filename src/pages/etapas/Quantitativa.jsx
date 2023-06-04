@@ -67,10 +67,6 @@ const Quantitativa = () => {
         <div className="mb-3 d-flex justify-content-center">
           <Contador etapa={2} /> {/* posição do indicador de etapas */}
         </div>
-        <Link to={"/"}>
-          <FontAwesomeIcon icon="f-solid fa-angle-left" className="me-2" />
-          Voltar
-        </Link>
 
         {!!produtos.length &&
           produtos.map((p, i) => {
