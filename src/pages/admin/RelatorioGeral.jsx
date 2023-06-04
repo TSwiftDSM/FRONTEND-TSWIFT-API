@@ -7,7 +7,7 @@ const RelatioGeral = () => {
 
   useEffect(() => {
     window.axios.get("entregas").then(({ data }) => {
-      setPedidos(data);
+      setPedidos(data.filter((i) => i.etapaEntrega));
     });
   }, []);
 
