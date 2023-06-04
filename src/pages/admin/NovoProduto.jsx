@@ -82,7 +82,7 @@ const NovoProduto = () => {
                       <button
                         className={`btn ${
                           formRegras[r.id].required
-                            ? "text-danger"
+                            ? "text-info"
                             : "text-dark"
                         }`}
                         onClick={() =>
