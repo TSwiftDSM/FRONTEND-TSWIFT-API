@@ -9,7 +9,7 @@ import {
   faUserFriends,
   faClipboardCheck,
   faFile,
-  faTruck,
+  // faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
@@ -36,7 +36,7 @@ const Home = () => {
       4: CardMenu(faUserFriends, "COLABORADORES", "/admin/colaboradores", 4),
       5: CardMenu(faClipboardCheck, "RECEBIMENTO", "/recebimentos", 5),
       6: CardMenu(faListCheck, "REGRAS", "/admin/regras", 6),
-      7: CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora", 7),
+      // 7: CardMenu(faTruck, "TRANSPORTADORA", "/admin/transportadora", 7),
       8: CardMenu(faFile, "RELATÓRIOS", "/Admin/menu-relatorios", 8),
     };
 

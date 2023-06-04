@@ -30,6 +30,7 @@ import ConferenciaRealizada from "./pages/etapas/ConferenciaRealizada";
 import CadastroRealizado from "./pages/admin/CadastroRealizado";
 import Colaborador from "./pages/admin/Colaboradores";
 import Menurelatorio from "./pages/admin/MenuRelatorio";
+import AlterarRegra from "./pages/admin/AlterarRegra";
 
 const routes = [
   {
@@ -105,6 +106,10 @@ const routes = [
       {
         path: "/admin/produtos/:id",
         element: <AlterarProduto />,
+      },
+      {
+        path: "/admin/regra/:id",
+        element: <AlterarRegra />,
       },
       {
         path: "/admin/novo-produto",

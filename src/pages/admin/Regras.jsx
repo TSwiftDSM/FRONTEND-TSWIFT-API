@@ -103,7 +103,7 @@ const Produtos = () => {
                   <tr key={i}>
                     <th>{r.nomeTeste}</th>
                     <th>
-                      <Link to={`/admin/regras/${r.id}`}>
+                      <Link to={`/admin/regra/${r.id}`}>
                         <FontAwesomeIcon icon={faPencil} />
                       </Link>
                     </th>

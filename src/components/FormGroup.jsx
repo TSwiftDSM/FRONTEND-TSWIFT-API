@@ -27,9 +27,9 @@ export const FormGroup = forwardRef((props, ref) => {
   // verificar se há campos obrigatórios vazios, caso não haja retorna o form, senão retorna os campos vazios
   const validar = () => {
     return new Promise((resolve, reject) => {
-      const vazios = children.filter(({ props }) => {
-        return props.required && !form[props.nome];
-      });
+      const vazios = Array.isArray(children)
+      ? children.filter(({ props }) => props.required && !form[props.nome])
+      : [];
       if (vazios && vazios.length) {
         const nomes = vazios.map(({ props: { nome } }) => {
           return nome;

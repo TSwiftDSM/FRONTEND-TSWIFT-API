@@ -23,7 +23,7 @@ export const HeaderAdmin = () => {
       4: barItem("/admin/colaboradores", "Colaboradores", 4),
       5: barItem("/recebimentos", "Recebimentos", 5),
       6: barItem("/admin/regras", "Regras", 6),
-      7: barItem("/admin/transportadora", "Transportadora", 7),
+      // 7: barItem("/admin/transportadora", "Transportadora", 7),
       8: barItem("/admin/menu-relatorios", "Relatórios", 8),
     };
     return usuario.PermissaoUsuario.map((permissao) => {
