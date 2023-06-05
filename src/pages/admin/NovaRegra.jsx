@@ -19,11 +19,17 @@ const NovaRegra = () => {
   function MyModal(isOpen) {
     if (isOpen) {
       return (
-        <Modal isOpen={isOpen} onRequestClose={closeModal}>
-          <h2>Cadastro realizado Com Sucesso!</h2>
-          <Link to={"/admin/regras"}>
-            <button onClick={closeModal}>OK</button>
-          </Link>
+        <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
+          <h2 className="text-center mb-5">Cadastro realizado com sucesso!</h2>
+          <button
+          className="btn btn-primary py-2 px-5 col-3 mx-auto"
+          onClick={() => {
+            closeModal();
+            window.location.href = "/admin/regras";
+          }}
+        >
+          OK
+        </button>
         </Modal>
       );
     }
@@ -47,11 +53,11 @@ const NovaRegra = () => {
   }
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Cadastro de Regras</h3>
       </div>
-      <div className="card p-5 col-lg-6 mx-auto">
+      <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <div className="mb-4">
           <Link to={"/admin/regras"}>
             <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
