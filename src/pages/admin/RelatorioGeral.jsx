@@ -1,30 +1,59 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { formatarData } from "../../helpers";
+import axios from "axios";
 
 const RelatioGeral = () => {
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
-    window.axios.get("entregas").then(({ data }) => {
+    axios.get("entregas").then(({ data }) => {
       setPedidos(data.filter((i) => i.etapaEntrega));
     });
   }, []);
 
+  function statusDoPedido(pedido) {
+    switch (pedido.etapaEntrega) {
+      case "":
+        return "Aguardando entrega";
+      case "QUALITATIVA":
+        return pedido.StatusEntrega && pedido.StatusEntrega.length
+          ? "Recusado"
+          : "Recebido";
+      default:
+        return "Em recebimento";
+    }
+  }
+
+  function statusClass(pedido) {
+    switch (pedido.etapaEntrega) {
+      case "QUALITATIVA":
+        return pedido.StatusEntrega && pedido.StatusEntrega.length
+          ? "text-danger"
+          : "text-success";
+      case "":
+        return "text-secondary";
+      default:
+        return "text-warning";
+    }
+  }
+
   function relatorios() {
-    return pedidos.map((p, i) => (
+    return pedidos.map((pedido, i) => (
       <div className="my-4 border-bottom border-dark" key={i}>
         <div className="small">
           <strong className="me-1">Nº do Pedido:</strong>
-          {p.numeroPedido}
+          {pedido.numeroPedido}
         </div>
         <div className="small">
           <strong className="me-1">Status:</strong>
-          <span>{p.statusPedido}</span>
+          <span className={statusClass(pedido)}>{statusDoPedido(pedido)}</span>
         </div>
         <div className="small">
           <strong className="me-1">Data Entrega:</strong>
-          <span>{p.dataEntrega}</span>
+          {formatarData(pedido.dataEntrega)}
+          {/* <span>{pedido.dataEntrega}</span> */}
         </div>
       </div>
     ));
@@ -38,13 +67,17 @@ const RelatioGeral = () => {
       <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <div className="mb-4">
           <Link to={"/admin/menu-relatorios"}>
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
+            <FontAwesomeIcon
+              icon={["fa-solid", "fa-angle-left"]}
+              className="me-2"
+            />
             Voltar
           </Link>
         </div>
         {relatorios()}
       </div>
-    </div> 
+    </div>
   );
 };
+
 export default RelatioGeral;
