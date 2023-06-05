@@ -51,24 +51,22 @@ const Menurelatorio = () => {
   }
 
   return (
-    <div>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Relatórios</h3>
       </div>
-      <div className="card col-lg-12 p-5">
+      <div className="card-list p-5">
         <div className="mt-2 d-flex justify-content-end">
-          {pedidos && pedidos.length > 0 && (
-            <>
-              <div className="col-lg-3 mx-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Código do Pedido"
-                  value={codPedido}
-                  onChange={(e) => setNumeroPedido(e.target.value)}
-                />
-              </div>
-              <div className="col-lg-3 mx-3">
+          <div className="col-lg-3 mx-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Código do Pedido"
+              value={codPedido}
+              onChange={(e) => setNumeroPedido(e.target.value)}
+            />
+          </div>
+          {/* <div className="col-lg-3 mx-3">
                 <input
                   type="text"
                   className="form-control"
@@ -76,14 +74,12 @@ const Menurelatorio = () => {
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
                 />
-              </div>
-              <Link to={"/admin/relatorio-geral"}>
-                <button className="btn btn-primary">
-                  Gerar Relatório geral
-                </button>
-              </Link>
-            </>
-          )}
+              </div> */}
+          <Link to={"/admin/relatorio-geral"}>
+            <button className="btn btn-primary">
+              Relatório geral
+            </button>
+          </Link>
         </div>
         <div className="my-3">
           {pedidos && pedidos.length ? (
@@ -96,36 +92,32 @@ const Menurelatorio = () => {
             >
               <thead>
                 <tr>
-                  <th style={{ width: "2%" }}>Código</th>
-                  <th style={{ width: "12%" }}>Fornecedor</th>
+                  <th style={{ width: "10%" }} className="text-center">Código</th>
+                  <th>Fornecedor</th>
                   {/*  <th style={{ width: "12%" }}>Data Prevista</th> */}
-                  <th style={{ width: "10%" }}>Data Entrega</th>
-                  <th style={{ width: "12%" }}>Status</th>
-                  <th style={{ width: "4%" }} />
+                  <th style={{ width: "18%" }}>Data Entrega</th>
+                  <th style={{ width: "15%" }}>Status</th>
+                  <th style={{ width: "15%" }} />
                 </tr>
               </thead>
               <tbody>
                 {pedidos.map((p, i) => {
                   return (
                     <tr key={i}>
-                      <th>{p.id}</th>
+                      <th className="text-center">{p.id}</th>
                       <th>{get(p, "Fornecedor.nomeFantasia")}</th>
                       {/*
                       <th>{formatarData(p.dataEntrega)}</th> */}
                       <th>{formatarData(p.dataEntrega)}</th>
-                      <th>
-                        <strong className={statusClass(p)}>
-                          {statusDoPedido(p)}
-                        </strong>
+                      <th className={statusClass(p)}>
+                        {statusDoPedido(p)}
                       </th>
                       {/* <th>{formatarData(p.dataEntrega)}</th> */}
 
                       <th>
-                        <Link
-                          className="d-flex align-items-center justify-content-center"
-                          to={`/${p.id}/relatorio`}
+                        <Link to={`/${p.id}/relatorio`}
                         >
-                          <button>Gerar Relatório</button>
+                          Gerar Relatório
                         </Link>
                       </th>
                     </tr>
