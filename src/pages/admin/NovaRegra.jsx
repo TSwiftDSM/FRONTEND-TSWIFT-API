@@ -1,16 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FormGroup, FormField } from "../../components";
+import { FormGroup, FormField, Colapsador } from "../../components";
+import { Table, Form } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const NovaRegra = () => {
+
+  const [produtos, setProdutos] = useState([]);
+  const [formProdutos, setformProdutos] = useState({});
+  const [form, setForm] = useState({
+    nomeTeste: "",
+  });
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
+
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -35,21 +41,90 @@ const NovaRegra = () => {
     }
   }
 
-  const form = Object.freeze({
-    nomeTeste: "",
-  });
+  useEffect(() => {    
+    // pegar produtos do backend
+    window.axios.get("produto").then(({ data }) => {
+      setProdutos(data)
+      let obj = {};
+      data.map((r) => (obj[r.id] = { checked: false, required: false }));
+      setformProdutos(obj)
+    });
+  }, []);
 
   const ref = useRef(null);
 
+  async function atualizar(e) {
+    const obj = { ...formProdutos };
+    obj[e.target.name].checked = e.target.checked;
+    setformProdutos(obj);
+    setForm(ref.current.value);
+  }
+
+  function obrigatorio(id, v) {
+    const obj = { ...formProdutos };
+    obj[id].required = v;
+    setformProdutos(obj);
+    setForm(ref.current.value);
+  }
+
+  function tabelaProdutos() {
+    if (Object.keys(formProdutos).length)
+      return (
+        <Colapsador nome="Produto">
+          <Table striped bordered>
+            <tbody>
+              {produtos.map((p) => (
+                <tr key={p.id}>
+                  <th>{p.nomeProduto}</th>
+                  <th style={{ width: "10%" }}>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <Form.Check
+                        name={p.id}
+                        checked={formProdutos[p.id].checked}
+                        onChange={atualizar}
+                      />
+                    </div>
+                  </th>
+                  <th style={{ width: "10%" }}>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <button
+                        className={`btn ${
+                          formProdutos[p.id].required
+                            ? "text-info"
+                            : "text-dark"
+                        }`}
+                        onClick={() =>
+                          obrigatorio(p.id, !formProdutos[p.id].required)
+                        }
+                      >
+                        <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation text-dark" />
+                      </button>
+                    </div>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Colapsador>
+      );
+  }
+
   async function submit() {
     const data = await ref.current.getForm();
-    window.axios.post("testeQualidade/", data).then(() => {
-      openModal();
-    })
-    .catch((error) => {
-      console.error("Erro ao enviar a requisição POST:", error);
-      // Lógica de tratamento de erro
-    });
+    const testeQualidade = await window.axios.post("testeQualidade/", data)
+    await Promise.all(
+      Object.keys(formProdutos).map(async (k) => {
+        if (formProdutos[k].checked) {
+          await window.axios.post("qualidadeProduto", {
+            testeQualidadeId: testeQualidade.data.id,
+            obrigatorio: formProdutos[k].required,
+            produtoId: parseInt(k),
+          });
+        }
+      })
+    );
+     
+  
   }
 
   return (
@@ -69,8 +144,9 @@ const NovaRegra = () => {
             <FormField nome="nomeTeste" label="Nome da Regra" required />
             {/* <FormField nome="unidade" label="Unidade de medida (KG / Litro)" required /> */}
           </FormGroup>
+          {tabelaProdutos()}
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={() => { submit() }}>
+            <button className="btn btn-primary py-2 px-5" onClick={() => { submit(); }}>
               CADASTRAR
             </button>
           </div>
