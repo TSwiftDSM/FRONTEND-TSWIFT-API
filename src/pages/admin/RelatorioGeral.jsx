@@ -31,11 +31,11 @@ const RelatioGeral = () => {
   }
 
   return (
-    <>
+    <div className="container-cards">
       <div className="mb-4">
         <h3 className="text-white">Relatório Geral</h3>
       </div>
-      <div className="card mx-auto col-lg-6 p-5">
+      <div className="card-cadastro p-5 col-lg-6 mx-auto">
         <div className="mb-4">
           <Link to={"/admin/menu-relatorios"}>
             <FontAwesomeIcon icon="fa-solid fa-angle-left" className="me-2" />
@@ -44,7 +44,7 @@ const RelatioGeral = () => {
         </div>
         {relatorios()}
       </div>
-    </>
+    </div> 
   );
 };
 export default RelatioGeral;
