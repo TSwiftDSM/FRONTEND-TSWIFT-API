@@ -13,15 +13,15 @@ const ConferenciaRealizada = () => {
       <div className="mb-4">
         <h3 className="text-white">Recebimento de Produto</h3>
       </div>
-      <div className="card-cadastro p-5 col-lg-6 mx-auto">
+      <div className="card-cadastro p-5 col-lg-6 d-flex justify-content-center flex-column mx-auto">
         <div className="mb-3 d-flex justify-content-center">
           <Contador etapa={4} /> {/* posição do indicador de etapas */}
         </div>
-        <span className="mb-5 text-center">
+        <p className="mx-auto text-center">
           Conferência realizada com sucesso.
-        </span>
+        </p>
         <div className="d-flex  justify-content-center">
-          <Button className="py-2 text-white" variant="primary" onClick={home}>
+          <Button className="py-2 text-white" variant="primary" onClick={() =>{ window.location.href = "/recebimentos"}}>
             CONCLUIR
           </Button>
         </div>
