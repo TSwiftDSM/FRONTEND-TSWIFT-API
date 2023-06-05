@@ -14,6 +14,7 @@ export const FormField = (props) => {
     icon,
     nome,
     tipo,
+    rows,
   } = props;
 
   function mudar(e) {
@@ -29,6 +30,7 @@ export const FormField = (props) => {
     value: value,
     type: tipo,
     name: nome,
+    rows: rows
   };
 
   function inputField() {

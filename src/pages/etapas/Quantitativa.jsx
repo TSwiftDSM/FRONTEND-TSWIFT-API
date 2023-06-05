@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Produto } from "../../components/quantitativa/Produto";
 import { Contador, Colapsador } from "../../components";
 import { useEffect, useState } from "react";
