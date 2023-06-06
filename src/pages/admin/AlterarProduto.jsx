@@ -12,9 +12,9 @@ const NovoProduto = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
+  // const openModal = () => {
+  //   setModalIsOpen(true);
+  // };
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -49,10 +49,14 @@ const NovoProduto = () => {
       });
     });
   }
+
+
+
   async function fetchQualidadeProduto() {
     return new Promise((resolve) => {
       window.axios.get(`qualidadeProduto/${idProduto}?m=p`).then(({ data }) => {
         let rel = {};
+        setQualidadeProduto(data)
         data.forEach((i) => (rel[i.testeQualidadeId] = i.obrigatorio));
         resolve(rel);
       });
@@ -68,19 +72,29 @@ const NovoProduto = () => {
           required: relation[r.id],
         };
       });
+      console.log(obj)
       setFormRegras(obj);
+      setRegrasAlteradas(obj)
+
     });
   }
   useEffect(() => {
     fetchProducts();
     fetchQualidadeProduto().then((rel) => fetchTesteQualidade(rel));
+
   }, []);
 
   const [form, setForm] = useState({
     nomeProduto: "",
     unidade: "",
   });
+
+
+  const [qualidadeProduto, setQualidadeProduto] = useState([]);
+
   const [formRegras, setFormRegras] = useState({});
+
+  const [regrasAlteradas, setRegrasAlteradas] = useState({});
 
   const [regras, setRegras] = useState([]);
 
@@ -99,7 +113,7 @@ const NovoProduto = () => {
                     <div className="d-flex align-items-center justify-content-center">
                       <Form.Check
                         name={r.id}
-                        checked={formRegras[r.id].checked}
+                        checked={regrasAlteradas[r.id].checked}
                         onChange={atualizar}
                       />
                     </div>
@@ -107,11 +121,10 @@ const NovoProduto = () => {
                   <th style={{ width: "10%" }}>
                     <div className="d-flex align-items-center justify-content-center">
                       <button
-                        className={`btn ${
-                          formRegras[r.id].required ? "text-info" : "text-dark"
-                        }`}
+                        className={`btn ${regrasAlteradas[r.id].required ? "text-info" : "text-dark"
+                          }`}
                         onClick={() =>
-                          obrigatorio(r.id, !formRegras[r.id].required)
+                          obrigatorio(r.id, !regrasAlteradas[r.id].required)
                         }
                       >
                         <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation text-dark" />
@@ -127,32 +140,63 @@ const NovoProduto = () => {
   }
 
   function obrigatorio(id, v) {
-    const obj = { ...formRegras };
+    const obj = { ...regrasAlteradas };
     obj[id].required = v;
     setFormRegras(obj);
     setForm(ref.current.value);
   }
 
   async function atualizar(e) {
-    const obj = { ...formRegras };
+    const obj = { ...regrasAlteradas };
     obj[e.target.name].checked = e.target.checked;
-    setFormRegras(obj);
+    setRegrasAlteradas(obj);
     setForm(ref.current.value);
   }
 
+
   async function submit() {
-    const data = await ref.current.getForm();
-    delete data.id;
-    window.axios
-      .put(`produto/${idProduto}`, data)
-      .then(() => {
-        openModal();
-      })
-      .catch((error) => {
-        console.error("Erro ao enviar a requisição PUT:", error);
-        // Lógica de tratamento de erro
-      });
+    let formRegrasTeste = formRegras
+
+    qualidadeProduto.forEach(async (qp) => {
+      if (Object.keys(formRegrasTeste).includes(String(qp.testeQualidadeId))) {
+        if (formRegrasTeste[qp.testeQualidadeId].checked && formRegrasTeste[qp.testeQualidadeId].required) {
+          await delete formRegrasTeste[String(qp.testeQualidadeId)];
+          await window.axios.put(`qualidadeProduto?p=${qp.produtoId}&q=${qp.testeQualidadeId}`, {
+            obrigatorio: true,
+            produtoId: qp.produtoId,
+            testeQualidadeId: qp.testeQualidadeId
+          });
+
+        } else if (formRegrasTeste[qp.testeQualidadeId].checked) {
+          await delete formRegrasTeste[String(qp.testeQualidadeId)];
+          await window.axios.put(`qualidadeProduto?p=${qp.produtoId}&q=${qp.testeQualidadeId}`, {
+            obrigatorio: false,
+            produtoId: qp.produtoId,
+            testeQualidadeId: qp.testeQualidadeId
+          });
+
+        } else {
+          await delete formRegrasTeste[String(qp.testeQualidadeId)];
+          await window.axios.delete(`qualidadeProduto?p=${qp.produtoId}&q=${qp.testeQualidadeId}`);
+        }
+      }
+    });
+
+    const chaves = Object.keys(formRegrasTeste);
+    console.log(formRegrasTeste)
+    console.log(chaves)
+    await Promise.all(chaves.map(async (chave) => {
+      if (formRegrasTeste[chave].checked) {
+        await window.axios.post("qualidadeProduto", {
+          obrigatorio: formRegrasTeste[chave].required,
+          produtoId: qualidadeProduto[0].produtoId,
+          testeQualidadeId: chave
+        });
+      }
+    }));
+
   }
+
 
   return (
     <div className="container-cards">
