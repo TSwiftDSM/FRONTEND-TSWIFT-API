@@ -175,13 +175,13 @@ const Relatorio = () => {
                   <strong className="me-1">Condição de pagamento:</strong>
                   {pedido.formaPagamento}
                 </div>
-                {/* <div className="small">
+                <div className="small">
                   <strong className="me-1">Informações complementares:</strong>
                 </div>
                 <div className="small">
                   <strong className="me-1">Foi apresentado laudo?</strong>
                   sim
-                </div> */}
+                </div>
               </Colapsador>
             </div>
             {pedido.EntregaProduto && !!pedido.EntregaProduto.length && (
