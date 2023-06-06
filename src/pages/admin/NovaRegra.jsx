@@ -16,7 +16,9 @@ const NovaRegra = () => {
   });
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -28,20 +30,20 @@ const NovaRegra = () => {
         <Modal isOpen={isOpen} onRequestClose={closeModal} className="caixa-modal mx-auto">
           <h2 className="text-center mb-5">Cadastro realizado com sucesso!</h2>
           <button
-          className="btn btn-primary py-2 px-5 col-3 mx-auto"
-          onClick={() => {
-            closeModal();
-            window.location.href = "/admin/regras";
-          }}
-        >
-          OK
-        </button>
+            className="btn btn-primary py-2 px-5 col-3 mx-auto"
+            onClick={() => {
+              closeModal();
+              window.location.href = "/admin/regras";
+            }}
+          >
+            OK
+          </button>
         </Modal>
       );
     }
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     // pegar produtos do backend
     window.axios.get("produto").then(({ data }) => {
       setProdutos(data)
@@ -88,11 +90,10 @@ const NovaRegra = () => {
                   <th style={{ width: "10%" }}>
                     <div className="d-flex align-items-center justify-content-center">
                       <button
-                        className={`btn ${
-                          formProdutos[p.id].required
-                            ? "text-info"
-                            : "text-dark"
-                        }`}
+                        className={`btn ${formProdutos[p.id].required
+                          ? "text-info"
+                          : "text-dark"
+                          }`}
                         onClick={() =>
                           obrigatorio(p.id, !formProdutos[p.id].required)
                         }
@@ -123,8 +124,8 @@ const NovaRegra = () => {
         }
       })
     );
-     
-  
+    openModal();
+
   }
 
   return (
@@ -146,7 +147,7 @@ const NovaRegra = () => {
           </FormGroup>
           {tabelaProdutos()}
           <div className="pt-5 d-flex justify-content-center">
-            <button className="btn btn-primary py-2 px-5" onClick={() => { submit(); }}>
+            <button className="btn btn-primary py-2 px-5" onClick={submit}>
               CADASTRAR
             </button>
           </div>
